@@ -15,16 +15,17 @@ public class SqlClass
 
     public void showtable()
     {
-        using (SQLiteCommand command = new SQLiteCommand("select * from Staff_Information"))
+       // using (SQLiteCommand command = new SQLiteCommand("select * from Staff_Information"))
         {
-            using(SQLiteDataReader reader = command.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    Console.WriteLine(reader.GetString(0)); 
-                    Console.WriteLine(reader.GetString(1));
-                }
-            }
+        //    using(SQLiteDataReader reader = command.ExecuteReader())
+        
+        //    {
+         //       while (reader.Read())
+           //     {
+             ///       Console.WriteLine(reader.GetString(0)); 
+                //    Console.WriteLine(reader.GetString(1));
+           //     }
+        //    }
         }
     }
 }
