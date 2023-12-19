@@ -35,7 +35,7 @@ namespace Gym_Management_system.Database
                 {
                     connection.Open();
                 
-                    //??????????
+                    //??? gghjgh
                     //SQLiteCommand command = connection.CreateCommand();
                     //command.CommandText = @"select * from Demo;";
                     //SQLiteDataReader reader = command.ExecuteReader();
