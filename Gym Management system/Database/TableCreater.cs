@@ -9,15 +9,13 @@ using System.Diagnostics;
 using System.Data.SqlClient;
 
 //To-do List 
-//SELECT name FROM  sqlite_schema WHERE type ='table' AND name NOT LIKE 'sqlite_%';
 
 namespace Gym_Management_system.Database
 {
     internal static class TableCreater
     {
-        private static SQLiteConnection con;
         // Copy your db Path from the Solution Explorer
-        private static string path = @"C:\Users\Farah\source\repos\Gym-Management-system\Gym Management system\Database\Gym.db";
+        private static string path = @"C:\Users\xusee\Source\Repos\Gym-Management-system\Gym Management system\Database\Gym.db";
         private static string ConnectionString = @$"Data Source={path};Version=3;";
 
 
