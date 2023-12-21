@@ -16,15 +16,7 @@ public class SqlClass
 
     public string ConnetionStr { get { return helper.ConnectionString; } }
 
-    public SqlClass()
-	{
-        
-    }
-
-
-
     
-
 
 
     public void ShowTables()
@@ -44,21 +36,11 @@ public class SqlClass
                     Console.WriteLine(r.ReaderData.GetString(0));
                 }
             }
-            
         });
     }
 
     public void Customer()
     {
-        //using (SQLiteConnection connection = new SQLiteConnection(helper.ConnectionString))
-        //{
-        //    connection.Open();
-
-        //    string query = @"";
-        //    SQLiteCommand command = connection.CreateCommand();
-        //    command.CommandText = query;
-        //    command.ExecuteNonQuery();
-        //}
         string q = @"INSERT INTO Customer_info(id, firstname, lastname) values('231','Ali','Muna')";
         helper.QueryWriter(q, r =>
         {
@@ -66,37 +48,16 @@ public class SqlClass
         });
     }
 
-    //public void Login()
-    //{
 
-    //}
-
-    //public void showtables()
-    //{
-    //    using (SQLiteConnection connection = new SQLiteConnection(ConnectionString))
-    //    {
-    //        connection.Open();
-
-
-    //        string query = @"SELECT name FROM sqlite_master WHERE type='table';";
-    //        SQLiteCommand cmd = connection.CreateCommand();
-    //        cmd.CommandText = query;
-    //        SQLiteDataReader reader = cmd.ExecuteReader();
-
-    //        while (reader.Read())
-    //        {
-                
-    //            Console.WriteLine( reader.GetString(0));
-
-    //        }
-    //        reader.Close();
-    //    }
-    //}
 
 
     private void UserLogin(string username, string password)
     {
+        //Demo
+        //username = "Ali";
+        //password = "Password";
 
+        //string query = @"SELECT * FROM";
     }
 }
-// Hello ma i maqloosa
+
