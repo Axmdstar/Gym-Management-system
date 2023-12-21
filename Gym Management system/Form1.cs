@@ -13,7 +13,8 @@ namespace Gym_Management_system
             TableCreater.Init();
 
             SqlClass sql = new SqlClass();
-            sql.showtables();
+            sql.Customer();
+            //sql.ShowTables();
 
         }
 
