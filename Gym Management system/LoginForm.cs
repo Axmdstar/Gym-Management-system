@@ -4,10 +4,10 @@ using Gym_Management_system.Database;
 
 namespace Gym_Management_system
 {
-    public partial class Form1 : Form
+    public partial class LoginForm : Form
     {
-        
-        public Form1()
+
+        public LoginForm()
         {
             InitializeComponent();
             TableCreater.Init();
@@ -21,5 +21,7 @@ namespace Gym_Management_system
         {
 
         }
+
+
     }
 }

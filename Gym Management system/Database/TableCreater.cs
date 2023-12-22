@@ -16,7 +16,7 @@ namespace Gym_Management_system.Database
     {
         
         // Copy your db Path from the Solution Explorer
-        private static string path = @"C:\Users\xusee\Source\Repos\Gym-Management-system\Gym Management system\Database\Gym.db";
+        private static string path = @"C:\Users\Farah\source\repos\Gym-Management-system\Gym Management system\Database\Gym.db";
         private static string ConnectionString = @$"Data Source={path};Version=3;";
 
 
@@ -34,13 +34,7 @@ namespace Gym_Management_system.Database
                 {
                     connection.Open();
                 
-                    //??? gghjgh
-                    //SQLiteCommand command = connection.CreateCommand();
-                    //command.CommandText = @"select * from Demo;";
-                    //SQLiteDataReader reader = command.ExecuteReader();
-                    //reader.Read();
-                    //Console.Write("##############" + reader.Read());
-                    //Console.WriteLine("Console::::" + reader.GetString(0));
+                    
 
 
                     string Schedule = @"CREATE TABLE schedule (
