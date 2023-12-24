@@ -22,6 +22,11 @@ namespace Gym_Management_system
 
         }
 
-
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            MainForm main = new MainForm();
+            main.Show();
+        }
     }
 }

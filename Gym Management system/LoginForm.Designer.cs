@@ -28,45 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            LoginBtn = new MaterialSkin2DotNet.Controls.MaterialButton();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             materialLabel1 = new MaterialSkin2DotNet.Controls.MaterialLabel();
             materialLabel2 = new MaterialSkin2DotNet.Controls.MaterialLabel();
             PaswordTxtBox = new MaterialSkin2DotNet.Controls.MaterialTextBox2();
             panel1 = new Panel();
+            iconButton1 = new FontAwesome.Sharp.IconButton();
             panel2 = new Panel();
             panel3 = new Panel();
             UserNameTxtBox = new MaterialSkin2DotNet.Controls.MaterialTextBox2();
-            materialLabel3 = new MaterialSkin2DotNet.Controls.MaterialLabel();
+            label1 = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
             SuspendLayout();
-            // 
-            // LoginBtn
-            // 
-            LoginBtn.AutoEllipsis = true;
-            LoginBtn.AutoSize = false;
-            LoginBtn.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            LoginBtn.Density = MaterialSkin2DotNet.Controls.MaterialButton.MaterialButtonDensity.Default;
-            LoginBtn.Depth = 0;
-            LoginBtn.Dock = DockStyle.Bottom;
-            LoginBtn.DrawShadows = false;
-            LoginBtn.FlatStyle = FlatStyle.Flat;
-            LoginBtn.Font = new Font("Segoe UI", 28F, FontStyle.Regular, GraphicsUnit.Point);
-            LoginBtn.ForeColor = SystemColors.HighlightText;
-            LoginBtn.HighEmphasis = true;
-            LoginBtn.Icon = null;
-            LoginBtn.Location = new Point(0, 295);
-            LoginBtn.Margin = new Padding(4, 6, 4, 6);
-            LoginBtn.MouseState = MaterialSkin2DotNet.MouseState.HOVER;
-            LoginBtn.Name = "LoginBtn";
-            LoginBtn.NoAccentTextColor = Color.Empty;
-            LoginBtn.Size = new Size(766, 75);
-            LoginBtn.TabIndex = 0;
-            LoginBtn.Text = "LOGIN";
-            LoginBtn.Type = MaterialSkin2DotNet.Controls.MaterialButton.MaterialButtonType.Contained;
-            LoginBtn.UseAccentColor = false;
-            LoginBtn.UseVisualStyleBackColor = true;
             // 
             // materialLabel1
             // 
@@ -132,13 +107,27 @@
             // 
             panel1.AutoSize = true;
             panel1.BackColor = SystemColors.Window;
+            panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(iconButton1);
             panel1.Controls.Add(panel2);
             panel1.Controls.Add(panel3);
-            panel1.Controls.Add(LoginBtn);
-            panel1.Location = new Point(594, 286);
+            panel1.Location = new Point(625, 354);
             panel1.Name = "panel1";
             panel1.Size = new Size(766, 370);
             panel1.TabIndex = 5;
+            // 
+            // iconButton1
+            // 
+            iconButton1.IconChar = FontAwesome.Sharp.IconChar.None;
+            iconButton1.IconColor = Color.Black;
+            iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconButton1.Location = new Point(330, 293);
+            iconButton1.Name = "iconButton1";
+            iconButton1.Size = new Size(112, 34);
+            iconButton1.TabIndex = 8;
+            iconButton1.Text = "iconButton1";
+            iconButton1.UseVisualStyleBackColor = true;
+            iconButton1.Click += iconButton1_Click;
             // 
             // panel2
             // 
@@ -189,27 +178,26 @@
             UserNameTxtBox.TrailingIcon = null;
             UserNameTxtBox.UseSystemPasswordChar = false;
             // 
-            // materialLabel3
+            // label1
             // 
-            materialLabel3.AutoSize = true;
-            materialLabel3.Depth = 0;
-            materialLabel3.Font = new Font("Roboto", 48F, FontStyle.Bold, GraphicsUnit.Pixel);
-            materialLabel3.FontType = MaterialSkin2DotNet.MaterialSkinManager.fontType.H3;
-            materialLabel3.Location = new Point(594, 225);
-            materialLabel3.MouseState = MaterialSkin2DotNet.MouseState.HOVER;
-            materialLabel3.Name = "materialLabel3";
-            materialLabel3.Size = new Size(119, 58);
-            materialLabel3.TabIndex = 5;
-            materialLabel3.Text = "Login";
-            materialLabel3.UseAccent = true;
+            label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("LEMON MILK", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.ForeColor = SystemColors.WindowText;
+            label1.Location = new Point(626, 280);
+            label1.Name = "label1";
+            label1.Size = new Size(143, 51);
+            label1.TabIndex = 6;
+            label1.Text = "Login";
             // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImageLayout = ImageLayout.Center;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1811, 911);
-            Controls.Add(materialLabel3);
+            Controls.Add(label1);
             Controls.Add(panel1);
             Margin = new Padding(4);
             Name = "LoginForm";
@@ -226,8 +214,6 @@
         }
 
         #endregion
-
-        private MaterialSkin2DotNet.Controls.MaterialButton LoginBtn;
         private MaterialSkin2DotNet.Controls.MaterialLabel materialLabel1;
         private MaterialSkin2DotNet.Controls.MaterialLabel materialLabel2;
         private MaterialSkin2DotNet.Controls.MaterialTextBox2 PaswordTxtBox;
@@ -235,6 +221,7 @@
         private Panel panel2;
         private Panel panel3;
         private MaterialSkin2DotNet.Controls.MaterialTextBox2 UserNameTxtBox;
-        private MaterialSkin2DotNet.Controls.MaterialLabel materialLabel3;
+        private Label label1;
+        private FontAwesome.Sharp.IconButton iconButton1;
     }
 }

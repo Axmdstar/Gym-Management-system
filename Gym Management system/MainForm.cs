@@ -10,11 +10,28 @@ using System.Windows.Forms;
 
 namespace Gym_Management_system
 {
+
     public partial class MainForm : Form
     {
         public MainForm()
         {
             InitializeComponent();
+        }
+
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            dashboard1.BringToFront();
+            //Dashboard db = new Dashboard();
+            //db.Show();
+            //db.BringToFront();
+        }
+
+        private void iconButton2_Click(object sender, EventArgs e)
+        {
+            //Attendance attendance = new Attendance();
+            attendance1.BringToFront();
+            //attendance1.Hide();
+
         }
     }
 }
