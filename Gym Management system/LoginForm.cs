@@ -1,12 +1,6 @@
 
 
 using Gym_Management_system.Database;
-using System.Data.SQLite;
-using System.Security.Cryptography.X509Certificates;
-using System.Windows.Controls;
-using System.Windows.Forms;
-using System.Windows.Markup;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Gym_Management_system
 {
