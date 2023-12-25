@@ -33,5 +33,25 @@ namespace Gym_Management_system
             //attendance1.Hide();
 
         }
+
+        private void attendance1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            dashboard1.BringToFront();
+        }
+
+        private void dashboard1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

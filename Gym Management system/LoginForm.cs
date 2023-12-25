@@ -7,8 +7,8 @@ namespace Gym_Management_system
     public partial class LoginForm : Form
     {
 
-        public string Username ;
-        public string Password ;
+        public string Username;
+        public string Password;
 
         public LoginForm()
         {
@@ -19,7 +19,7 @@ namespace Gym_Management_system
             Helper helper = new Helper();
             //sql.Customer();
 
-            
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -29,19 +29,19 @@ namespace Gym_Management_system
 
 
         // Authentication user login checking
-        private void UserAuth(string username_from_databse, string password_from_database)
-        {
-                
-            if (username_from_databse == Username && password_from_database == Password)
-            {
-                MessageBox.Show("Successfully");
-            }
-            else
-            {
-                MessageBox.Show("Incorrect usesrname or password");
-            }
+        //private void UserAuth(string username_from_databse, string password_from_database)
+        //{
 
-        }
+        //    if (username_from_databse == Username && password_from_database == Password)
+        //    {
+        //        MessageBox.Show("Successfully");
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Incorrect usesrname or password");
+        //    }
+
+        //}
 
 
 
@@ -54,7 +54,7 @@ namespace Gym_Management_system
         {
             string Username = textBoxUserName.Text;
 
-            
+
 
         }
 
@@ -94,22 +94,25 @@ namespace Gym_Management_system
 
 
             
-                Helper helper = new Helper();
-            string q = $@"SELECT username , password FROM users where username = '{Username}'";
+            Helper helper = new Helper();
+            string q = $@"SELECT username , password FROM users where username = '{Username}' AND password = '{Password}'";
             helper.QueryReader(q, r =>
             {
 
-                while (r.ReaderData.Read())
-                        {
-                    UserAuth(r.ReaderData.GetString(0), r.ReaderData.GetString(1)) ;
-                    ////Console.WriteLine(r.ReaderData.GetString(0));
-                    //Console.WriteLine(r.ReaderData.GetString(1));
-                    //Console.WriteLine(r.ReaderData.GetString(2));
-                    //Console.WriteLine(r.ReaderData.GetString(3));
-                    //Console.WriteLine(r.ReaderData.GetString(4));
-                    ////Console.WriteLine(r.ReaderData.GetString(1));
+                if (r.msg.Contains("Error"))
+                {
+                    Console.WriteLine("Error");
+                    MessageBox.Show("Incorrect usesrname or password");
 
                 }
+                else
+                {
+                    Console.WriteLine(r.ReaderData.GetString(0) + r.ReaderData.GetString(1));
+                    MainForm mainForm = new MainForm();
+                    mainForm.ShowDialog();
+                    this.Close();
+                }
+                
             });
 
         }
