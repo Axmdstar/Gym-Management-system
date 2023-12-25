@@ -10,7 +10,7 @@ namespace Gym_Management_system.Database
 {
     public class Helper
     {
-        private static string path = @"C:\Users\Farah\source\repos\Gym-Management-system\Gym Management system\Database\Gym.db";
+        private static string path = @"C:\Users\xusee\source\repos\Gym-Management-system\Gym Management system\Database\Gym.db";
         public string ConnectionString = @$"Data Source={path};Version=3;";
 
 
@@ -39,21 +39,37 @@ namespace Gym_Management_system.Database
                 {
                     connection.Open();
 
+
                     SQLiteCommand cmd = connection.CreateCommand();
                     cmd.CommandText = query;
 
                     using (SQLiteDataReader reader = cmd.ExecuteReader())
                     {
+                        //if (!reader.Read())
+                        //{
+                        //    throw new NullReferenceException("Null");
+                        //}
                         Result r = new Result(reader, "Succesfull");
+                        
                         processResults(r);
                     }
+                    connection.Close();
                 }
             }
-            catch (Exception err)
+            catch (NullReferenceException err)
             {
                 string msg = err.Message;
                 Result r = new Result(null, "Error::" + msg);
                 processResults(r);
+                
+            }
+            catch (Exception err)
+            {
+                
+                string msg = err.Message;
+                Result r = new Result(null, "Error::" + msg);
+                processResults(r);
+
             }
             
         }
@@ -72,7 +88,10 @@ namespace Gym_Management_system.Database
                     cmd.ExecuteNonQuery();
                     Result r = new Result(null, "Succesfull");
                     processResults(r);
+
+                    connection.Close();
                 }
+                
             }
             catch (Exception err)
             {
