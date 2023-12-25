@@ -10,7 +10,7 @@ namespace Gym_Management_system.Database
 {
     public class Helper
     {
-        private static string path = @"C:\Users\xusee\source\repos\Gym-Management-system\Gym Management system\Database\Gym.db";
+        private static string path = @"C:\Users\Farah\source\repos\Gym-Management-system\Gym Management system\Database\Gym.db";
         public string ConnectionString = @$"Data Source={path};Version=3;";
 
 

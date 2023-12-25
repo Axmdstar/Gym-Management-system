@@ -93,7 +93,7 @@ namespace Gym_Management_system
             }
 
 
-            
+
             Helper helper = new Helper();
             string q = $@"SELECT username , password FROM users where username = '{Username}' AND password = '{Password}'";
             helper.QueryReader(q, r =>
@@ -108,11 +108,12 @@ namespace Gym_Management_system
                 else
                 {
                     Console.WriteLine(r.ReaderData.GetString(0) + r.ReaderData.GetString(1));
+
                     MainForm mainForm = new MainForm();
                     mainForm.ShowDialog();
                     this.Close();
                 }
-                
+
             });
 
         }

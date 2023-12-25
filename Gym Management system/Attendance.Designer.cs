@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             label1 = new Label();
+            
             SuspendLayout();
             // 
             // label1
@@ -39,7 +40,9 @@
             label1.Size = new Size(102, 25);
             label1.TabIndex = 0;
             label1.Text = "Attendance";
-            // 
+            //
+            //
+
             // Attendance
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -54,5 +57,6 @@
         #endregion
 
         private Label label1;
+        
     }
 }
