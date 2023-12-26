@@ -16,7 +16,7 @@ namespace Gym_Management_system.Database
     {
         
         // Copy your db Path from the Solution Explorer
-        private static string path = @"C:\Users\Farah\source\repos\Gym-Management-system\Gym Management system\Database\Gym.db";
+        private static string path = @"H:\UNIVERSITY\Semister 4\C #\Last project\Gym Management system\Database\Gym.db";
         private static string ConnectionString = @$"Data Source={path};Version=3;";
 
 
