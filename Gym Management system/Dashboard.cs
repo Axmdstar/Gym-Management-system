@@ -16,9 +16,6 @@ namespace Gym_Management_system
         {
             InitializeComponent();
         }
-
-
-
         private void Dashboard_Load(object sender, EventArgs e)
         {
 

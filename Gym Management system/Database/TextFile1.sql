@@ -1,4 +1,11 @@
-﻿CREATE TABLE customer_information (
+﻿https://www.sqlite.org/lang_datefunc.html
+
+-- Example
+Insert into staff_information Values('0', 'Mohamed', ' ', date('2000-04-02'), '123455', 'a@gmail.com', 'male', 'Xamar', 'Mog', 'asdf','asdf','asdf','day','Admin',200.0)
+
+INSERT into plans VALUES(2,'40mship',12.0, 10.0,'3','Day');
+
+CREATE TABLE customer_information (
     id VARCHAR(255) PRIMARY KEY,
     firstname VARCHAR(255),
     lastname VARCHAR(255),

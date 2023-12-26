@@ -1,4 +1,6 @@
-﻿namespace Gym_Management_system
+﻿using System.Runtime.CompilerServices;
+
+namespace Gym_Management_system
 {
 
     partial class MainForm
@@ -43,7 +45,7 @@
             iconDropDownButton1 = new FontAwesome.Sharp.IconDropDownButton();
             dashboard1 = new Dashboard();
             attendance1 = new Attendance();
-            plansForm1 = new PlansForm();
+            plansDashboard1 = new PlansDashboard();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).BeginInit();
             SuspendLayout();
@@ -281,20 +283,22 @@
             // 
             // attendance1
             // 
-            attendance1.Location = new Point(305, 0);
+            attendance1.Dock = DockStyle.Fill;
+            attendance1.Location = new Point(300, 0);
             attendance1.Margin = new Padding(2);
             attendance1.Name = "attendance1";
             attendance1.Size = new Size(1511, 911);
             attendance1.TabIndex = 2;
             // 
-            // plansForm1
+            // plansDashboard1
             // 
-            plansForm1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            plansForm1.Dock = DockStyle.Fill;
-            plansForm1.Location = new Point(300, 0);
-            plansForm1.Name = "plansForm1";
-            plansForm1.Size = new Size(1511, 911);
-            plansForm1.TabIndex = 3;
+            plansDashboard1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            plansDashboard1.Dock = DockStyle.Fill;
+            plansDashboard1.Location = new Point(300, 0);
+            plansDashboard1.Name = "plansDashboard1";
+            plansDashboard1.Size = new Size(1511, 911);
+            plansDashboard1.TabIndex = 3;
+            plansDashboard1.Load += plansDashboard1_Load;
             // 
             // MainForm
             // 
@@ -302,7 +306,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1811, 911);
-            Controls.Add(plansForm1);
+            Controls.Add(plansDashboard1);
             Controls.Add(attendance1);
             Controls.Add(dashboard1);
             Controls.Add(panel1);
@@ -333,6 +337,7 @@
         private Dashboard dashboard1;
         private Attendance attendance1;
         private Membership membership1;
-        private PlansForm plansForm1;
+        private PlansDashboard plansDashboard1;
+
     }
 }

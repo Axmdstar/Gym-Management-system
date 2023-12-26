@@ -43,31 +43,15 @@ namespace Gym_Management_system.Database
                     SQLiteCommand cmd = connection.CreateCommand();
                     cmd.CommandText = query;
 
-                    //using (SQLiteDataReader reader = cmd.ExecuteReader())
-                    //{
-                    //    if (!reader.Read())
-                    //    {
-                    //        //throw new NullReferenceException("Null");
-                    //        Console.WriteLine(" Null Value");
-                    //    }
-
-                    //    Result r = new Result(reader, "Succesfull");
-
-                    //    processResults(r);
-                    //}
                     SQLiteDataReader reader = cmd.ExecuteReader();
                     if(!reader.Read())
                     {
-                        
                         throw new Exception();
                     } else
                     {
                         Result r = new Result(reader, "Succesfull");
                         processResults(r);
                     }
-
-                    
-                    
                     connection.Close();
                 }
             }
