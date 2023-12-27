@@ -101,5 +101,18 @@ namespace Gym_Management_system
             });
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (textBoxPassword.PasswordChar == '*')
+            {
+                textBoxPassword.PasswordChar = (char)0;
+            }
+            else
+            {
+                textBoxPassword.PasswordChar = '*';
+            }
+
+        }
     }
 }
