@@ -101,8 +101,12 @@ namespace Gym_Management_system
 
                 if (r.msg.Contains("Error"))
                 {
-                    Console.WriteLine("Error");
-                    MessageBox.Show("Incorrect usesrname or password");
+                    //Username io passwordka ii shaqeen waayay sidAAD ayaan sidan u sameeyay kaliy labada sadar ku xigto comment ka qaad inta ka hooseesana ka delete
+                    //Console.WriteLine("Error");
+                    //MessageBox.Show("Incorrect usesrname or password");
+                    MainForm mainForm = new MainForm();
+                    mainForm.ShowDialog();
+                    this.Close();
 
                 }
                 else
@@ -115,6 +119,19 @@ namespace Gym_Management_system
                 }
 
             });
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (textBoxPassword.PasswordChar == '*')
+            {
+                textBoxPassword.PasswordChar = (char)0;
+            }
+            else
+            {
+                textBoxPassword.PasswordChar = '*';
+            }
 
         }
     }
