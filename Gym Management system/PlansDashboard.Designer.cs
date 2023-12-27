@@ -1,6 +1,8 @@
-﻿namespace Gym_Management_system
+﻿using System.Runtime.CompilerServices;
+
+namespace Gym_Management_system
 {
-    partial class PlansForm
+    partial class PlansDashboard
     {
         /// <summary> 
         /// Required designer variable.
@@ -20,6 +22,9 @@
             base.Dispose(disposing);
         }
 
+
+
+
         #region Component Designer generated code
 
         /// <summary> 
@@ -33,21 +38,21 @@
             label3 = new Label();
             label4 = new Label();
             tableLayoutPanel1 = new TableLayoutPanel();
+            S_EtimeResult = new Label();
+            TphoneResult = new Label();
+            PlanNameResult = new Label();
+            TrainerResult = new Label();
             label7 = new Label();
+            SignUpFeeResult = new Label();
             label6 = new Label();
+            PlanTypeResult = new Label();
             label5 = new Label();
+            PriceResult = new Label();
             iconButton1 = new FontAwesome.Sharp.IconButton();
             iconButton2 = new FontAwesome.Sharp.IconButton();
             iconButton3 = new FontAwesome.Sharp.IconButton();
             panel1 = new Panel();
-            materialComboBox1 = new MaterialSkin2DotNet.Controls.MaterialComboBox();
-            PlanNameResult = new Label();
-            PriceResult = new Label();
-            PlanTypeResult = new Label();
-            SignUpFeeResult = new Label();
-            TrainerResult = new Label();
-            TphoneResult = new Label();
-            S_EtimeResult = new Label();
+            PlansComboBox = new MaterialSkin2DotNet.Controls.MaterialComboBox();
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -130,6 +135,50 @@
             tableLayoutPanel1.Size = new Size(1318, 206);
             tableLayoutPanel1.TabIndex = 4;
             // 
+            // S_EtimeResult
+            // 
+            S_EtimeResult.AutoSize = true;
+            S_EtimeResult.Dock = DockStyle.Fill;
+            S_EtimeResult.Location = new Point(216, 106);
+            S_EtimeResult.Name = "S_EtimeResult";
+            S_EtimeResult.Size = new Size(401, 47);
+            S_EtimeResult.TabIndex = 9;
+            S_EtimeResult.Text = "...";
+            S_EtimeResult.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // TphoneResult
+            // 
+            TphoneResult.AutoSize = true;
+            TphoneResult.Dock = DockStyle.Fill;
+            TphoneResult.Location = new Point(216, 153);
+            TphoneResult.Name = "TphoneResult";
+            TphoneResult.Size = new Size(401, 53);
+            TphoneResult.TabIndex = 13;
+            TphoneResult.Text = "...";
+            TphoneResult.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // PlanNameResult
+            // 
+            PlanNameResult.AutoSize = true;
+            PlanNameResult.Dock = DockStyle.Fill;
+            PlanNameResult.Location = new Point(216, 0);
+            PlanNameResult.Name = "PlanNameResult";
+            PlanNameResult.Size = new Size(401, 53);
+            PlanNameResult.TabIndex = 9;
+            PlanNameResult.Text = "...";
+            PlanNameResult.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // TrainerResult
+            // 
+            TrainerResult.AutoSize = true;
+            TrainerResult.Dock = DockStyle.Fill;
+            TrainerResult.Location = new Point(983, 106);
+            TrainerResult.Name = "TrainerResult";
+            TrainerResult.Size = new Size(332, 47);
+            TrainerResult.TabIndex = 12;
+            TrainerResult.Text = "...";
+            TrainerResult.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // label7
             // 
             label7.AutoSize = true;
@@ -140,6 +189,17 @@
             label7.TabIndex = 5;
             label7.Text = "Trainer Phone";
             label7.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // SignUpFeeResult
+            // 
+            SignUpFeeResult.AutoSize = true;
+            SignUpFeeResult.Dock = DockStyle.Fill;
+            SignUpFeeResult.Location = new Point(983, 53);
+            SignUpFeeResult.Name = "SignUpFeeResult";
+            SignUpFeeResult.Size = new Size(332, 53);
+            SignUpFeeResult.TabIndex = 11;
+            SignUpFeeResult.Text = "...";
+            SignUpFeeResult.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label6
             // 
@@ -152,6 +212,17 @@
             label6.Text = "Trainer";
             label6.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // PlanTypeResult
+            // 
+            PlanTypeResult.AutoSize = true;
+            PlanTypeResult.Dock = DockStyle.Fill;
+            PlanTypeResult.Location = new Point(983, 0);
+            PlanTypeResult.Name = "PlanTypeResult";
+            PlanTypeResult.Size = new Size(332, 53);
+            PlanTypeResult.TabIndex = 10;
+            PlanTypeResult.Text = "...";
+            PlanTypeResult.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // label5
             // 
             label5.AutoSize = true;
@@ -162,6 +233,17 @@
             label5.TabIndex = 5;
             label5.Text = "Start-End Time";
             label5.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // PriceResult
+            // 
+            PriceResult.AutoSize = true;
+            PriceResult.Dock = DockStyle.Fill;
+            PriceResult.Location = new Point(216, 53);
+            PriceResult.Name = "PriceResult";
+            PriceResult.Size = new Size(401, 53);
+            PriceResult.TabIndex = 9;
+            PriceResult.Text = "...";
+            PriceResult.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // iconButton1
             // 
@@ -213,7 +295,7 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(materialComboBox1);
+            panel1.Controls.Add(PlansComboBox);
             panel1.Controls.Add(tableLayoutPanel1);
             panel1.Controls.Add(iconButton3);
             panel1.Controls.Add(iconButton1);
@@ -223,113 +305,35 @@
             panel1.Size = new Size(1318, 305);
             panel1.TabIndex = 8;
             // 
-            // materialComboBox1
+            // PlansComboBox
             // 
-            materialComboBox1.AutoResize = false;
-            materialComboBox1.BackColor = Color.FromArgb(255, 255, 255);
-            materialComboBox1.Depth = 0;
-            materialComboBox1.DrawMode = DrawMode.OwnerDrawVariable;
-            materialComboBox1.DropDownHeight = 174;
-            materialComboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            materialComboBox1.DropDownWidth = 121;
-            materialComboBox1.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
-            materialComboBox1.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialComboBox1.FormattingEnabled = true;
-            materialComboBox1.IntegralHeight = false;
-            materialComboBox1.ItemHeight = 43;
-            materialComboBox1.Items.AddRange(new object[] { "Test", "Test1", "Rest3" });
-            materialComboBox1.Location = new Point(12, 238);
-            materialComboBox1.MaxDropDownItems = 4;
-            materialComboBox1.MouseState = MaterialSkin2DotNet.MouseState.OUT;
-            materialComboBox1.Name = "materialComboBox1";
-            materialComboBox1.Size = new Size(242, 49);
-            materialComboBox1.StartIndex = 0;
-            materialComboBox1.TabIndex = 9;
+            PlansComboBox.AutoResize = false;
+            PlansComboBox.BackColor = Color.FromArgb(255, 255, 255);
+            PlansComboBox.Depth = 0;
+            PlansComboBox.DrawMode = DrawMode.OwnerDrawVariable;
+            PlansComboBox.DropDownHeight = 174;
+            PlansComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            PlansComboBox.DropDownWidth = 121;
+            PlansComboBox.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            PlansComboBox.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            PlansComboBox.FormattingEnabled = true;
+            PlansComboBox.IntegralHeight = false;
+            PlansComboBox.ItemHeight = 43;
+            PlansComboBox.Location = new Point(12, 238);
+            PlansComboBox.MaxDropDownItems = 4;
+            PlansComboBox.MouseState = MaterialSkin2DotNet.MouseState.OUT;
+            PlansComboBox.Name = "PlansComboBox";
+            PlansComboBox.Size = new Size(242, 49);
+            PlansComboBox.StartIndex = 0;
+            PlansComboBox.TabIndex = 9;
             // 
-            // PlanNameResult
-            // 
-            PlanNameResult.AutoSize = true;
-            PlanNameResult.Dock = DockStyle.Fill;
-            PlanNameResult.Location = new Point(216, 0);
-            PlanNameResult.Name = "PlanNameResult";
-            PlanNameResult.Size = new Size(401, 53);
-            PlanNameResult.TabIndex = 9;
-            PlanNameResult.Text = "...";
-            PlanNameResult.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // PriceResult
-            // 
-            PriceResult.AutoSize = true;
-            PriceResult.Dock = DockStyle.Fill;
-            PriceResult.Location = new Point(216, 53);
-            PriceResult.Name = "PriceResult";
-            PriceResult.Size = new Size(401, 53);
-            PriceResult.TabIndex = 9;
-            PriceResult.Text = "...";
-            PriceResult.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // PlanTypeResult
-            // 
-            PlanTypeResult.AutoSize = true;
-            PlanTypeResult.Dock = DockStyle.Fill;
-            PlanTypeResult.Location = new Point(983, 0);
-            PlanTypeResult.Name = "PlanTypeResult";
-            PlanTypeResult.Size = new Size(332, 53);
-            PlanTypeResult.TabIndex = 10;
-            PlanTypeResult.Text = "...";
-            PlanTypeResult.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // SignUpFeeResult
-            // 
-            SignUpFeeResult.AutoSize = true;
-            SignUpFeeResult.Dock = DockStyle.Fill;
-            SignUpFeeResult.Location = new Point(983, 53);
-            SignUpFeeResult.Name = "SignUpFeeResult";
-            SignUpFeeResult.Size = new Size(332, 53);
-            SignUpFeeResult.TabIndex = 11;
-            SignUpFeeResult.Text = "...";
-            SignUpFeeResult.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // TrainerResult
-            // 
-            TrainerResult.AutoSize = true;
-            TrainerResult.Dock = DockStyle.Fill;
-            TrainerResult.Location = new Point(983, 106);
-            TrainerResult.Name = "TrainerResult";
-            TrainerResult.Size = new Size(332, 47);
-            TrainerResult.TabIndex = 12;
-            TrainerResult.Text = "...";
-            TrainerResult.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // TphoneResult
-            // 
-            TphoneResult.AutoSize = true;
-            TphoneResult.Dock = DockStyle.Fill;
-            TphoneResult.Location = new Point(216, 153);
-            TphoneResult.Name = "TphoneResult";
-            TphoneResult.Size = new Size(401, 53);
-            TphoneResult.TabIndex = 13;
-            TphoneResult.Text = "...";
-            TphoneResult.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // S_EtimeResult
-            // 
-            S_EtimeResult.AutoSize = true;
-            S_EtimeResult.Dock = DockStyle.Fill;
-            S_EtimeResult.Location = new Point(216, 106);
-            S_EtimeResult.Name = "S_EtimeResult";
-            S_EtimeResult.Size = new Size(401, 47);
-            S_EtimeResult.TabIndex = 9;
-            S_EtimeResult.Text = "...";
-            S_EtimeResult.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // PlansForm
+            // PlansDashboard
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             Controls.Add(panel1);
-            Name = "PlansForm";
+            Name = "PlansDashboard";
             Size = new Size(1369, 755);
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
@@ -352,13 +356,14 @@
         private FontAwesome.Sharp.IconButton iconButton2;
         private FontAwesome.Sharp.IconButton iconButton3;
         private Panel panel1;
-        private MaterialSkin2DotNet.Controls.MaterialComboBox materialComboBox1;
-        private Label PlanNameResult;
-        private Label PriceResult;
-        private Label PlanTypeResult;
-        private Label SignUpFeeResult;
-        private Label TrainerResult;
-        private Label TphoneResult;
-        private Label S_EtimeResult;
+        public MaterialSkin2DotNet.Controls.MaterialComboBox PlansComboBox;
+        public Label PlanNameResult;
+        public Label PriceResult;
+        public Label PlanTypeResult;
+        public Label SignUpFeeResult;
+        public Label TrainerResult;
+        public Label TphoneResult;
+        public Label S_EtimeResult;
+
     }
 }

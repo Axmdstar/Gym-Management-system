@@ -21,7 +21,7 @@ public class SqlClass
 
     public void ShowTables()
     {
-        string query = @"SELECT name FROM sqlite_master WHERE type='table';";
+        string query = @"select plan_name from plans";
 
         helper.QueryReader(query, r =>
         {
@@ -31,33 +31,50 @@ public class SqlClass
                 Console.WriteLine(r.msg);
             } else
             {
-                while (r.ReaderData.Read())
+                for (int i = 0; i < 3; i++)
                 {
                     Console.WriteLine(r.ReaderData.GetString(0));
+                    r.ReaderData.Read();
+
                 }
+                //while (r.ReaderData.Read())
+                //{
+                //    Console.WriteLine(r.ReaderData.GetString(0));
+                //}
             }
         });
     }
 
-    public void Customer()
+
+
+    public void getPlansDshBdData()
     {
-        string q = @"INSERT INTO Customer_info(id, firstname, lastname) values('231','Ali','Muna')";
-        helper.QueryWriter(q, r =>
-        {
-            Console.WriteLine(r.msg);
+        string query = @"SELECT p.plan_name, p.signup_fee, p.price, p.plan_type, si.firstname, si.tell, si.shift, sch.time_in, sch.time_out from plans as p
+          LEFT JOIN staff_information as si on p.staff_id = si.id
+          LEFT join schedule as sch on  sch.plan_id = p.id";
+
+        helper.QueryReader(query, r => { 
+
         });
     }
 
 
-
-
-    private void UserLogin(string username, string password)
+    public List<string> getPlans()
     {
-        //Demo
-        //username = "Ali";
-        //password = "Password";
-
-        //string query = @"SELECT * FROM";
+        string query = @"select plan_name from plans";
+        List<string> list = new List<string>();
+        helper.QueryReader(query, r =>
+        {
+            while (r.ReaderData.HasRows)
+            {
+                //Console.WriteLine(r.ReaderData.GetString(0));
+                list.Add(r.ReaderData.GetString(0));
+                r.ReaderData.Read();
+                
+            }
+            
+        });
+        return list;
     }
 }
 

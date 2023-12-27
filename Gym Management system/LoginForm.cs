@@ -9,15 +9,18 @@ namespace Gym_Management_system
 
         public string Username;
         public string Password;
+        Helper helper = new Helper();
+        SqlClass sql = new SqlClass();
+
+
 
         public LoginForm()
         {
             InitializeComponent();
             TableCreater.Init();
 
-            SqlClass sql = new SqlClass();
-            Helper helper = new Helper();
-            //sql.Customer();
+            //sql.ShowTables();
+            
 
 
         }
@@ -28,20 +31,7 @@ namespace Gym_Management_system
         }
 
 
-        // Authentication user login checking
-        //private void UserAuth(string username_from_databse, string password_from_database)
-        //{
-
-        //    if (username_from_databse == Username && password_from_database == Password)
-        //    {
-        //        MessageBox.Show("Successfully");
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Incorrect usesrname or password");
-        //    }
-
-        //}
+        
 
 
 
@@ -94,7 +84,7 @@ namespace Gym_Management_system
 
 
 
-            Helper helper = new Helper();
+            
             string q = $@"SELECT username , password FROM users where username = '{Username}' AND password = '{Password}'";
             helper.QueryReader(q, r =>
             {
@@ -115,7 +105,7 @@ namespace Gym_Management_system
 
                     MainForm mainForm = new MainForm();
                     mainForm.ShowDialog();
-                    this.Close();
+                    
                 }
 
             });
