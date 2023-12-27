@@ -48,9 +48,9 @@ namespace Gym_Management_system
             PlanTypeResult = new Label();
             label5 = new Label();
             PriceResult = new Label();
-            iconButton1 = new FontAwesome.Sharp.IconButton();
-            iconButton2 = new FontAwesome.Sharp.IconButton();
-            iconButton3 = new FontAwesome.Sharp.IconButton();
+            AddPlan = new FontAwesome.Sharp.IconButton();
+            EditPlan = new FontAwesome.Sharp.IconButton();
+            DeletePlan = new FontAwesome.Sharp.IconButton();
             panel1 = new Panel();
             PlansComboBox = new MaterialSkin2DotNet.Controls.MaterialComboBox();
             tableLayoutPanel1.SuspendLayout();
@@ -245,61 +245,62 @@ namespace Gym_Management_system
             PriceResult.Text = "...";
             PriceResult.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // iconButton1
+            // AddPlan
             // 
-            iconButton1.AutoSize = true;
-            iconButton1.IconChar = FontAwesome.Sharp.IconChar.Add;
-            iconButton1.IconColor = Color.Black;
-            iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton1.IconSize = 35;
-            iconButton1.Location = new Point(1099, 229);
-            iconButton1.Margin = new Padding(0);
-            iconButton1.Name = "iconButton1";
-            iconButton1.Padding = new Padding(0, 4, 0, 0);
-            iconButton1.Size = new Size(206, 58);
-            iconButton1.TabIndex = 5;
-            iconButton1.TextAlign = ContentAlignment.BottomCenter;
-            iconButton1.UseVisualStyleBackColor = true;
+            AddPlan.AutoSize = true;
+            AddPlan.IconChar = FontAwesome.Sharp.IconChar.Add;
+            AddPlan.IconColor = Color.Black;
+            AddPlan.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            AddPlan.IconSize = 35;
+            AddPlan.Location = new Point(1099, 229);
+            AddPlan.Margin = new Padding(0);
+            AddPlan.Name = "AddPlan";
+            AddPlan.Padding = new Padding(0, 4, 0, 0);
+            AddPlan.Size = new Size(206, 58);
+            AddPlan.TabIndex = 5;
+            AddPlan.TextAlign = ContentAlignment.BottomCenter;
+            AddPlan.UseVisualStyleBackColor = true;
+            AddPlan.Click += AddPlan_Click;
             // 
-            // iconButton2
+            // EditPlan
             // 
-            iconButton2.AutoSize = true;
-            iconButton2.IconChar = FontAwesome.Sharp.IconChar.Pen;
-            iconButton2.IconColor = Color.Black;
-            iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton2.IconSize = 35;
-            iconButton2.Location = new Point(878, 229);
-            iconButton2.Margin = new Padding(0);
-            iconButton2.Name = "iconButton2";
-            iconButton2.Padding = new Padding(0, 4, 0, 0);
-            iconButton2.Size = new Size(206, 58);
-            iconButton2.TabIndex = 6;
-            iconButton2.TextAlign = ContentAlignment.BottomCenter;
-            iconButton2.UseVisualStyleBackColor = true;
+            EditPlan.AutoSize = true;
+            EditPlan.IconChar = FontAwesome.Sharp.IconChar.Pen;
+            EditPlan.IconColor = Color.Black;
+            EditPlan.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            EditPlan.IconSize = 35;
+            EditPlan.Location = new Point(878, 229);
+            EditPlan.Margin = new Padding(0);
+            EditPlan.Name = "EditPlan";
+            EditPlan.Padding = new Padding(0, 4, 0, 0);
+            EditPlan.Size = new Size(206, 58);
+            EditPlan.TabIndex = 6;
+            EditPlan.TextAlign = ContentAlignment.BottomCenter;
+            EditPlan.UseVisualStyleBackColor = true;
             // 
-            // iconButton3
+            // DeletePlan
             // 
-            iconButton3.AutoSize = true;
-            iconButton3.IconChar = FontAwesome.Sharp.IconChar.TrashAlt;
-            iconButton3.IconColor = Color.Black;
-            iconButton3.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton3.IconSize = 35;
-            iconButton3.Location = new Point(655, 229);
-            iconButton3.Margin = new Padding(0);
-            iconButton3.Name = "iconButton3";
-            iconButton3.Padding = new Padding(0, 4, 0, 0);
-            iconButton3.Size = new Size(206, 58);
-            iconButton3.TabIndex = 7;
-            iconButton3.TextAlign = ContentAlignment.BottomCenter;
-            iconButton3.UseVisualStyleBackColor = true;
+            DeletePlan.AutoSize = true;
+            DeletePlan.IconChar = FontAwesome.Sharp.IconChar.TrashAlt;
+            DeletePlan.IconColor = Color.Black;
+            DeletePlan.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            DeletePlan.IconSize = 35;
+            DeletePlan.Location = new Point(655, 229);
+            DeletePlan.Margin = new Padding(0);
+            DeletePlan.Name = "DeletePlan";
+            DeletePlan.Padding = new Padding(0, 4, 0, 0);
+            DeletePlan.Size = new Size(206, 58);
+            DeletePlan.TabIndex = 7;
+            DeletePlan.TextAlign = ContentAlignment.BottomCenter;
+            DeletePlan.UseVisualStyleBackColor = true;
             // 
             // panel1
             // 
             panel1.Controls.Add(PlansComboBox);
             panel1.Controls.Add(tableLayoutPanel1);
-            panel1.Controls.Add(iconButton3);
-            panel1.Controls.Add(iconButton1);
-            panel1.Controls.Add(iconButton2);
+            panel1.Controls.Add(DeletePlan);
+            panel1.Controls.Add(AddPlan);
+            panel1.Controls.Add(EditPlan);
             panel1.Location = new Point(17, 15);
             panel1.Name = "panel1";
             panel1.Size = new Size(1318, 305);
@@ -352,9 +353,9 @@ namespace Gym_Management_system
         private Label label5;
         private Label label6;
         private Label label7;
-        private FontAwesome.Sharp.IconButton iconButton1;
-        private FontAwesome.Sharp.IconButton iconButton2;
-        private FontAwesome.Sharp.IconButton iconButton3;
+        public FontAwesome.Sharp.IconButton AddPlan;
+        private FontAwesome.Sharp.IconButton EditPlan;
+        private FontAwesome.Sharp.IconButton DeletePlan;
         private Panel panel1;
         public MaterialSkin2DotNet.Controls.MaterialComboBox PlansComboBox;
         public Label PlanNameResult;

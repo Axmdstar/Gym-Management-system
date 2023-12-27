@@ -20,6 +20,7 @@ namespace Gym_Management_system
             InitializeComponent();
 
             plansDashboard1.PlansComboBox.SelectedIndexChanged += PlansComboBox_SelectedIndexChanged;
+            plansDashboard1.AddPlan.Click += AddPlan_Click;
         }
 
 
@@ -42,7 +43,6 @@ namespace Gym_Management_system
             list.AddRange(sql.getPlans());
             foreach (string s in list)
             {
-                Console.WriteLine(s);
                 plansDashboard1.PlansComboBox.Items.Add(s);
             }
 
@@ -64,14 +64,27 @@ namespace Gym_Management_system
         private void PlansComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             Console.WriteLine(plansDashboard1.PlansComboBox.SelectedItem + "iten");
-            Console.WriteLine(plansDashboard1.PlansComboBox.SelectedValue + "value");
+            string selected = (string)plansDashboard1.PlansComboBox.SelectedItem;
 
-            if (plansDashboard1.PlanTypeResult.Text == "..." && plansDashboard1.PriceResult.Text == "...")
-            {
-
-            }
-
+            Dictionary<string, List<object>> plansdata = sql.getPlansDshBdData();
+            
+            plansDashboard1.PlanNameResult.Text = plansdata[selected][0].ToString();
+            plansDashboard1.SignUpFeeResult.Text = plansdata[selected][1].ToString();
+            plansDashboard1.PriceResult.Text = plansdata[selected][2].ToString();
+            plansDashboard1.PlanTypeResult.Text = plansdata[selected][3].ToString();
+            plansDashboard1.TrainerResult.Text = plansdata[selected][4].ToString();
+            plansDashboard1.TphoneResult.Text = plansdata[selected][5].ToString();
+            //plansDashboard1..Text = plansdata[selected][6].ToString();
+            plansDashboard1.S_EtimeResult.Text = plansdata[selected][7].ToString() + plansdata[selected][8].ToString();
 
         }
+
+
+        private void AddPlan_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("Button Ready");
+        }
+
+
     }
 }

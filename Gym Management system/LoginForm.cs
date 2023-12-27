@@ -19,8 +19,8 @@ namespace Gym_Management_system
             InitializeComponent();
             TableCreater.Init();
 
-            //sql.ShowTables();
-            
+            sql.ShowTables();
+
 
 
         }
@@ -30,11 +30,6 @@ namespace Gym_Management_system
 
         }
 
-
-        
-
-
-
         private void LoginBtn_Click(object sender, EventArgs e)
         {
 
@@ -43,9 +38,6 @@ namespace Gym_Management_system
         private void textBoxUserName_TextChanged(object sender, EventArgs e)
         {
             string Username = textBoxUserName.Text;
-
-
-
         }
 
         private void textBoxPassword_TextChanged(object sender, EventArgs e)
@@ -91,12 +83,14 @@ namespace Gym_Management_system
 
                 if (r.msg.Contains("Error"))
                 {
-                    Console.WriteLine("Error");
+                    Console.WriteLine(r.msg);
+
                     MessageBox.Show("Incorrect usesrname or password");
 
                 }
                 else
                 {
+                    r.ReaderData.Read();
                     Console.WriteLine(r.ReaderData.GetString(0) + r.ReaderData.GetString(1));
 
                     MainForm mainForm = new MainForm();

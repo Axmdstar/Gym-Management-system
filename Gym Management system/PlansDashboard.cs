@@ -22,6 +22,7 @@ namespace Gym_Management_system
         {
             InitializeComponent();
             PlansComboBox.SelectedIndexChanged += PlansComboBox_SelectedIndexChanged;
+            AddPlan.Click += AddPlan_Click;
 
         }
 
@@ -30,6 +31,13 @@ namespace Gym_Management_system
         {
 
         }
+
+        public void AddPlan_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("Orign");
+        }
+
+
 
         //protected override void OnLoad(EventArgs e)
         //{

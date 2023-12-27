@@ -1,4 +1,5 @@
 ﻿https://www.sqlite.org/lang_datefunc.html
+https://www.c-sharpcorner.com/article/null-values-in-sql/
 
 -- Example
 Insert into staff_information Values('0', 'Mohamed', ' ', date('2000-04-02'), '123455', 'a@gmail.com', 'male', 'Xamar', 'Mog', 'asdf','asdf','asdf','day','Admin',200.0)
