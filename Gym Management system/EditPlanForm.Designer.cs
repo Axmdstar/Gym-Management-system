@@ -1,6 +1,6 @@
 ﻿namespace Gym_Management_system
 {
-    partial class AddPlanForm
+    partial class EditPlanForm
     {
         /// <summary>
         /// Required designer variable.
@@ -46,7 +46,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Open Sans", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(83, 315);
+            label3.Location = new Point(73, 315);
             label3.Name = "label3";
             label3.Size = new Size(82, 27);
             label3.TabIndex = 2;
@@ -56,7 +56,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Open Sans", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label7.Location = new Point(336, 315);
+            label7.Location = new Point(326, 315);
             label7.Name = "label7";
             label7.Size = new Size(99, 27);
             label7.TabIndex = 6;
@@ -78,7 +78,7 @@
             PlanNameTxtBox.InsertKeyMode = InsertKeyMode.Default;
             PlanNameTxtBox.LeadingIcon = null;
             PlanNameTxtBox.LeaveOnEnterKey = true;
-            PlanNameTxtBox.Location = new Point(83, 72);
+            PlanNameTxtBox.Location = new Point(73, 72);
             PlanNameTxtBox.Mask = "";
             PlanNameTxtBox.MaxLength = 32767;
             PlanNameTxtBox.MouseState = MaterialSkin2DotNet.MouseState.OUT;
@@ -121,7 +121,7 @@
             PriceTxtBox.Hint = "Price";
             PriceTxtBox.InsertKeyMode = InsertKeyMode.Default;
             PriceTxtBox.LeadingIcon = null;
-            PriceTxtBox.Location = new Point(83, 154);
+            PriceTxtBox.Location = new Point(73, 154);
             PriceTxtBox.Mask = "";
             PriceTxtBox.MaxLength = 32767;
             PriceTxtBox.MouseState = MaterialSkin2DotNet.MouseState.OUT;
@@ -164,7 +164,7 @@
             SignUPFeeTxtBox.Hint = "Sign Up Fee";
             SignUPFeeTxtBox.InsertKeyMode = InsertKeyMode.Default;
             SignUPFeeTxtBox.LeadingIcon = null;
-            SignUPFeeTxtBox.Location = new Point(336, 154);
+            SignUPFeeTxtBox.Location = new Point(326, 154);
             SignUPFeeTxtBox.Mask = "";
             SignUPFeeTxtBox.MaxLength = 32767;
             SignUPFeeTxtBox.MouseState = MaterialSkin2DotNet.MouseState.OUT;
@@ -241,7 +241,7 @@
             PlanTypeList.IntegralHeight = false;
             PlanTypeList.ItemHeight = 43;
             PlanTypeList.Items.AddRange(new object[] { "Day", "Evening", "Night" });
-            PlanTypeList.Location = new Point(336, 235);
+            PlanTypeList.Location = new Point(326, 235);
             PlanTypeList.MaxDropDownItems = 4;
             PlanTypeList.MouseState = MaterialSkin2DotNet.MouseState.OUT;
             PlanTypeList.Name = "PlanTypeList";
@@ -265,7 +265,7 @@
             TrainerList.Hint = "Trainer";
             TrainerList.IntegralHeight = false;
             TrainerList.ItemHeight = 43;
-            TrainerList.Location = new Point(83, 236);
+            TrainerList.Location = new Point(73, 236);
             TrainerList.MaxDropDownItems = 4;
             TrainerList.MouseState = MaterialSkin2DotNet.MouseState.OUT;
             TrainerList.Name = "TrainerList";
@@ -278,7 +278,7 @@
             // 
             TimeOut.CustomFormat = "HH:mm";
             TimeOut.Format = DateTimePickerFormat.Time;
-            TimeOut.Location = new Point(336, 354);
+            TimeOut.Location = new Point(326, 354);
             TimeOut.Name = "TimeOut";
             TimeOut.Size = new Size(132, 31);
             TimeOut.TabIndex = 11;
@@ -288,21 +288,21 @@
             // 
             TimeIn.CustomFormat = "HH:mm";
             TimeIn.Format = DateTimePickerFormat.Time;
-            TimeIn.Location = new Point(83, 354);
+            TimeIn.Location = new Point(73, 354);
             TimeIn.Name = "TimeIn";
             TimeIn.Size = new Size(132, 31);
             TimeIn.TabIndex = 10;
             TimeIn.ValueChanged += TimeIn_ValueChanged;
             // 
-            // AddPlanForm
+            // EditPlanForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(562, 507);
             Controls.Add(panel1);
-            Name = "AddPlanForm";
-            Text = "AddPlanForm";
-            Load += AddPlanForm_Load;
+            Name = "EditPlanForm";
+            Text = "EditPlanForm";
+            Load += EditPlanForm_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);

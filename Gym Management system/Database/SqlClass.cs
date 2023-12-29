@@ -21,74 +21,78 @@ public class SqlClass
 
     public void ShowTables()
     {
-        string query = @"select plan_name from plans";
+     //     string path = @"C:\Users\Farah\source\repos\Gym-Management-system\Gym Management system\Database\Gym.db";
+     //string ConnectionString = @$"Data Source={path};Version=3;";
+    string query = @"SELECT id, firstname FROM staff_information";
+
         
 
         helper.QueryReader(query, r =>
         {
-            bool Error = r.msg.Contains("Error");
-            if ( Error && r.ReaderData == null)
-            {
-                Console.WriteLine(r.msg);
-            } else
-            {
-                for (int i = 0; i < 3; i++)
-                {
-                    Console.WriteLine(r.ReaderData.GetString(0) );
-                    r.ReaderData.Read();
+            Console.WriteLine(r.msg);
 
-                }
-                //while (r.ReaderData.Read())
+            //bool Error = r.msg.Contains("Error");
+            //if (Error && r.ReaderData == null)
+            //{
+            //    Console.WriteLine(r.msg + " Error msg");
+            //}
+            //else
+            //{
+                //for (int i = 0; i < 3; i++)
                 //{
-                //    Console.WriteLine(r.ReaderData.GetString(0));
+                    Console.WriteLine(r.ReaderData.GetString(2));
+                    //r.ReaderData.Read();
+
                 //}
-            }
+            //}
         });
     }
 
 
-
-    //public void getPlansDshBdData()
-    //{
-    //    string query = @"SELECT p.plan_name, p.signup_fee, p.price, p.plan_type, si.firstname, si.tell, si.shift, sch.time_in, sch.time_out from plans as p
-    //      LEFT JOIN staff_information as si on p.staff_id = si.id
-    //      LEFT join schedule as sch on  sch.plan_id = p.id";
-
-    //    Console.WriteLine("Get Plans is Called");
-
-    //    helper.QueryReader(query, r => {
-
-    //        while (r.ReaderData.Read())
-    //        {
-    //            r.ReaderData["time_out"].ToString();
-    //            r.ReaderData["time_in"].ToString();
-    //            //Console.WriteLine("Why");
-    //            Console.Write(r.ReaderData.GetString(0) +
-    //                    r.ReaderData.GetString(1)  + " " +
-    //                    r.ReaderData.GetString(2)  + " " +
-    //                    r.ReaderData.GetString(3)  + " " +
-    //                    r.ReaderData.GetString(4)  + " " +
-    //                    r.ReaderData.GetString(5)  + " " +
-    //                    r.ReaderData.GetString(6)  + " " +
-    //                    r.ReaderData.GetString(7)  + " " +
-    //                    r.ReaderData.GetString(8) );
-    //            r.ReaderData.Read();
-    //        }
-    //    });
-    //}
-
-    public Dictionary<string, List<object>> getPlansDshBdData()
+    public Dictionary<string, List<string>>  getTrainer()
     {
-        string query = @"SELECT p.plan_name, p.signup_fee, p.price, p.plan_type, si.firstname, si.tell, si.shift, sch.time_in, sch.time_out from plans as p
-        LEFT JOIN staff_information as si on p.staff_id = si.id
-        LEFT JOIN schedule as sch on sch.plan_id = p.id";
+        string query = @"SELECT id, firstname FROM staff_information
+                         where staff_type = 'Trainer'";
+
+        Dictionary<string, List<string>> DictTrainer = new Dictionary<string, List<string>>();
+        //DictTrainer.
+        helper.QueryReader(query, r =>
+        {
+            if (r.ReaderData != null) { 
+                while (r.ReaderData.Read())
+                {
+                    Console.WriteLine(r.ReaderData.GetString(0));
+                    Console.WriteLine(r.ReaderData.GetString(1));
+                    List<string> list = new List<string>
+                    {
+                        r.ReaderData.GetString(0), r.ReaderData.GetString(1)
+                    };
+                    DictTrainer.Add(r.ReaderData.GetString(1), list);
+                }
+            }
+            Console.WriteLine(DictTrainer.Count);
+        });
+        return DictTrainer ;
+    }
+
+
+    
+
+    public Dictionary<string, List<object>>? getPlansDshBdData()
+    {
+        string query = @"SELECT p.plan_name, p.signup_fee, p.price, p.plan_type, si.firstname, si.tell, si.shift,strftime('%H:%M',                                sch.time_in), strftime('%H:%M',sch.time_out), p.id from plans as p
+                                LEFT JOIN staff_information as si on p.staff_id = si.id
+                                LEFT JOIN schedule as sch on sch.plan_id = p.id";
 
         Dictionary<string, List<object>> Dict = new Dictionary<string, List<object>>();
 
         int count = 0;
         helper.QueryReader(query, r =>
         {
-            while (r.ReaderData != null && r.ReaderData.Read())
+            if (r.ReaderData.HasRows)
+            {
+
+            while (r.ReaderData.Read())
             {
                 // Use the GetValue method and handle null values
                 string planName = r.ReaderData.IsDBNull(0) ? "NULL" : r.ReaderData.GetString(0);
@@ -100,6 +104,7 @@ public class SqlClass
                 string shift = r.ReaderData.IsDBNull(6) ? "NULL" : r.ReaderData.GetString(6);
                 string timeIn = r.ReaderData.IsDBNull(7) ? "NULL" : r.ReaderData.GetString(7);
                 string timeOut = r.ReaderData.IsDBNull(8) ? "NULL" : r.ReaderData.GetString(8);
+                int planId = r.ReaderData.IsDBNull(9) ? 0 : r.ReaderData.GetInt32(9);
 
                 List<object> list = new List<object>
                 {
@@ -111,37 +116,57 @@ public class SqlClass
                     tell,
                     shift,
                     timeIn,
-                    timeOut
+                    timeOut,
+                    planId
                 };
 
-                //Console.WriteLine($"{planName} {signupFee} {price} {planType} {firstname} {tell} {shift} {timeIn} {timeOut}");
                 Dict.Add(planName, list);
                 count++;
             }
+            }
+
         });
 
-        return Dict;
+        return Dict ?? null;
 
     }
 
 
 
-
-
-
-    public List<string> getPlans()
+    public List<string>? getPlans()
     {
         string query = @"select plan_name from plans";
         List<string> list = new List<string>();
         helper.QueryReader(query, r =>
         {
-            while (r.ReaderData.Read())
-            {
-                list.Add(r.ReaderData.GetString(0));
-                
-            }
+            //if (!r.ReaderData.Read() )
+            //{
+                while (r.ReaderData.Read())
+                {
+                    list.Add(r.ReaderData.GetString(0));
+                }
+            //}
+            
         });
-        return list;
+        return list ?? null;
+    }
+
+
+
+    public void AddPlantoDb(string query)
+    {
+        helper.QueryWriter(query, r =>
+        {
+            Console.WriteLine(r.msg); 
+        });
+    }
+
+    public void DeletePlanFromDb(string query)
+    {
+        helper.QueryWriter(query, r =>
+        {
+            Console.WriteLine(r.msg);
+        });
     }
 }
 

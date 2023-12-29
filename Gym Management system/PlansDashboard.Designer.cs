@@ -277,6 +277,7 @@ namespace Gym_Management_system
             EditPlan.TabIndex = 6;
             EditPlan.TextAlign = ContentAlignment.BottomCenter;
             EditPlan.UseVisualStyleBackColor = true;
+            EditPlan.Click += EditPlan_Click;
             // 
             // DeletePlan
             // 
@@ -293,6 +294,8 @@ namespace Gym_Management_system
             DeletePlan.TabIndex = 7;
             DeletePlan.TextAlign = ContentAlignment.BottomCenter;
             DeletePlan.UseVisualStyleBackColor = true;
+            DeletePlan.Click += DeletePlan_Click;
+
             // 
             // panel1
             // 
@@ -354,8 +357,8 @@ namespace Gym_Management_system
         private Label label6;
         private Label label7;
         public FontAwesome.Sharp.IconButton AddPlan;
-        private FontAwesome.Sharp.IconButton EditPlan;
-        private FontAwesome.Sharp.IconButton DeletePlan;
+        public FontAwesome.Sharp.IconButton EditPlan;
+        public FontAwesome.Sharp.IconButton DeletePlan;
         private Panel panel1;
         public MaterialSkin2DotNet.Controls.MaterialComboBox PlansComboBox;
         public Label PlanNameResult;

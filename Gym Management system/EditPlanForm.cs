@@ -11,23 +11,22 @@ using System.Windows.Forms;
 
 namespace Gym_Management_system
 {
-    public partial class AddPlanForm : Form
+    public partial class EditPlanForm : Form
     {
         string planName;
-        string planType;
-        string Trainer;
+        string ?planType;
+        string ?Trainer;
         string timeOut;
         string timeIn;
         float price;
         float SignUpfee;
-        Dictionary<string, List<string>>? trainers;
+        Dictionary<string, List<string>> trainers;
         SqlClass sqlClass = new SqlClass();
+        List<object> PlanData = new List<object>();
 
-        public AddPlanForm()
+        public EditPlanForm(List<object> planData)
         {
-
             InitializeComponent();
-            //SqlClass sqlClass = new SqlClass();
 
             TimeIn.Format = DateTimePickerFormat.Custom;
             TimeIn.CustomFormat = "HH:mm ";
@@ -36,45 +35,65 @@ namespace Gym_Management_system
             TimeOut.Format = DateTimePickerFormat.Custom;
             TimeOut.CustomFormat = "HH:mm ";
             TimeOut.ShowUpDown = true;
+
+            this.PlanData = planData;
+
         }
 
 
 
         private void PlanNameTxtBox_TextChange(object sender, EventArgs e) => planName = PlanNameTxtBox.Text;
-        private void SignUPFeeTxtBox_TextChange(object sender, EventArgs e) => SignUpfee = Convert.ToSingle(PlanNameTxtBox.Text);
+        private void SignUPFeeTxtBox_TextChange(object sender, EventArgs e) => SignUpfee = Convert.ToSingle(SignUPFeeTxtBox.Text);
         private void PriceTxtBox_TextChange(object sender, EventArgs e) => price = Convert.ToSingle(PriceTxtBox.Text);
         private void TimeOut_ValueChanged(object sender, EventArgs e) => timeOut = TimeOut.Text;
         private void TimeIn_ValueChanged(object sender, EventArgs e) => timeIn = TimeIn.Text;
         private void TrainerList_SelectedIndexChanged(object sender, EventArgs e) => Trainer = TrainerList.SelectedItem.ToString();
         private void PlanTypeList_SelectedIndexChanged(object sender, EventArgs e) => planType = PlanTypeList.SelectedItem.ToString();
-        
+
 
 
 
         private void AddNewPlan_Click(object sender, EventArgs e)
         {
             string TrainerId = trainers[(string)TrainerList.SelectedItem][0];
+            int planid = (int)PlanData[9];
             string query = $@"
-                INSERT INTO plans (plan_name, signup_fee, price, staff_id, plan_type) VALUES ('{planName}', {SignUpfee}, {price}, '{TrainerId}', '{planType}');
-                INSERT INTO Schedule ( plan_id, time_in, time_out) VALUES ((SELECT DISTINCT last_insert_rowid() as id from plans), time('{timeIn}'), time('{timeOut}'));";
+                            UPDATE plans 
+                            SET plan_name = '{planName}',
+	                            plan_type = '{planType}',
+	                            price = {price},
+	                            staff_id = '{TrainerId}',
+	                            signup_fee = {SignUpfee},
+                            where id = {planid};
+                            UPDATE  Schedule
+                            SET time_in = time('{PlanData[7]}'),
+                                time_out = time('{PlanData[8]}')
+                            where planid = {planid}";
             sqlClass.AddPlantoDb(query);
         }
 
 
-        private void AddPlanForm_Load(object sender, EventArgs e)
+        private void EditPlanForm_Load(object sender, EventArgs e)
         {
+
+            PlanNameTxtBox.Text = PlanData[0].ToString();
+            SignUPFeeTxtBox.Text = PlanData[1].ToString();
+            PriceTxtBox.Text = PlanData[2].ToString();
+            planType = PlanData[3].ToString();
+            TimeIn.Text = PlanData[7].ToString() ?? "00:00";
+            TimeOut.Text = PlanData[8].ToString() ?? "00:00";
+            PlanTypeList.SelectedItem = PlanData[3].ToString();
+
+            Console.WriteLine(PlanData[9]);
+            //Trainers
             trainers = sqlClass.getTrainer();
-            if (trainers.Count != 0)
+            foreach (var item in trainers)
             {
-                foreach (var item in trainers)
-                {
-                    TrainerList.Items.Add(item.Value[1]);
-                }
+                TrainerList.Items.Add(item.Value[1]);
             }
-            else
-            {
-                TrainerList.Items.Add ("Empty");
-            }
+
+            TrainerList.SelectedItem = PlanData[4].ToString();
         }
+
     }
 }

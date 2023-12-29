@@ -15,36 +15,21 @@ namespace Gym_Management_system
     public partial class PlansDashboard : UserControl
     {
 
-
-
-
         public PlansDashboard()
         {
             InitializeComponent();
             PlansComboBox.SelectedIndexChanged += PlansComboBox_SelectedIndexChanged;
             AddPlan.Click += AddPlan_Click;
-
+            EditPlan.Click += EditPlan_Click;
+            DeletePlan.Click += DeletePlan_Click;
         }
 
 
-        public void PlansComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        // Events
+        public void PlansComboBox_SelectedIndexChanged(object sender, EventArgs e){}
+        public void AddPlan_Click(object sender, EventArgs e){}
+        public void DeletePlan_Click(object sender, EventArgs e){}
+        public void EditPlan_Click(object sender, EventArgs e){}
 
-        }
-
-        public void AddPlan_Click(object sender, EventArgs e)
-        {
-            Console.WriteLine("Orign");
-        }
-
-
-
-        //protected override void OnLoad(EventArgs e)
-        //{
-        //    //Your code to run on load goes here 
-        //    Console.WriteLine("OnLoad");
-        //    // Call the base class OnLoad to ensure any delegate event handlers are still callled
-        //    base.OnLoad(e);
-        //}
     }
 }

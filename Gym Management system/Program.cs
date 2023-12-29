@@ -16,6 +16,8 @@ namespace Gym_Management_system
             //Application.Run(new LoginForm());
 
             Application.Run(new MainForm());
+            //Application.Run(new AddPlanForm());
+            //Application.Run(new EditPlanForm());
         }
     }
 }

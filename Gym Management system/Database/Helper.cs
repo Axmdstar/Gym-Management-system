@@ -14,21 +14,22 @@ namespace Gym_Management_system.Database
         public string ConnectionString = @$"Data Source={path};Version=3;";
 
 
-
-
-        //public Dictionary<string, SQLiteDataReader> Result = new Dictionary<string, SQLiteDataReader>();
-
         public struct Result
         {
-            public SQLiteDataReader? ReaderData;
+            public SQLiteDataReader ReaderData;
             public string msg;
 
-            public Result(SQLiteDataReader? readerData, string msg)
+            public Result(SQLiteDataReader readerData, string msg)
             {
                 this.ReaderData = readerData;
                 this.msg = msg;
             }
         }
+
+
+
+
+
 
 
         public void QueryReader(string query, Action<Result> processResults)
@@ -38,24 +39,16 @@ namespace Gym_Management_system.Database
                 using (SQLiteConnection connection = new SQLiteConnection(ConnectionString))
                 {
                     connection.Open();
-
-
-                    SQLiteCommand cmd = connection.CreateCommand();
-                    cmd.CommandText = query;
-
-                    using (SQLiteDataReader reader = cmd.ExecuteReader()) { 
-                        //if (!reader.HasRows && reader == null)
-                        //{
-                        //    throw new Exception();
-                        //}
-                        //else
-                        //{
-                            //reader.Read();
+                    using (SQLiteCommand cmd = connection.CreateCommand())
+                    {
+                        cmd.CommandText = query;
+                         using (SQLiteDataReader reader = cmd.ExecuteReader()) {
                             Result r = new (reader, "Succesfull");
-
                             processResults(r);
-                        //}
-                        connection.Close();
+
+                            
+                    }
+                         //connection.Close();
                     }
                     connection.Close();
                 }
@@ -63,8 +56,8 @@ namespace Gym_Management_system.Database
             
             catch (Exception err)
             {
-                
                 string msg = err.Message;
+                //Console.WriteLine(msg);
                 Result r = new Result(null, "Error::" + msg);
                 processResults(r);
 
@@ -80,13 +73,14 @@ namespace Gym_Management_system.Database
             {
                 using (SQLiteConnection connection = new SQLiteConnection(ConnectionString))
                 {
-                    connection.Open();
-                    SQLiteCommand cmd = connection.CreateCommand();
-                    cmd.CommandText = query;
-                    cmd.ExecuteNonQuery();
-                    Result r = new Result(null, "Succesfull");
-                    processResults(r);
-
+                    using (SQLiteCommand cmd = new SQLiteCommand(query, connection))
+                    {
+                        connection.Open();
+                        cmd.ExecuteNonQuery();
+                        Result r = new Result(null, "Succesfull");
+                        processResults(r);
+                    } ;
+                    
                     connection.Close();
                 }
                 
