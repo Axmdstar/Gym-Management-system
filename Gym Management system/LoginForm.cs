@@ -9,29 +9,41 @@ namespace Gym_Management_system
 
         public string Username;
         public string Password;
+        public string UserType;
+
         Helper helper = new Helper();
         SqlClass sql = new SqlClass();
-
-
+        public bool Auth ;
 
         public LoginForm()
         {
             InitializeComponent();
             TableCreater.Init();
 
-            sql.ShowTables();
-
-
-
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
 
-        }
-
-        private void LoginBtn_Click(object sender, EventArgs e)
+        public void UserAuthentication(string username, string password)
         {
+            string q = $@"select username, password, staff_type From users as usr
+                          INNER JOIN staff_information as stf on usr.staff_id = stf.id
+                          where username = '{username}' and password = '{password}';";
+            helper.QueryReader(q, r =>
+            {
+                if (r.msg.Contains("Error"))
+                {
+                    Console.WriteLine(r.msg);
+
+                    MessageBox.Show("Incorrect usesrname or password");
+                }
+                else
+                {
+                    r.ReaderData.Read();
+                    UserType = r.ReaderData.GetString(2);
+                    Auth = true;
+                    this.Close(); 
+                }
+            });
 
         }
 
@@ -48,16 +60,12 @@ namespace Gym_Management_system
             {
                 PasswordErrorCheck.Text = "Password is required";
                 PasswordErrorCheck.Visible = true;
-
             }
-
-
         }
+
 
         private void butto_Click(object sender, EventArgs e)
         {
-
-
             Username = textBoxUserName.Text;
             Password = textBoxPassword.Text;
 
@@ -71,34 +79,30 @@ namespace Gym_Management_system
             {
                 PasswordErrorCheck.Text = "Password is required";
                 PasswordErrorCheck.Visible = true;
-
-            }
-
-
-
-            
-            string q = $@"SELECT username , password FROM users where username = '{Username}' AND password = '{Password}'";
-            helper.QueryReader(q, r =>
+            } else
             {
+                UserAuthentication(Username, Password);
+            }
+            
+            //string q = $@"SELECT username , password FROM users where username = '{Username}' AND password = '{Password}'";
+            //helper.QueryReader(q, r =>
+            //{
+            //    if (r.msg.Contains("Error"))
+            //    {
+            //        Console.WriteLine(r.msg);
 
-                if (r.msg.Contains("Error"))
-                {
-                    Console.WriteLine(r.msg);
+            //        MessageBox.Show("Incorrect usesrname or password");
+            //    }
+            //    else
+            //    {
+            //        r.ReaderData.Read();
+            //        Console.WriteLine(r.ReaderData.GetString(0) + r.ReaderData.GetString(1));
 
-                    MessageBox.Show("Incorrect usesrname or password");
-
-                }
-                else
-                {
-                    r.ReaderData.Read();
-                    Console.WriteLine(r.ReaderData.GetString(0) + r.ReaderData.GetString(1));
-
-                    MainForm mainForm = new MainForm();
-                    mainForm.ShowDialog();
                     
-                }
-
-            });
+            //        MainForm mainForm = new MainForm();
+            //        //this.
+            //        mainForm.ShowDialog();
+            //    }
 
         }
 

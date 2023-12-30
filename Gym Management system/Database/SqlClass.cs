@@ -23,57 +23,22 @@ public class SqlClass
     {
      //     string path = @"C:\Users\Farah\source\repos\Gym-Management-system\Gym Management system\Database\Gym.db";
      //string ConnectionString = @$"Data Source={path};Version=3;";
-    string query = @"SELECT id, firstname FROM staff_information";
+    string query = @"SELECT id, firstname FROM staff_information where staff_type = 'Trainer'";
 
         
 
         helper.QueryReader(query, r =>
         {
-            Console.WriteLine(r.msg);
-
-            //bool Error = r.msg.Contains("Error");
-            //if (Error && r.ReaderData == null)
-            //{
-            //    Console.WriteLine(r.msg + " Error msg");
-            //}
-            //else
-            //{
-                //for (int i = 0; i < 3; i++)
-                //{
-                    Console.WriteLine(r.ReaderData.GetString(2));
-                    //r.ReaderData.Read();
-
-                //}
-            //}
-        });
-    }
-
-
-    public Dictionary<string, List<string>>  getTrainer()
-    {
-        string query = @"SELECT id, firstname FROM staff_information
-                         where staff_type = 'Trainer'";
-
-        Dictionary<string, List<string>> DictTrainer = new Dictionary<string, List<string>>();
-        //DictTrainer.
-        helper.QueryReader(query, r =>
-        {
-            if (r.ReaderData != null) { 
-                while (r.ReaderData.Read())
-                {
-                    Console.WriteLine(r.ReaderData.GetString(0));
-                    Console.WriteLine(r.ReaderData.GetString(1));
-                    List<string> list = new List<string>
-                    {
-                        r.ReaderData.GetString(0), r.ReaderData.GetString(1)
-                    };
-                    DictTrainer.Add(r.ReaderData.GetString(1), list);
-                }
+            Console.WriteLine(r.ReaderData.FieldCount);
+            while (r.ReaderData.Read())
+            {
+                Console.WriteLine(r.ReaderData.GetString(1));
             }
-            Console.WriteLine(DictTrainer.Count);
         });
-        return DictTrainer ;
     }
+
+
+    
 
 
     
@@ -133,7 +98,7 @@ public class SqlClass
 
 
 
-    public List<string>? getPlans()
+    public List<string> getPlans()
     {
         string query = @"select plan_name from plans";
         List<string> list = new List<string>();
@@ -146,11 +111,33 @@ public class SqlClass
                     list.Add(r.ReaderData.GetString(0));
                 }
             //}
-            
         });
-        return list ?? null;
+        return list;
     }
 
+    public Dictionary<string, List<object>> getTrainer()
+    {
+        string query = @"SELECT id, firstname FROM staff_information where staff_type = 'Trainer';";
+
+        Dictionary<string, List<object>> DictTrainer = new Dictionary<string, List<object>>();
+
+        helper.QueryReader(query, r =>
+        {
+            while (r.ReaderData.Read())
+            {
+                int staffId = r.ReaderData.GetInt32(0);
+                string staffName = r.ReaderData.GetString(1);
+
+                List<object> list = new List<object>
+                    {
+                        staffId, staffName
+                    };
+                DictTrainer.Add(staffName, list);
+            }
+        });
+
+        return DictTrainer;
+    }
 
 
     public void AddPlantoDb(string query)
@@ -167,6 +154,101 @@ public class SqlClass
         {
             Console.WriteLine(r.msg);
         });
+    }
+
+    
+    public List<Staffs> GetStaffData()
+    {
+        List<Staffs> StaffList = new List<Staffs>();
+        string query = @"SELECT * FROM staff_information";
+        helper.QueryReader(query, r =>
+        {
+            while (r.ReaderData.Read())
+            {
+
+                int id = (int)r.ReaderData.GetString(0);
+                string FirstName = r.ReaderData.GetString(1);
+                string LastName = r.ReaderData.GetString(2);
+                string DoB = r.ReaderData.GetString(3);
+                string Tell = r.ReaderData.GetString(4);
+                string Email = r.ReaderData.GetString(5);
+                string Sex = r.ReaderData.GetString(6);
+                string City = r.ReaderData.GetString(7);
+                string Village = r.ReaderData.GetString(8);
+                string Em_Contact = r.ReaderData.GetString(9);
+                string Emm_Name = r.ReaderData.GetString(10);
+                string Emm_R = r.ReaderData.GetString(11);
+                string Shift = r.ReaderData.GetString(12);
+                string StaffType = r.ReaderData.GetString(13);
+                //float Salary = Convert.ToSingle(r.ReaderData.GetString(14));
+
+
+
+
+
+
+                //Staffs staffs = new Staffs(
+                //id,
+                //FirstName,
+                //LastName,
+                //DoB,
+                //Tell,
+                //Email,
+                //Sex,
+                //City,
+                //Village,
+                //Em_Contact,
+                //Emm_Name,
+                //Emm_R,
+                //Shift,
+                //StaffType,
+                //Salary
+                //        );
+                //StaffList.Add(staffs);
+            }
+        });
+
+        return StaffList;
+    }
+
+
+
+    public struct Staffs
+    {
+        public int id { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string DoB { get; set; }
+        public string Tell { get; set; }
+        public string Email { get; set; }
+        public string Sex { get; set; }
+        public string City { get; set; }
+        public string Village { get; set; }
+        public string Em_Contact { get; set; }
+        public string Emm_Name { get; set; }
+        public string Emm_R { get; set; }
+        public string Shift { get; set; }
+        public string StaffType { get; set; }
+        public float Salary { get; set; }
+
+        public Staffs(int id, string firstName, string lastName, string doB, string tell, string email, string sex, string city, string village, string em_Contact, string emm_Name, string emm_R, string shift, string staffType, float salary)
+        {
+            this.id = id;
+            FirstName = firstName;
+            LastName = lastName;
+            DoB = doB;
+            Tell = tell;
+            Email = email;
+            Sex = sex;
+            City = city;
+            Village = village;
+            Em_Contact = em_Contact;
+            Emm_Name = emm_Name;
+            Emm_R = emm_R;
+            Shift = shift;
+            StaffType = staffType;
+            Salary = salary;
+        }
     }
 }
 

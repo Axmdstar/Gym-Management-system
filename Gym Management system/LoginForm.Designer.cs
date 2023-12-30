@@ -123,7 +123,6 @@
             DoubleBuffered = true;
             Name = "LoginForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
         }

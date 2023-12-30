@@ -13,11 +13,14 @@ namespace Gym_Management_system
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            //Application.Run(new LoginForm());
+            LoginForm loginForm = new LoginForm();
+            Application.Run(loginForm);
 
-            Application.Run(new MainForm());
-            //Application.Run(new AddPlanForm());
-            //Application.Run(new EditPlanForm());
+            if (loginForm.Auth)
+            {
+                Application.Run(new MainForm(loginForm.Username, loginForm.UserType));
+            }
+
         }
     }
 }

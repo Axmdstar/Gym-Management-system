@@ -1,13 +1,4 @@
-﻿using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.ComponentModel;
 
 namespace Gym_Management_system
 {
@@ -16,7 +7,10 @@ namespace Gym_Management_system
     {
         Dictionary<string, List<object>>? plansdata = new Dictionary<string, List<object>>();
         SqlClass sql = new SqlClass();
-        public MainForm()
+        string Username;
+        string UserType;
+
+        public MainForm(string Username, string UserType)
         {
             InitializeComponent();
 
@@ -25,8 +19,21 @@ namespace Gym_Management_system
             plansDashboard1.DeletePlan.Click += DeletePlan_Click;
             plansDashboard1.EditPlan.Click += EditPlan_Click;
 
-            sql.ShowTables();
-            //plansdata = sql.getPlansDshBdData() ?? null;
+            this.Username = Username;
+            this.UserType = UserType;
+            plansdata = sql.getPlansDshBdData() ?? null;
+            UserNameLbl.Text = Username;
+
+            if (UserType == "SuperAdmin")
+            {
+
+            }
+            else
+            {
+                StaffBtn.Enabled = false;
+                StaffBtn.BackColor = Color.FromArgb(51, 60, 67);
+            }
+
         }
 
 
@@ -37,44 +44,44 @@ namespace Gym_Management_system
         private void iconButton2_Click(object sender, EventArgs e) => attendance1.BringToFront();
         private void MainForm_Load(object sender, EventArgs e) => dashboard1.BringToFront();
         private void PlansBtn_Click(object sender, EventArgs e) => plansDashboard1.BringToFront();
+        private void StaffBtn_Click(object sender, EventArgs e) => staff1.BringToFront();
 
 
 
+
+        // Form CloseEvents
         private void addClosedEvent(object sender, FormClosedEventArgs e)
         {
-            Console.WriteLine("Add is closed");
             plansDashboard1.PlansComboBox.Items.Clear();
             plansdata = sql.getPlansDshBdData() ?? null;
             plansDashboard1_Load(sender, e);
         }
 
+
         //Load init data 
         private void plansDashboard1_Load(object sender, EventArgs e)
         {
-         
-            //List<string> list = new List<string>();
-
-            //List<string>? plansList = new List<string>();
-            //plansList = sql.getPlans();
-            //if (plansList.Count != 0)
-            //{
-            //    Console.WriteLine("Planlist Null");
-            //    foreach (string s in plansList)
-            //    {
-            //        plansDashboard1.PlansComboBox.Items.Add(s);
-            //    }
-            //} else
-            //{
-            //    Console.WriteLine("IN else");
-            //    plansDashboard1.PlansComboBox.Items.Add("No Plans");
-            //    plansDashboard1.PlansComboBox.SelectedItem= "No Plans";
-            //}
-            
+            List<string>? plansList = new List<string>();
+            plansList = sql.getPlans();
+            if (plansList.Count != 0)
+            {
+                Console.WriteLine("Planlist not Null");
+                foreach (string s in plansList)
+                {
+                    plansDashboard1.PlansComboBox.Items.Add(s);
+                }
+            }
+            else
+            {
+                Console.WriteLine("No Plans");
+                plansDashboard1.PlansComboBox.Items.Add("No Plans");
+                plansDashboard1.PlansComboBox.SelectedItem = "No Plans";
+            }
 
         }
 
 
-        
+
         private void PlansComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selected = (string)plansDashboard1.PlansComboBox.SelectedItem;
@@ -88,10 +95,9 @@ namespace Gym_Management_system
                 plansDashboard1.TphoneResult.Text = plansdata[selected][5].ToString();
                 plansDashboard1.S_EtimeResult.Text = plansdata[selected][7].ToString() + " to " + plansdata[selected][8].ToString();
             }
-            
+
 
         }
-
 
         private void AddPlan_Click(object sender, EventArgs e)
         {
@@ -100,7 +106,6 @@ namespace Gym_Management_system
             addPlanForm.ShowDialog();
         }
 
-        
 
         private void DeletePlan_Click(object sender, EventArgs e)
         {
@@ -110,6 +115,7 @@ namespace Gym_Management_system
             plansDashboard1.PlansComboBox.Items.Remove(selected);
         }
 
+
         private void EditPlan_Click(object sender, EventArgs e)
         {
             string selected = (string)plansDashboard1.PlansComboBox.SelectedItem;
@@ -118,13 +124,23 @@ namespace Gym_Management_system
             if (selected != null)
             {
                 EditPlanForm editPlanForm = new EditPlanForm(plansdata[selected]);
+                editPlanForm.FormClosed += addClosedEvent;
+
                 editPlanForm.ShowDialog();
+
             }
             else
             {
                 MessageBox.Show("Select Plan");
             }
 
+        }
+
+
+        private void staff1_Load(object sender, EventArgs e)
+        {
+
+            staff1.StaffGridTable.DataSource = sql.GetStaffData();
         }
     }
 }

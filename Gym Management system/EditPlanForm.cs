@@ -20,7 +20,7 @@ namespace Gym_Management_system
         string timeIn;
         float price;
         float SignUpfee;
-        Dictionary<string, List<string>> trainers;
+        Dictionary<string, List<object>> trainers;
         SqlClass sqlClass = new SqlClass();
         List<object> PlanData = new List<object>();
 
@@ -55,20 +55,20 @@ namespace Gym_Management_system
 
         private void AddNewPlan_Click(object sender, EventArgs e)
         {
-            string TrainerId = trainers[(string)TrainerList.SelectedItem][0];
+            int TrainerId = (int)trainers[(string)TrainerList.SelectedItem][0];
             int planid = (int)PlanData[9];
             string query = $@"
                             UPDATE plans 
                             SET plan_name = '{planName}',
-	                            plan_type = '{planType}',
-	                            price = {price},
-	                            staff_id = '{TrainerId}',
-	                            signup_fee = {SignUpfee},
-                            where id = {planid};
+                                plan_type = '{planType}',
+                                price = {price},
+                                staff_id = {TrainerId},
+                                signup_fee = {SignUpfee}
+	                            WHERE id = {planid};
                             UPDATE  Schedule
-                            SET time_in = time('{PlanData[7]}'),
-                                time_out = time('{PlanData[8]}')
-                            where planid = {planid}";
+                            SET time_in = time('{timeIn}'),
+                                time_out = time('{timeOut}')
+                            where plan_id = {planid}";
             sqlClass.AddPlantoDb(query);
         }
 
