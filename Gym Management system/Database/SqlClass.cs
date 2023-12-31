@@ -157,16 +157,28 @@ public class SqlClass
     }
 
     
-    public List<Staffs> GetStaffData()
+    //public void SearchStaff(string SrhTxt)
+    //{
+    //    string query = $@"Select * from staff_information where firstName like '{SrhTxt}'";
+
+    //}
+
+
+    public List<Staffs> GetStaffData(string query)
     {
         List<Staffs> StaffList = new List<Staffs>();
-        string query = @"SELECT * FROM staff_information";
+        Console.WriteLine(query);
+        if (query == "")
+        {
+            query = @"SELECT * FROM staff_information";
+        }
         helper.QueryReader(query, r =>
         {
             while (r.ReaderData.Read())
             {
+                //int planId = r.ReaderData.IsDBNull(9) ? 0 : r.ReaderData.GetInt32(9);
 
-                int id = (int)r.ReaderData.GetString(0);
+                int id = r.ReaderData.IsDBNull(0) ? 0 : r.ReaderData.GetInt32(0);
                 string FirstName = r.ReaderData.GetString(1);
                 string LastName = r.ReaderData.GetString(2);
                 string DoB = r.ReaderData.GetString(3);
@@ -180,32 +192,29 @@ public class SqlClass
                 string Emm_R = r.ReaderData.GetString(11);
                 string Shift = r.ReaderData.GetString(12);
                 string StaffType = r.ReaderData.GetString(13);
-                //float Salary = Convert.ToSingle(r.ReaderData.GetString(14));
+                float Salary = r.ReaderData.IsDBNull(14) ? 0 : r.ReaderData.GetFloat(14);
 
-
-
-
-
-
-                //Staffs staffs = new Staffs(
-                //id,
-                //FirstName,
-                //LastName,
-                //DoB,
-                //Tell,
-                //Email,
-                //Sex,
-                //City,
-                //Village,
-                //Em_Contact,
-                //Emm_Name,
-                //Emm_R,
-                //Shift,
-                //StaffType,
-                //Salary
-                //        );
-                //StaffList.Add(staffs);
+                
+                Staffs staffs = new Staffs(
+                id,
+                FirstName,
+                LastName,
+                DoB,
+                Tell,
+                Email,
+                Sex,
+                City,
+                Village,
+                Em_Contact,
+                Emm_Name,
+                Emm_R,
+                Shift,
+                StaffType,
+                Salary
+                        );
+                StaffList.Add(staffs);
             }
+            Console.WriteLine(StaffList.Count);
         });
 
         return StaffList;

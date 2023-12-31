@@ -28,170 +28,162 @@
         /// </summary>
         private void InitializeComponent()
         {
-            StaffGridTable = new DataGridView();
-            id = new DataGridViewTextBoxColumn();
-            FirstName = new DataGridViewTextBoxColumn();
-            LastName = new DataGridViewTextBoxColumn();
-            DoB = new DataGridViewTextBoxColumn();
-            Tell = new DataGridViewTextBoxColumn();
-            Email = new DataGridViewTextBoxColumn();
-            Sex = new DataGridViewTextBoxColumn();
-            City = new DataGridViewTextBoxColumn();
-            Village = new DataGridViewTextBoxColumn();
-            Em_Contact = new DataGridViewTextBoxColumn();
-            Emm_Name = new DataGridViewTextBoxColumn();
-            Emm_R = new DataGridViewTextBoxColumn();
-            Shift = new DataGridViewTextBoxColumn();
-            StaffType = new DataGridViewTextBoxColumn();
-            Salary = new DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)StaffGridTable).BeginInit();
+            dataGridView1 = new DataGridView();
+            NewStaffBtn = new FontAwesome.Sharp.IconButton();
+            SearchTxtBox = new MaterialSkin2DotNet.Controls.MaterialMaskedTextBox();
+            ColumnCombobox = new MaterialSkin2DotNet.Controls.MaterialComboBox();
+            EditStaffBtn = new FontAwesome.Sharp.IconButton();
+            DeleteStaffBtn = new FontAwesome.Sharp.IconButton();
+            flowLayoutPanel1 = new FlowLayoutPanel();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            flowLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
-            // StaffGridTable
+            // dataGridView1
             // 
-            StaffGridTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            StaffGridTable.Columns.AddRange(new DataGridViewColumn[] { id, FirstName, LastName, DoB, Tell, Email, Sex, City, Village, Em_Contact, Emm_Name, Emm_R, Shift, StaffType, Salary });
-            StaffGridTable.Dock = DockStyle.Bottom;
-            StaffGridTable.Location = new Point(0, 346);
-            StaffGridTable.Name = "StaffGridTable";
-            StaffGridTable.RowHeadersWidth = 62;
-            StaffGridTable.RowTemplate.Height = 33;
-            StaffGridTable.Size = new Size(1783, 461);
-            StaffGridTable.TabIndex = 0;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Dock = DockStyle.Bottom;
+            dataGridView1.Location = new Point(0, 427);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 62;
+            dataGridView1.RowTemplate.Height = 33;
+            dataGridView1.Size = new Size(1605, 346);
+            dataGridView1.TabIndex = 1;
             // 
-            // id
+            // NewStaffBtn
             // 
-            id.HeaderText = "id";
-            id.MinimumWidth = 8;
-            id.Name = "id";
-            id.Width = 150;
+            NewStaffBtn.IconChar = FontAwesome.Sharp.IconChar.PlusCircle;
+            NewStaffBtn.IconColor = Color.Black;
+            NewStaffBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            NewStaffBtn.Location = new Point(572, 3);
+            NewStaffBtn.Name = "NewStaffBtn";
+            NewStaffBtn.Size = new Size(107, 55);
+            NewStaffBtn.TabIndex = 2;
+            NewStaffBtn.TextAlign = ContentAlignment.MiddleRight;
+            NewStaffBtn.UseVisualStyleBackColor = true;
             // 
-            // FirstName
+            // SearchTxtBox
             // 
-            FirstName.HeaderText = "FirstName";
-            FirstName.MinimumWidth = 8;
-            FirstName.Name = "FirstName";
-            FirstName.Width = 150;
+            SearchTxtBox.AllowPromptAsInput = true;
+            SearchTxtBox.AnimateReadOnly = false;
+            SearchTxtBox.AsciiOnly = false;
+            SearchTxtBox.BackgroundImageLayout = ImageLayout.None;
+            SearchTxtBox.BeepOnError = false;
+            SearchTxtBox.CutCopyMaskFormat = MaskFormat.IncludeLiterals;
+            SearchTxtBox.Depth = 0;
+            SearchTxtBox.Font = new Font("Open Sans Light", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            SearchTxtBox.HidePromptOnLeave = false;
+            SearchTxtBox.HideSelection = true;
+            SearchTxtBox.Hint = "Search";
+            SearchTxtBox.InsertKeyMode = InsertKeyMode.Default;
+            SearchTxtBox.LeadingIcon = null;
+            SearchTxtBox.Location = new Point(3, 3);
+            SearchTxtBox.Mask = "";
+            SearchTxtBox.MaxLength = 32767;
+            SearchTxtBox.MouseState = MaterialSkin2DotNet.MouseState.OUT;
+            SearchTxtBox.Name = "SearchTxtBox";
+            SearchTxtBox.PasswordChar = '\0';
+            SearchTxtBox.PrefixSuffixText = null;
+            SearchTxtBox.PromptChar = '_';
+            SearchTxtBox.ReadOnly = false;
+            SearchTxtBox.RejectInputOnFirstFailure = false;
+            SearchTxtBox.ResetOnPrompt = true;
+            SearchTxtBox.ResetOnSpace = true;
+            SearchTxtBox.RightToLeft = RightToLeft.No;
+            SearchTxtBox.SelectedText = "";
+            SearchTxtBox.SelectionLength = 0;
+            SearchTxtBox.SelectionStart = 0;
+            SearchTxtBox.ShortcutsEnabled = true;
+            SearchTxtBox.Size = new Size(375, 48);
+            SearchTxtBox.SkipLiterals = true;
+            SearchTxtBox.TabIndex = 5;
+            SearchTxtBox.TabStop = false;
+            SearchTxtBox.TextAlign = HorizontalAlignment.Left;
+            SearchTxtBox.TextMaskFormat = MaskFormat.IncludeLiterals;
+            SearchTxtBox.TrailingIcon = null;
+            SearchTxtBox.UseSystemPasswordChar = false;
+            SearchTxtBox.ValidatingType = null;
             // 
-            // LastName
+            // ColumnCombobox
             // 
-            LastName.HeaderText = "LastName";
-            LastName.MinimumWidth = 8;
-            LastName.Name = "LastName";
-            LastName.Width = 150;
+            ColumnCombobox.AutoResize = false;
+            ColumnCombobox.BackColor = Color.FromArgb(255, 255, 255);
+            ColumnCombobox.Depth = 0;
+            ColumnCombobox.DrawMode = DrawMode.OwnerDrawVariable;
+            ColumnCombobox.DropDownHeight = 174;
+            ColumnCombobox.DropDownStyle = ComboBoxStyle.DropDownList;
+            ColumnCombobox.DropDownWidth = 121;
+            ColumnCombobox.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            ColumnCombobox.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            ColumnCombobox.FormattingEnabled = true;
+            ColumnCombobox.IntegralHeight = false;
+            ColumnCombobox.ItemHeight = 43;
+            ColumnCombobox.Items.AddRange(new object[] { "firstname", "lastname", "dob", "tell", "email", "sex", "city", "village", "emmergence_contact", "emmergency_name", "emergency_relation", "shift", "staff_type", "salary" });
+            ColumnCombobox.Location = new Point(384, 3);
+            ColumnCombobox.MaxDropDownItems = 4;
+            ColumnCombobox.MouseState = MaterialSkin2DotNet.MouseState.OUT;
+            ColumnCombobox.Name = "ColumnCombobox";
+            ColumnCombobox.Size = new Size(182, 49);
+            ColumnCombobox.StartIndex = 0;
+            ColumnCombobox.TabIndex = 6;
             // 
-            // DoB
+            // EditStaffBtn
             // 
-            DoB.HeaderText = "DoB";
-            DoB.MinimumWidth = 8;
-            DoB.Name = "DoB";
-            DoB.Width = 150;
+            EditStaffBtn.IconChar = FontAwesome.Sharp.IconChar.Pen;
+            EditStaffBtn.IconColor = Color.Black;
+            EditStaffBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            EditStaffBtn.Location = new Point(685, 3);
+            EditStaffBtn.Name = "EditStaffBtn";
+            EditStaffBtn.Size = new Size(107, 55);
+            EditStaffBtn.TabIndex = 7;
+            EditStaffBtn.UseVisualStyleBackColor = true;
             // 
-            // Tell
+            // DeleteStaffBtn
             // 
-            Tell.HeaderText = "Tell";
-            Tell.MinimumWidth = 8;
-            Tell.Name = "Tell";
-            Tell.Width = 150;
+            DeleteStaffBtn.IconChar = FontAwesome.Sharp.IconChar.Trash;
+            DeleteStaffBtn.IconColor = Color.Black;
+            DeleteStaffBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            DeleteStaffBtn.Location = new Point(798, 3);
+            DeleteStaffBtn.Name = "DeleteStaffBtn";
+            DeleteStaffBtn.Size = new Size(107, 55);
+            DeleteStaffBtn.TabIndex = 8;
+            DeleteStaffBtn.TextAlign = ContentAlignment.MiddleRight;
+            DeleteStaffBtn.UseVisualStyleBackColor = true;
             // 
-            // Email
+            // flowLayoutPanel1
             // 
-            Email.HeaderText = "Email";
-            Email.MinimumWidth = 8;
-            Email.Name = "Email";
-            Email.Width = 150;
-            // 
-            // Sex
-            // 
-            Sex.HeaderText = "Sex";
-            Sex.MinimumWidth = 8;
-            Sex.Name = "Sex";
-            Sex.Width = 150;
-            // 
-            // City
-            // 
-            City.HeaderText = "City";
-            City.MinimumWidth = 8;
-            City.Name = "City";
-            City.Width = 150;
-            // 
-            // Village
-            // 
-            Village.HeaderText = "Village";
-            Village.MinimumWidth = 8;
-            Village.Name = "Village";
-            Village.Width = 150;
-            // 
-            // Em_Contact
-            // 
-            Em_Contact.HeaderText = "Em_Contact";
-            Em_Contact.MinimumWidth = 8;
-            Em_Contact.Name = "Em_Contact";
-            Em_Contact.Width = 150;
-            // 
-            // Emm_Name
-            // 
-            Emm_Name.HeaderText = "Emm_Name";
-            Emm_Name.MinimumWidth = 8;
-            Emm_Name.Name = "Emm_Name";
-            Emm_Name.Width = 150;
-            // 
-            // Emm_R
-            // 
-            Emm_R.HeaderText = "Emm_R";
-            Emm_R.MinimumWidth = 8;
-            Emm_R.Name = "Emm_R";
-            Emm_R.Width = 150;
-            // 
-            // Shift
-            // 
-            Shift.HeaderText = "Shift";
-            Shift.MinimumWidth = 8;
-            Shift.Name = "Shift";
-            Shift.Width = 150;
-            // 
-            // StaffType
-            // 
-            StaffType.HeaderText = "StaffType";
-            StaffType.MinimumWidth = 8;
-            StaffType.Name = "StaffType";
-            StaffType.Width = 150;
-            // 
-            // Salary
-            // 
-            Salary.HeaderText = "Salary";
-            Salary.MinimumWidth = 8;
-            Salary.Name = "Salary";
-            Salary.Width = 150;
+            flowLayoutPanel1.Controls.Add(SearchTxtBox);
+            flowLayoutPanel1.Controls.Add(ColumnCombobox);
+            flowLayoutPanel1.Controls.Add(NewStaffBtn);
+            flowLayoutPanel1.Controls.Add(EditStaffBtn);
+            flowLayoutPanel1.Controls.Add(DeleteStaffBtn);
+            flowLayoutPanel1.Dock = DockStyle.Bottom;
+            flowLayoutPanel1.Location = new Point(0, 361);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(1605, 66);
+            flowLayoutPanel1.TabIndex = 9;
             // 
             // Staff
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(StaffGridTable);
+            Controls.Add(flowLayoutPanel1);
+            Controls.Add(dataGridView1);
             Name = "Staff";
-            Size = new Size(1783, 807);
-            ((System.ComponentModel.ISupportInitialize)StaffGridTable).EndInit();
+            Size = new Size(1605, 773);
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            flowLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
-        public DataGridView StaffGridTable;
-        public DataGridViewTextBoxColumn id;
-        public DataGridViewTextBoxColumn FirstName;
-        public DataGridViewTextBoxColumn LastName;
-        public DataGridViewTextBoxColumn DoB;
-        public DataGridViewTextBoxColumn Tell;
-        public DataGridViewTextBoxColumn Email;
-        public DataGridViewTextBoxColumn Sex;
-        public DataGridViewTextBoxColumn City;
-        public DataGridViewTextBoxColumn Village;
-        public DataGridViewTextBoxColumn Em_Contact;
-        public DataGridViewTextBoxColumn Emm_Name;
-        public DataGridViewTextBoxColumn Emm_R;
-        public DataGridViewTextBoxColumn Shift;
-        public DataGridViewTextBoxColumn StaffType;
-        public DataGridViewTextBoxColumn Salary;
+        public DataGridView dataGridView1;
+        public FontAwesome.Sharp.IconButton NewStaffBtn;
+        public MaterialSkin2DotNet.Controls.MaterialMaskedTextBox SearchTxtBox;
+        public MaterialSkin2DotNet.Controls.MaterialComboBox ColumnCombobox;
+        public FontAwesome.Sharp.IconButton EditStaffBtn;
+        public FontAwesome.Sharp.IconButton DeleteStaffBtn;
+        private FlowLayoutPanel flowLayoutPanel1;
     }
 }

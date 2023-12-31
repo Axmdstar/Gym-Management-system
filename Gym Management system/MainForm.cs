@@ -1,4 +1,8 @@
 ﻿using System.ComponentModel;
+using MaterialSkin2DotNet.Animations;
+using MaterialSkin2DotNet;
+using System.Data;
+using MaterialSkin2DotNet.Controls;
 
 namespace Gym_Management_system
 {
@@ -7,17 +11,34 @@ namespace Gym_Management_system
     {
         Dictionary<string, List<object>>? plansdata = new Dictionary<string, List<object>>();
         SqlClass sql = new SqlClass();
+
         string Username;
         string UserType;
+
+        string SearchFilter = "firstName";
 
         public MainForm(string Username, string UserType)
         {
             InitializeComponent();
 
+            var materialSkinManager = MaterialSkinManager.Instance;
+            //materialSkinManager.AddFormToManage(this);
+            //materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
+            //materialSkinManager.ColorScheme = new ColorScheme(Primary.LightGreen900, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightGreen400, TextShade.BLACK);
+
+            //Plans Events
             plansDashboard1.PlansComboBox.SelectedIndexChanged += PlansComboBox_SelectedIndexChanged;
             plansDashboard1.AddPlan.Click += AddPlan_Click;
             plansDashboard1.DeletePlan.Click += DeletePlan_Click;
             plansDashboard1.EditPlan.Click += EditPlan_Click;
+
+            //Staff Events
+            
+            staff1.SearchTxtBox.TextChanged += SearchTxtBox_TextChanged;
+            staff1.ColumnCombobox.SelectedIndexChanged += ColumnCombobox_SelectedIndexChanged;
+            //staff1.NewStaffBtn.Click += NewStaffBtn_Click;
+            //staff1.EditStaffBtn.Click += EditStaffBtn_Click;
+            //staff1.DeleteStaffBtn.Click += DeleteStaffBtn_Click;
 
             this.Username = Username;
             this.UserType = UserType;
@@ -123,7 +144,7 @@ namespace Gym_Management_system
 
             if (selected != null)
             {
-                EditPlanForm editPlanForm = new EditPlanForm(plansdata[selected]);
+               EditPlanForm editPlanForm = new EditPlanForm(plansdata[selected]);
                 editPlanForm.FormClosed += addClosedEvent;
 
                 editPlanForm.ShowDialog();
@@ -139,8 +160,28 @@ namespace Gym_Management_system
 
         private void staff1_Load(object sender, EventArgs e)
         {
+            
+            string query = @"SELECT * FROM staff_information";
+            staff1.dataGridView1.DataSource = sql.GetStaffData(query);
 
-            staff1.StaffGridTable.DataSource = sql.GetStaffData();
+        }
+
+
+
+
+        private void SearchTxtBox_TextChanged(object sender, EventArgs e)
+        {
+            string SrhTxt = staff1.SearchTxtBox.Text;
+            string query = $@"Select * from staff_information where {SearchFilter} like '{SrhTxt}%'";
+            //staff1.dataGridView1.DataSource = null;
+            //staff1.dataGridView1.Rows.Clear();
+            staff1.dataGridView1.DataSource = sql.GetStaffData(query);
+        }
+
+        private void ColumnCombobox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SearchFilter = staff1.ColumnCombobox.SelectedItem.ToString();
+            Console.WriteLine(SearchFilter);
         }
     }
 }
