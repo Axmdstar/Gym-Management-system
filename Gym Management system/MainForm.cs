@@ -37,7 +37,7 @@ namespace Gym_Management_system
             staff1.SearchTxtBox.TextChanged += SearchTxtBox_TextChanged;
             staff1.ColumnCombobox.SelectedIndexChanged += ColumnCombobox_SelectedIndexChanged;
             //staff1.NewStaffBtn.Click += NewStaffBtn_Click;
-            //staff1.EditStaffBtn.Click += EditStaffBtn_Click;
+            //staff1.EditStaffBtn.Click += Ed itStaffBtn_Click;
             //staff1.DeleteStaffBtn.Click += DeleteStaffBtn_Click;
 
             this.Username = Username;

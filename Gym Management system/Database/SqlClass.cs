@@ -88,12 +88,9 @@ public class SqlClass
                 Dict.Add(planName, list);
                 count++;
             }
-            }
-
+        }  
         });
-
         return Dict ?? null;
-
     }
 
 
