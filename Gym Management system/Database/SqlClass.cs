@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Data.SqlClient;
 using Gym_Management_system.Database;
 using static Gym_Management_system.Database.Helper;
+using System.Windows.Controls.Primitives;
 
 public class SqlClass
 {
@@ -153,7 +154,28 @@ public class SqlClass
         });
     }
 
-    
+    public void DeleteStaff(int id)
+    {
+        string query = $@"DELETE from staff_information where id = {id};";
+        helper.QueryWriter(query, r =>
+        {
+            Console.WriteLine(r.msg);
+        });
+    }
+
+    public void AddStaffToDb(string query)
+    {
+        helper.QueryWriter(query, r => {
+            Console.WriteLine(r.msg);
+        });
+    }
+
+    public void EditStaffToDb(string query)
+    {
+       helper.QueryWriter(query, r => {  
+           Console.WriteLine(r.msg);
+       });
+    }
     //public void SearchStaff(string SrhTxt)
     //{
     //    string query = $@"Select * from staff_information where firstName like '{SrhTxt}'";
@@ -176,19 +198,19 @@ public class SqlClass
                 //int planId = r.ReaderData.IsDBNull(9) ? 0 : r.ReaderData.GetInt32(9);
 
                 int id = r.ReaderData.IsDBNull(0) ? 0 : r.ReaderData.GetInt32(0);
-                string FirstName = r.ReaderData.GetString(1);
-                string LastName = r.ReaderData.GetString(2);
-                string DoB = r.ReaderData.GetString(3);
-                string Tell = r.ReaderData.GetString(4);
-                string Email = r.ReaderData.GetString(5);
-                string Sex = r.ReaderData.GetString(6);
-                string City = r.ReaderData.GetString(7);
-                string Village = r.ReaderData.GetString(8);
-                string Em_Contact = r.ReaderData.GetString(9);
-                string Emm_Name = r.ReaderData.GetString(10);
-                string Emm_R = r.ReaderData.GetString(11);
-                string Shift = r.ReaderData.GetString(12);
-                string StaffType = r.ReaderData.GetString(13);
+                string FirstName = r.ReaderData.IsDBNull(1) ? "null" : r.ReaderData.GetString(1);
+                string LastName = r.ReaderData.IsDBNull(2) ? "null" : r.ReaderData.GetString(2);
+                string DoB = r.ReaderData.IsDBNull(3) ? "null" : r.ReaderData.GetString(3);
+                string Tell = r.ReaderData.IsDBNull(4) ? "null" : r.ReaderData.GetString(4);
+                string Email = r.ReaderData.IsDBNull(5) ? "null" : r.ReaderData.GetString(5);
+                string Sex = r.ReaderData.IsDBNull(6) ? "null" : r.ReaderData.GetString(6);
+                string City = r.ReaderData.IsDBNull(7) ? "null" : r.ReaderData.GetString(7);
+                string Village = r.ReaderData.IsDBNull(8) ? "null" : r.ReaderData.GetString(8);
+                string Em_Contact = r.ReaderData.IsDBNull(9) ? "null" : r.ReaderData.GetString(9);
+                string Emm_Name = r.ReaderData.IsDBNull(10) ? "null" : r.ReaderData.GetString(10);
+                string Emm_R = r.ReaderData.IsDBNull(11) ? "null" : r.ReaderData.GetString(11);
+                string Shift = r.ReaderData.IsDBNull(12) ? "null" : r.ReaderData.GetString(12);
+                string StaffType = r.ReaderData.IsDBNull(13) ? "null" : r.ReaderData.GetString(13);
                 float Salary = r.ReaderData.IsDBNull(14) ? 0 : r.ReaderData.GetFloat(14);
 
                 

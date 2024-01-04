@@ -32,8 +32,10 @@ namespace Gym_Management_system
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             panel1 = new Panel();
+            Timerlabel = new Label();
             iconButton5 = new FontAwesome.Sharp.IconButton();
             iconButton8 = new FontAwesome.Sharp.IconButton();
             PlansBtn = new FontAwesome.Sharp.IconButton();
@@ -44,11 +46,11 @@ namespace Gym_Management_system
             iconButton1 = new FontAwesome.Sharp.IconButton();
             UserNameLbl = new Label();
             iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
-            iconDropDownButton1 = new FontAwesome.Sharp.IconDropDownButton();
             dashboard1 = new Dashboard();
             attendance1 = new Attendance();
             plansDashboard1 = new PlansDashboard();
             staff1 = new Staff();
+            timer1 = new System.Windows.Forms.Timer(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).BeginInit();
             SuspendLayout();
@@ -56,6 +58,7 @@ namespace Gym_Management_system
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(22, 26, 29);
+            panel1.Controls.Add(Timerlabel);
             panel1.Controls.Add(iconButton5);
             panel1.Controls.Add(iconButton8);
             panel1.Controls.Add(PlansBtn);
@@ -70,8 +73,19 @@ namespace Gym_Management_system
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(325, 911);
+            panel1.Size = new Size(347, 911);
             panel1.TabIndex = 0;
+            // 
+            // Timerlabel
+            // 
+            Timerlabel.AutoSize = true;
+            Timerlabel.Font = new Font("LEMON MILK Medium", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            Timerlabel.ForeColor = SystemColors.Window;
+            Timerlabel.Location = new Point(12, 802);
+            Timerlabel.Name = "Timerlabel";
+            Timerlabel.Size = new Size(140, 46);
+            Timerlabel.TabIndex = 8;
+            Timerlabel.Text = "label7";
             // 
             // iconButton5
             // 
@@ -87,13 +101,13 @@ namespace Gym_Management_system
             iconButton5.IconColor = Color.White;
             iconButton5.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconButton5.ImageAlign = ContentAlignment.MiddleLeft;
-            iconButton5.Location = new Point(0, 689);
+            iconButton5.Location = new Point(4, 689);
             iconButton5.Margin = new Padding(6, 2, 6, 6);
             iconButton5.Name = "iconButton5";
             iconButton5.Padding = new Padding(9, 0, 0, 0);
             iconButton5.Size = new Size(325, 61);
             iconButton5.TabIndex = 8;
-            iconButton5.Text = "iconButton5";
+            iconButton5.Text = "xxx";
             iconButton5.UseVisualStyleBackColor = false;
             // 
             // iconButton8
@@ -114,10 +128,11 @@ namespace Gym_Management_system
             iconButton8.Margin = new Padding(2);
             iconButton8.Name = "iconButton8";
             iconButton8.Padding = new Padding(9, 0, 0, 0);
-            iconButton8.Size = new Size(325, 61);
+            iconButton8.Size = new Size(347, 61);
             iconButton8.TabIndex = 7;
             iconButton8.Text = "LogOut";
             iconButton8.UseVisualStyleBackColor = false;
+            iconButton8.Click += iconButton8_Click;
             // 
             // PlansBtn
             // 
@@ -133,7 +148,7 @@ namespace Gym_Management_system
             PlansBtn.IconColor = Color.White;
             PlansBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
             PlansBtn.ImageAlign = ContentAlignment.MiddleLeft;
-            PlansBtn.Location = new Point(0, 509);
+            PlansBtn.Location = new Point(4, 509);
             PlansBtn.Margin = new Padding(6);
             PlansBtn.Name = "PlansBtn";
             PlansBtn.Padding = new Padding(9, 0, 0, 0);
@@ -158,7 +173,7 @@ namespace Gym_Management_system
             iconButton6.IconColor = Color.White;
             iconButton6.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconButton6.ImageAlign = ContentAlignment.MiddleLeft;
-            iconButton6.Location = new Point(0, 329);
+            iconButton6.Location = new Point(4, 329);
             iconButton6.Margin = new Padding(6);
             iconButton6.Name = "iconButton6";
             iconButton6.Padding = new Padding(9, 0, 0, 0);
@@ -181,7 +196,7 @@ namespace Gym_Management_system
             StaffBtn.IconColor = Color.White;
             StaffBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
             StaffBtn.ImageAlign = ContentAlignment.MiddleLeft;
-            StaffBtn.Location = new Point(0, 599);
+            StaffBtn.Location = new Point(4, 599);
             StaffBtn.Margin = new Padding(6, 2, 6, 6);
             StaffBtn.Name = "StaffBtn";
             StaffBtn.Padding = new Padding(9, 0, 0, 0);
@@ -205,7 +220,7 @@ namespace Gym_Management_system
             iconButton3.IconColor = Color.White;
             iconButton3.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconButton3.ImageAlign = ContentAlignment.MiddleLeft;
-            iconButton3.Location = new Point(0, 419);
+            iconButton3.Location = new Point(4, 419);
             iconButton3.Margin = new Padding(6);
             iconButton3.Name = "iconButton3";
             iconButton3.Padding = new Padding(9, 0, 0, 0);
@@ -228,7 +243,7 @@ namespace Gym_Management_system
             iconButton2.IconColor = Color.White;
             iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconButton2.ImageAlign = ContentAlignment.MiddleLeft;
-            iconButton2.Location = new Point(0, 239);
+            iconButton2.Location = new Point(4, 239);
             iconButton2.Margin = new Padding(6);
             iconButton2.Name = "iconButton2";
             iconButton2.Padding = new Padding(9, 0, 0, 0);
@@ -252,7 +267,7 @@ namespace Gym_Management_system
             iconButton1.IconColor = Color.White;
             iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconButton1.ImageAlign = ContentAlignment.MiddleLeft;
-            iconButton1.Location = new Point(0, 149);
+            iconButton1.Location = new Point(4, 149);
             iconButton1.Margin = new Padding(6);
             iconButton1.Name = "iconButton1";
             iconButton1.Padding = new Padding(9, 0, 0, 0);
@@ -292,52 +307,47 @@ namespace Gym_Management_system
             iconPictureBox1.TabIndex = 2;
             iconPictureBox1.TabStop = false;
             // 
-            // iconDropDownButton1
-            // 
-            iconDropDownButton1.IconChar = FontAwesome.Sharp.IconChar.None;
-            iconDropDownButton1.IconColor = Color.Black;
-            iconDropDownButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconDropDownButton1.Name = "iconDropDownButton1";
-            iconDropDownButton1.Size = new Size(23, 23);
-            iconDropDownButton1.Text = "iconDropDownButton1";
-            // 
             // dashboard1
             // 
             dashboard1.BackColor = Color.FromArgb(245, 243, 244);
             dashboard1.Dock = DockStyle.Fill;
-            dashboard1.Location = new Point(325, 0);
+            dashboard1.Location = new Point(347, 0);
             dashboard1.Margin = new Padding(2);
             dashboard1.Name = "dashboard1";
-            dashboard1.Size = new Size(1486, 911);
+            dashboard1.Size = new Size(1464, 911);
             dashboard1.TabIndex = 1;
             // 
             // attendance1
             // 
             attendance1.Dock = DockStyle.Fill;
-            attendance1.Location = new Point(325, 0);
+            attendance1.Location = new Point(347, 0);
             attendance1.Margin = new Padding(2);
             attendance1.Name = "attendance1";
-            attendance1.Size = new Size(1486, 911);
+            attendance1.Size = new Size(1464, 911);
             attendance1.TabIndex = 2;
             // 
             // plansDashboard1
             // 
             plansDashboard1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             plansDashboard1.Dock = DockStyle.Fill;
-            plansDashboard1.Location = new Point(325, 0);
+            plansDashboard1.Location = new Point(347, 0);
             plansDashboard1.Name = "plansDashboard1";
-            plansDashboard1.Size = new Size(1486, 911);
+            plansDashboard1.Size = new Size(1464, 911);
             plansDashboard1.TabIndex = 3;
             plansDashboard1.Load += plansDashboard1_Load;
             // 
             // staff1
             // 
             staff1.Dock = DockStyle.Fill;
-            staff1.Location = new Point(325, 0);
+            staff1.Location = new Point(347, 0);
             staff1.Name = "staff1";
-            staff1.Size = new Size(1486, 911);
+            staff1.Size = new Size(1464, 911);
             staff1.TabIndex = 4;
             staff1.Load += staff1_Load;
+            // 
+            // timer1
+            // 
+            timer1.Tick += timer1_Tick;
             // 
             // MainForm
             // 
@@ -373,12 +383,14 @@ namespace Gym_Management_system
         private FontAwesome.Sharp.IconButton StaffBtn;
         private FontAwesome.Sharp.IconButton iconButton3;
         private FontAwesome.Sharp.IconButton iconButton2;
-        private FontAwesome.Sharp.IconDropDownButton iconDropDownButton1;
+        //private FontAwesome.Sharp.IconDropDownButton iconDropDownButton1;
         private Dashboard dashboard1;
         private Attendance attendance1;
         private Membership membership1;
         private PlansDashboard plansDashboard1;
         private FontAwesome.Sharp.IconButton iconButton5;
         private Staff staff1;
+        private System.Windows.Forms.Timer timer1;
+        public Label Timerlabel;
     }
 }

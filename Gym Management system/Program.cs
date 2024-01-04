@@ -20,6 +20,7 @@ namespace Gym_Management_system
             {
                 Application.Run(new MainForm(loginForm.Username, loginForm.UserType));
             }
+            
 
         }
     }

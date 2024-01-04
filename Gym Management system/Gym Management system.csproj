@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="EditStaffForm.cs" />
     <Compile Update="EditPlanForm.cs">
       <SubType>Form</SubType>
     </Compile>

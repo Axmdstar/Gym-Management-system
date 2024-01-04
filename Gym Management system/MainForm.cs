@@ -9,17 +9,25 @@ namespace Gym_Management_system
 
     public partial class MainForm : Form
     {
+        //fields
         Dictionary<string, List<object>>? plansdata = new Dictionary<string, List<object>>();
         SqlClass sql = new SqlClass();
 
+        int StaffCellID;
+        int rowindex;
+
+
+        //userInfo
         string Username;
         string UserType;
 
+        //default search filter
         string SearchFilter = "firstName";
 
         public MainForm(string Username, string UserType)
         {
             InitializeComponent();
+            timer1.Start();
 
             var materialSkinManager = MaterialSkinManager.Instance;
             //materialSkinManager.AddFormToManage(this);
@@ -33,12 +41,12 @@ namespace Gym_Management_system
             plansDashboard1.EditPlan.Click += EditPlan_Click;
 
             //Staff Events
-            
+            staff1.dataGridView1.CellContentClick += SelctedStaffRow;
             staff1.SearchTxtBox.TextChanged += SearchTxtBox_TextChanged;
             staff1.ColumnCombobox.SelectedIndexChanged += ColumnCombobox_SelectedIndexChanged;
-            //staff1.NewStaffBtn.Click += NewStaffBtn_Click;
-            //staff1.EditStaffBtn.Click += Ed itStaffBtn_Click;
-            //staff1.DeleteStaffBtn.Click += DeleteStaffBtn_Click;
+            staff1.NewStaffBtn.Click += NewStaffBtn_Click;
+            staff1.EditStaffBtn.Click += EditStaffBtn_Click;
+            staff1.DeleteStaffBtn.Click += DeleteStaffBtn_Click;
 
             this.Username = Username;
             this.UserType = UserType;
@@ -71,17 +79,23 @@ namespace Gym_Management_system
 
 
         // Form CloseEvents
-        private void addClosedEvent(object sender, FormClosedEventArgs e)
+        private void PlansClosedEvent(object sender, FormClosedEventArgs e)
         {
             plansDashboard1.PlansComboBox.Items.Clear();
             plansdata = sql.getPlansDshBdData() ?? null;
             plansDashboard1_Load(sender, e);
         }
 
+        private void StaffClosedEvent(object sender, FormClosedEventArgs e)
+        {
+            staff1_Load(sender, e);
+        }
+
 
         //Load init data 
         private void plansDashboard1_Load(object sender, EventArgs e)
         {
+
             List<string>? plansList = new List<string>();
             plansList = sql.getPlans();
             if (plansList.Count != 0)
@@ -98,7 +112,6 @@ namespace Gym_Management_system
                 plansDashboard1.PlansComboBox.Items.Add("No Plans");
                 plansDashboard1.PlansComboBox.SelectedItem = "No Plans";
             }
-
         }
 
 
@@ -116,16 +129,9 @@ namespace Gym_Management_system
                 plansDashboard1.TphoneResult.Text = plansdata[selected][5].ToString();
                 plansDashboard1.S_EtimeResult.Text = plansdata[selected][7].ToString() + " to " + plansdata[selected][8].ToString();
             }
-
-
         }
 
-        private void AddPlan_Click(object sender, EventArgs e)
-        {
-            AddPlanForm addPlanForm = new AddPlanForm();
-            addPlanForm.FormClosed += addClosedEvent;
-            addPlanForm.ShowDialog();
-        }
+
 
 
         private void DeletePlan_Click(object sender, EventArgs e)
@@ -141,29 +147,30 @@ namespace Gym_Management_system
         {
             string selected = (string)plansDashboard1.PlansComboBox.SelectedItem;
             //Console.WriteLine(plansdata[selected][1]);
-
             if (selected != null)
             {
-               EditPlanForm editPlanForm = new EditPlanForm(plansdata[selected]);
-                editPlanForm.FormClosed += addClosedEvent;
-
+                EditPlanForm editPlanForm = new EditPlanForm(plansdata[selected]);
+                editPlanForm.FormClosed += PlansClosedEvent;
                 editPlanForm.ShowDialog();
-
             }
             else
             {
                 MessageBox.Show("Select Plan");
             }
+        }
 
+        private void EditStaffBtn_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row = staff1.dataGridView1.Rows[rowindex];
+            EditStaff editStaffform = new EditStaff(row);
+            editStaffform.ShowDialog();
         }
 
 
         private void staff1_Load(object sender, EventArgs e)
         {
-            
             string query = @"SELECT * FROM staff_information";
             staff1.dataGridView1.DataSource = sql.GetStaffData(query);
-
         }
 
 
@@ -173,15 +180,58 @@ namespace Gym_Management_system
         {
             string SrhTxt = staff1.SearchTxtBox.Text;
             string query = $@"Select * from staff_information where {SearchFilter} like '{SrhTxt}%'";
-            //staff1.dataGridView1.DataSource = null;
-            //staff1.dataGridView1.Rows.Clear();
             staff1.dataGridView1.DataSource = sql.GetStaffData(query);
         }
+
 
         private void ColumnCombobox_SelectedIndexChanged(object sender, EventArgs e)
         {
             SearchFilter = staff1.ColumnCombobox.SelectedItem.ToString();
             Console.WriteLine(SearchFilter);
+        }
+
+
+
+        public void NewStaffBtn_Click(object sender, EventArgs e)
+        {
+            AddStaff addstaff = new AddStaff();
+            addstaff.FormClosed += StaffClosedEvent;
+            addstaff.ShowDialog();
+        }
+
+        private void AddPlan_Click(object sender, EventArgs e)
+        {
+            AddPlanForm addPlanForm = new AddPlanForm();
+            addPlanForm.FormClosed += PlansClosedEvent;
+            addPlanForm.ShowDialog();
+        }
+
+        private void SelctedStaffRow(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= -1)
+            {
+                rowindex = e.RowIndex;
+                DataGridViewRow row = staff1.dataGridView1.Rows[e.RowIndex];
+                StaffCellID = (int)row.Cells[0].Value;
+            }
+        }
+
+
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            Timerlabel.Text = DateTime.Now.ToString("hh:mm tt");
+        }
+        private void DeleteStaffBtn_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine(StaffCellID);
+            sql.DeleteStaff(StaffCellID);
+            staff1_Load(sender, e);
+        }
+
+        private void iconButton8_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

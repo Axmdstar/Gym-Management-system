@@ -25,10 +25,10 @@ namespace Gym_Management_system
 
 
         // Events
-        public void PlansComboBox_SelectedIndexChanged(object sender, EventArgs e){}
-        public void AddPlan_Click(object sender, EventArgs e){}
-        public void DeletePlan_Click(object sender, EventArgs e){}
-        public void EditPlan_Click(object sender, EventArgs e){}
+        public void PlansComboBox_SelectedIndexChanged(object sender, EventArgs e) { }
+        public void AddPlan_Click(object sender, EventArgs e) { }
+        public void DeletePlan_Click(object sender, EventArgs e) { }
+        public void EditPlan_Click(object sender, EventArgs e) { }
 
     }
 }
