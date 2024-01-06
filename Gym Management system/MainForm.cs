@@ -74,6 +74,8 @@ namespace Gym_Management_system
         private void MainForm_Load(object sender, EventArgs e) => dashboard1.BringToFront();
         private void PlansBtn_Click(object sender, EventArgs e) => plansDashboard1.BringToFront();
         private void StaffBtn_Click(object sender, EventArgs e) => staff1.BringToFront();
+        private void MemberShips_Click(object sender, EventArgs e) => memberships1.BringToFront();
+
 
 
 
@@ -92,6 +94,8 @@ namespace Gym_Management_system
         }
 
 
+
+
         //Load init data 
         private void plansDashboard1_Load(object sender, EventArgs e)
         {
@@ -100,7 +104,6 @@ namespace Gym_Management_system
             plansList = sql.getPlans();
             if (plansList.Count != 0)
             {
-                Console.WriteLine("Planlist not Null");
                 foreach (string s in plansList)
                 {
                     plansDashboard1.PlansComboBox.Items.Add(s);
@@ -108,12 +111,23 @@ namespace Gym_Management_system
             }
             else
             {
-                Console.WriteLine("No Plans");
                 plansDashboard1.PlansComboBox.Items.Add("No Plans");
                 plansDashboard1.PlansComboBox.SelectedItem = "No Plans";
             }
         }
 
+        private void staff1_Load(object sender, EventArgs e)
+        {
+            string query = @"SELECT * FROM staff_information";
+            staff1.dataGridView1.DataSource = sql.GetStaffData(query);
+        }
+
+
+        private void memberships1_Load(object sender, EventArgs e)
+        {
+            string query = @"select * from Customer_info";
+            memberships1.dataGridView1.DataSource = sql.GetMembersData(query);
+        }
 
 
         private void PlansComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -133,7 +147,6 @@ namespace Gym_Management_system
 
 
 
-
         private void DeletePlan_Click(object sender, EventArgs e)
         {
             string selected = (string)plansDashboard1.PlansComboBox.SelectedItem;
@@ -142,6 +155,12 @@ namespace Gym_Management_system
             plansDashboard1.PlansComboBox.Items.Remove(selected);
         }
 
+        private void DeleteStaffBtn_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine(StaffCellID);
+            sql.DeleteStaff(StaffCellID);
+            staff1_Load(sender, e);
+        }
 
         private void EditPlan_Click(object sender, EventArgs e)
         {
@@ -164,13 +183,6 @@ namespace Gym_Management_system
             DataGridViewRow row = staff1.dataGridView1.Rows[rowindex];
             EditStaff editStaffform = new EditStaff(row);
             editStaffform.ShowDialog();
-        }
-
-
-        private void staff1_Load(object sender, EventArgs e)
-        {
-            string query = @"SELECT * FROM staff_information";
-            staff1.dataGridView1.DataSource = sql.GetStaffData(query);
         }
 
 
@@ -222,16 +234,16 @@ namespace Gym_Management_system
         {
             Timerlabel.Text = DateTime.Now.ToString("hh:mm tt");
         }
-        private void DeleteStaffBtn_Click(object sender, EventArgs e)
-        {
-            Console.WriteLine(StaffCellID);
-            sql.DeleteStaff(StaffCellID);
-            staff1_Load(sender, e);
-        }
+
+
+
+
+
 
         private void iconButton8_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
     }
 }

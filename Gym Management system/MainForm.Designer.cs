@@ -39,7 +39,7 @@ namespace Gym_Management_system
             iconButton5 = new FontAwesome.Sharp.IconButton();
             iconButton8 = new FontAwesome.Sharp.IconButton();
             PlansBtn = new FontAwesome.Sharp.IconButton();
-            iconButton6 = new FontAwesome.Sharp.IconButton();
+            MemberShips = new FontAwesome.Sharp.IconButton();
             StaffBtn = new FontAwesome.Sharp.IconButton();
             iconButton3 = new FontAwesome.Sharp.IconButton();
             iconButton2 = new FontAwesome.Sharp.IconButton();
@@ -51,6 +51,7 @@ namespace Gym_Management_system
             plansDashboard1 = new PlansDashboard();
             staff1 = new Staff();
             timer1 = new System.Windows.Forms.Timer(components);
+            memberships1 = new Memberships();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).BeginInit();
             SuspendLayout();
@@ -62,7 +63,7 @@ namespace Gym_Management_system
             panel1.Controls.Add(iconButton5);
             panel1.Controls.Add(iconButton8);
             panel1.Controls.Add(PlansBtn);
-            panel1.Controls.Add(iconButton6);
+            panel1.Controls.Add(MemberShips);
             panel1.Controls.Add(StaffBtn);
             panel1.Controls.Add(iconButton3);
             panel1.Controls.Add(iconButton2);
@@ -159,28 +160,29 @@ namespace Gym_Management_system
             PlansBtn.UseVisualStyleBackColor = false;
             PlansBtn.Click += PlansBtn_Click;
             // 
-            // iconButton6
+            // MemberShips
             // 
-            iconButton6.BackColor = Color.FromArgb(22, 26, 29);
-            iconButton6.BackgroundImageLayout = ImageLayout.None;
-            iconButton6.FlatAppearance.BorderSize = 0;
-            iconButton6.FlatAppearance.MouseDownBackColor = SystemColors.WindowFrame;
-            iconButton6.FlatAppearance.MouseOverBackColor = Color.FromArgb(64, 64, 64);
-            iconButton6.FlatStyle = FlatStyle.Flat;
-            iconButton6.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            iconButton6.ForeColor = Color.White;
-            iconButton6.IconChar = FontAwesome.Sharp.IconChar.PeopleGroup;
-            iconButton6.IconColor = Color.White;
-            iconButton6.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton6.ImageAlign = ContentAlignment.MiddleLeft;
-            iconButton6.Location = new Point(4, 329);
-            iconButton6.Margin = new Padding(6);
-            iconButton6.Name = "iconButton6";
-            iconButton6.Padding = new Padding(9, 0, 0, 0);
-            iconButton6.Size = new Size(325, 61);
-            iconButton6.TabIndex = 5;
-            iconButton6.Text = "MemberShip";
-            iconButton6.UseVisualStyleBackColor = false;
+            MemberShips.BackColor = Color.FromArgb(22, 26, 29);
+            MemberShips.BackgroundImageLayout = ImageLayout.None;
+            MemberShips.FlatAppearance.BorderSize = 0;
+            MemberShips.FlatAppearance.MouseDownBackColor = SystemColors.WindowFrame;
+            MemberShips.FlatAppearance.MouseOverBackColor = Color.FromArgb(64, 64, 64);
+            MemberShips.FlatStyle = FlatStyle.Flat;
+            MemberShips.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            MemberShips.ForeColor = Color.White;
+            MemberShips.IconChar = FontAwesome.Sharp.IconChar.PeopleGroup;
+            MemberShips.IconColor = Color.White;
+            MemberShips.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            MemberShips.ImageAlign = ContentAlignment.MiddleLeft;
+            MemberShips.Location = new Point(4, 329);
+            MemberShips.Margin = new Padding(6);
+            MemberShips.Name = "MemberShips";
+            MemberShips.Padding = new Padding(9, 0, 0, 0);
+            MemberShips.Size = new Size(325, 61);
+            MemberShips.TabIndex = 5;
+            MemberShips.Text = "MemberShip";
+            MemberShips.UseVisualStyleBackColor = false;
+            MemberShips.Click += MemberShips_Click;
             // 
             // StaffBtn
             // 
@@ -349,12 +351,22 @@ namespace Gym_Management_system
             // 
             timer1.Tick += timer1_Tick;
             // 
+            // memberships1
+            // 
+            memberships1.Dock = DockStyle.Fill;
+            memberships1.Location = new Point(347, 0);
+            memberships1.Name = "memberships1";
+            memberships1.Size = new Size(1464, 911);
+            memberships1.TabIndex = 5;
+            memberships1.Load += memberships1_Load;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1811, 911);
+            Controls.Add(memberships1);
             Controls.Add(staff1);
             Controls.Add(plansDashboard1);
             Controls.Add(attendance1);
@@ -379,18 +391,19 @@ namespace Gym_Management_system
         private Label UserNameLbl;
         private FontAwesome.Sharp.IconButton iconButton8;
         private FontAwesome.Sharp.IconButton PlansBtn;
-        private FontAwesome.Sharp.IconButton iconButton6;
+        private FontAwesome.Sharp.IconButton MemberShips;
         private FontAwesome.Sharp.IconButton StaffBtn;
         private FontAwesome.Sharp.IconButton iconButton3;
         private FontAwesome.Sharp.IconButton iconButton2;
         //private FontAwesome.Sharp.IconDropDownButton iconDropDownButton1;
         private Dashboard dashboard1;
         private Attendance attendance1;
-        private Membership membership1;
+        //private Membership membership1;
         private PlansDashboard plansDashboard1;
         private FontAwesome.Sharp.IconButton iconButton5;
         private Staff staff1;
         private System.Windows.Forms.Timer timer1;
         public Label Timerlabel;
+        private Memberships memberships1;
     }
 }

@@ -183,9 +183,9 @@ public class SqlClass
     //}
 
 
-    public List<Staffs> GetStaffData(string query)
+    public List<StaffModal> GetStaffData(string query)
     {
-        List<Staffs> StaffList = new List<Staffs>();
+        List<StaffModal> StaffList = new List<StaffModal>();
         Console.WriteLine(query);
         if (query == "")
         {
@@ -214,7 +214,7 @@ public class SqlClass
                 float Salary = r.ReaderData.IsDBNull(14) ? 0 : r.ReaderData.GetFloat(14);
 
                 
-                Staffs staffs = new Staffs(
+                StaffModal staffs = new StaffModal(
                 id,
                 FirstName,
                 LastName,
@@ -241,42 +241,64 @@ public class SqlClass
 
 
 
-    public struct Staffs
-    {
-        public int id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string DoB { get; set; }
-        public string Tell { get; set; }
-        public string Email { get; set; }
-        public string Sex { get; set; }
-        public string City { get; set; }
-        public string Village { get; set; }
-        public string Em_Contact { get; set; }
-        public string Emm_Name { get; set; }
-        public string Emm_R { get; set; }
-        public string Shift { get; set; }
-        public string StaffType { get; set; }
-        public float Salary { get; set; }
 
-        public Staffs(int id, string firstName, string lastName, string doB, string tell, string email, string sex, string city, string village, string em_Contact, string emm_Name, string emm_R, string shift, string staffType, float salary)
+
+    public List<MemberShipModal> GetMembersData(string query)
+    {
+        List<MemberShipModal> MemberList = new List<MemberShipModal>();
+        Console.WriteLine(query);
+        if (query == "")
         {
-            this.id = id;
-            FirstName = firstName;
-            LastName = lastName;
-            DoB = doB;
-            Tell = tell;
-            Email = email;
-            Sex = sex;
-            City = city;
-            Village = village;
-            Em_Contact = em_Contact;
-            Emm_Name = emm_Name;
-            Emm_R = emm_R;
-            Shift = shift;
-            StaffType = staffType;
-            Salary = salary;
+            query = @"select * from Customer_info";
         }
+        helper.QueryReader(query, r =>
+        {
+            while (r.ReaderData.Read())
+            {
+                int id = r.ReaderData.GetInt32(0);
+                string FirstName = r.ReaderData.IsDBNull(1) ? "null" : r.ReaderData.GetString(1);
+                string LastName = r.ReaderData.IsDBNull(2) ? "null" : r.ReaderData.GetString(2);
+                string DoB = r.ReaderData.IsDBNull(3) ? "null" : r.ReaderData.GetString(3);
+                string Tell = r.ReaderData.IsDBNull(4) ? "null" : r.ReaderData.GetString(4);
+                string Email = r.ReaderData.IsDBNull(5) ? "null" : r.ReaderData.GetString(5);
+                string Sex = r.ReaderData.IsDBNull(6) ? "null" : r.ReaderData.GetString(6);
+                float Weight = r.ReaderData.IsDBNull(7) ? 0 : r.ReaderData.GetFloat(7);
+                string City = r.ReaderData.IsDBNull(8) ? "null" : r.ReaderData.GetString(8);
+                string Village = r.ReaderData.IsDBNull(9) ? "null" : r.ReaderData.GetString(9);
+                string Em_Contact = r.ReaderData.IsDBNull(10) ? "null" : r.ReaderData.GetString(10);
+                string Emm_Name = r.ReaderData.IsDBNull(11) ? "null" : r.ReaderData.GetString(11);
+                string Emm_R = r.ReaderData.IsDBNull(12) ? "null" : r.ReaderData.GetString(12);
+                int PlansId = r.ReaderData.IsDBNull(13) ? 0 : r.ReaderData.GetInt32(13);
+
+
+
+
+                MemberShipModal member = new MemberShipModal(
+                id,
+                FirstName,
+                LastName,
+                DoB,
+                Tell,
+                Email,
+                Sex,
+                City,
+                Village,
+                Em_Contact,
+                Emm_Name,
+                Emm_R,
+                Weight,
+                PlansId
+                );
+                MemberList.Add(member);
+            }
+        });
+
+        return MemberList;
     }
+
+
+    //public struct Staffs
+    //{
+    //}
 }
 
