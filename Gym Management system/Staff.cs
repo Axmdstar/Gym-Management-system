@@ -19,7 +19,7 @@ namespace Gym_Management_system
             NewStaffBtn.Click += NewStaffBtn_Click;
             EditStaffBtn.Click += EditStaffBtn_Click;
             DeleteStaffBtn.Click += DeleteStaffBtn_Click;
-            ColumnCombobox.SelectedIndexChanged += ColumnCombobox_SelectedIndexChanged;
+            ColumnCombobox.SelectedIndexChanged += StaffColumnCombobox_SelectedIndexChanged;
             dataGridView1.CellContentClick += SelctedStaffRow;
 
         }
@@ -29,7 +29,7 @@ namespace Gym_Management_system
         public void NewStaffBtn_Click(object sender, EventArgs e) { }
         public void EditStaffBtn_Click(object sender, EventArgs e) { }
         public void DeleteStaffBtn_Click(object sender, EventArgs e) { }
-        public void ColumnCombobox_SelectedIndexChanged(object sender, EventArgs args) { }
+        public void StaffColumnCombobox_SelectedIndexChanged(object sender, EventArgs args) { }
 
 
     }

@@ -18,6 +18,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="EditMember.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="AddMember.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="EditStaffForm.cs" />
     <Compile Update="EditPlanForm.cs">
       <SubType>Form</SubType>

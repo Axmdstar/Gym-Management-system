@@ -14,36 +14,14 @@ using System.Windows.Controls.Primitives;
 public class SqlClass
 {
     Helper helper = new Helper();
-
     public string ConnetionStr { get { return helper.ConnectionString; } }
 
-    
 
 
-    public void ShowTables()
-    {
-     //     string path = @"C:\Users\Farah\source\repos\Gym-Management-system\Gym Management system\Database\Gym.db";
-     //string ConnectionString = @$"Data Source={path};Version=3;";
-    string query = @"SELECT id, firstname FROM staff_information where staff_type = 'Trainer'";
-
-        
-
-        helper.QueryReader(query, r =>
-        {
-            Console.WriteLine(r.ReaderData.FieldCount);
-            while (r.ReaderData.Read())
-            {
-                Console.WriteLine(r.ReaderData.GetString(1));
-            }
-        });
-    }
 
 
-    
 
-
-    
-
+    // Get Methods
     public Dictionary<string, List<object>>? getPlansDshBdData()
     {
         string query = @"SELECT p.plan_name, p.signup_fee, p.price, p.plan_type, si.firstname, si.tell, si.shift,strftime('%H:%M',                                sch.time_in), strftime('%H:%M',sch.time_out), p.id from plans as p
@@ -51,28 +29,27 @@ public class SqlClass
                                 LEFT JOIN schedule as sch on sch.plan_id = p.id";
 
         Dictionary<string, List<object>> Dict = new Dictionary<string, List<object>>();
-
         int count = 0;
         helper.QueryReader(query, r =>
         {
             if (r.ReaderData.HasRows)
             {
 
-            while (r.ReaderData.Read())
-            {
-                // Use the GetValue method and handle null values
-                string planName = r.ReaderData.IsDBNull(0) ? "NULL" : r.ReaderData.GetString(0);
-                float signupFee = r.ReaderData.IsDBNull(1) ? 0 : r.ReaderData.GetFloat(1);
-                float price = r.ReaderData.IsDBNull(2) ? 0 : r.ReaderData.GetFloat(2);
-                string planType = r.ReaderData.IsDBNull(3) ? "NULL" : r.ReaderData.GetString(3);
-                string firstname = r.ReaderData.IsDBNull(4) ? "NULL" : r.ReaderData.GetString(4);
-                string tell = r.ReaderData.IsDBNull(5) ? "NULL" : r.ReaderData.GetString(5);
-                string shift = r.ReaderData.IsDBNull(6) ? "NULL" : r.ReaderData.GetString(6);
-                string timeIn = r.ReaderData.IsDBNull(7) ? "NULL" : r.ReaderData.GetString(7);
-                string timeOut = r.ReaderData.IsDBNull(8) ? "NULL" : r.ReaderData.GetString(8);
-                int planId = r.ReaderData.IsDBNull(9) ? 0 : r.ReaderData.GetInt32(9);
+                while (r.ReaderData.Read())
+                {
+                    // Use the GetValue method and handle null values
+                    string planName = r.ReaderData.IsDBNull(0) ? "NULL" : r.ReaderData.GetString(0);
+                    float signupFee = r.ReaderData.IsDBNull(1) ? 0 : r.ReaderData.GetFloat(1);
+                    float price = r.ReaderData.IsDBNull(2) ? 0 : r.ReaderData.GetFloat(2);
+                    string planType = r.ReaderData.IsDBNull(3) ? "NULL" : r.ReaderData.GetString(3);
+                    string firstname = r.ReaderData.IsDBNull(4) ? "NULL" : r.ReaderData.GetString(4);
+                    string tell = r.ReaderData.IsDBNull(5) ? "NULL" : r.ReaderData.GetString(5);
+                    string shift = r.ReaderData.IsDBNull(6) ? "NULL" : r.ReaderData.GetString(6);
+                    string timeIn = r.ReaderData.IsDBNull(7) ? "NULL" : r.ReaderData.GetString(7);
+                    string timeOut = r.ReaderData.IsDBNull(8) ? "NULL" : r.ReaderData.GetString(8);
+                    int planId = r.ReaderData.IsDBNull(9) ? 0 : r.ReaderData.GetInt32(9);
 
-                List<object> list = new List<object>
+                    List<object> list = new List<object>
                 {
                     planName,
                     signupFee,
@@ -86,33 +63,31 @@ public class SqlClass
                     planId
                 };
 
-                Dict.Add(planName, list);
-                count++;
+                    Dict.Add(planName, list);
+                    count++;
+                }
             }
-        }  
         });
         return Dict ?? null;
     }
 
 
-
+    // Get Plans
     public List<string> getPlans()
     {
         string query = @"select plan_name from plans";
         List<string> list = new List<string>();
         helper.QueryReader(query, r =>
         {
-            //if (!r.ReaderData.Read() )
-            //{
-                while (r.ReaderData.Read())
-                {
-                    list.Add(r.ReaderData.GetString(0));
-                }
-            //}
+            while (r.ReaderData.Read())
+            {
+                list.Add(r.ReaderData.GetString(0));
+            }
         });
         return list;
     }
 
+    // Get Trainers
     public Dictionary<string, List<object>> getTrainer()
     {
         string query = @"SELECT id, firstname FROM staff_information where staff_type = 'Trainer';";
@@ -136,53 +111,7 @@ public class SqlClass
 
         return DictTrainer;
     }
-
-
-    public void AddPlantoDb(string query)
-    {
-        helper.QueryWriter(query, r =>
-        {
-            Console.WriteLine(r.msg); 
-        });
-    }
-
-    public void DeletePlanFromDb(string query)
-    {
-        helper.QueryWriter(query, r =>
-        {
-            Console.WriteLine(r.msg);
-        });
-    }
-
-    public void DeleteStaff(int id)
-    {
-        string query = $@"DELETE from staff_information where id = {id};";
-        helper.QueryWriter(query, r =>
-        {
-            Console.WriteLine(r.msg);
-        });
-    }
-
-    public void AddStaffToDb(string query)
-    {
-        helper.QueryWriter(query, r => {
-            Console.WriteLine(r.msg);
-        });
-    }
-
-    public void EditStaffToDb(string query)
-    {
-       helper.QueryWriter(query, r => {  
-           Console.WriteLine(r.msg);
-       });
-    }
-    //public void SearchStaff(string SrhTxt)
-    //{
-    //    string query = $@"Select * from staff_information where firstName like '{SrhTxt}'";
-
-    //}
-
-
+    // Get Staff
     public List<StaffModal> GetStaffData(string query)
     {
         List<StaffModal> StaffList = new List<StaffModal>();
@@ -213,14 +142,13 @@ public class SqlClass
                 string StaffType = r.ReaderData.IsDBNull(13) ? "null" : r.ReaderData.GetString(13);
                 float Salary = r.ReaderData.IsDBNull(14) ? 0 : r.ReaderData.GetFloat(14);
 
-                
+                //StaffObject
                 StaffModal staffs = new StaffModal(
                 id,
                 FirstName,
                 LastName,
                 DoB,
-                Tell,
-                Email,
+                Tell, Email,
                 Sex,
                 City,
                 Village,
@@ -238,10 +166,6 @@ public class SqlClass
 
         return StaffList;
     }
-
-
-
-
 
     public List<MemberShipModal> GetMembersData(string query)
     {
@@ -270,9 +194,7 @@ public class SqlClass
                 string Emm_R = r.ReaderData.IsDBNull(12) ? "null" : r.ReaderData.GetString(12);
                 int PlansId = r.ReaderData.IsDBNull(13) ? 0 : r.ReaderData.GetInt32(13);
 
-
-
-
+                //MemberObject
                 MemberShipModal member = new MemberShipModal(
                 id,
                 FirstName,
@@ -295,6 +217,72 @@ public class SqlClass
 
         return MemberList;
     }
+
+
+
+
+
+    public void ExcuteQuery(string query)
+    {
+        helper.QueryWriter(query, r =>
+        {
+            Console.WriteLine(r.msg);
+        });
+    }
+
+    //Add Methods
+    public void AddPlantoDb(string query)
+    {
+        helper.QueryWriter(query, r =>
+        {
+            Console.WriteLine(r.msg);
+        });
+    }
+
+    //public void AddStaffToDb(string query)
+    //{
+    //    helper.QueryWriter(query, r => {
+    //        Console.WriteLine(r.msg);
+    //    });
+    //}
+
+
+    //// Delete Methods
+    //public void DeletePlanFromDb(string query)
+    //{
+    //    helper.QueryWriter(query, r =>
+    //    {
+    //        Console.WriteLine(r.msg);
+    //    });
+    //}
+
+    public void DeleteStaff(int id)
+    {
+        string query = $@"DELETE from staff_information where id = {id};";
+        helper.QueryWriter(query, r =>
+        {
+            Console.WriteLine(r.msg);
+        });
+    }
+
+    // update Methods
+
+    //public void EditStaffToDb(string query)
+    //{
+    //   helper.QueryWriter(query, r => {  
+    //       Console.WriteLine(r.msg);
+    //   });
+    //}
+
+
+
+    
+
+
+
+
+
+    
 
 
     //public struct Staffs

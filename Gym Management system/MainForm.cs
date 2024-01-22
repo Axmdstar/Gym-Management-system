@@ -12,8 +12,11 @@ namespace Gym_Management_system
         //fields
         Dictionary<string, List<object>>? plansdata = new Dictionary<string, List<object>>();
         SqlClass sql = new SqlClass();
+        List<string>? plansList = new List<string>();
+
 
         int StaffCellID;
+        int MemberCellID;
         int rowindex;
 
 
@@ -43,10 +46,18 @@ namespace Gym_Management_system
             //Staff Events
             staff1.dataGridView1.CellContentClick += SelctedStaffRow;
             staff1.SearchTxtBox.TextChanged += SearchTxtBox_TextChanged;
-            staff1.ColumnCombobox.SelectedIndexChanged += ColumnCombobox_SelectedIndexChanged;
+            staff1.ColumnCombobox.SelectedIndexChanged += StaffColumnCombobox_SelectedIndexChanged;
             staff1.NewStaffBtn.Click += NewStaffBtn_Click;
             staff1.EditStaffBtn.Click += EditStaffBtn_Click;
             staff1.DeleteStaffBtn.Click += DeleteStaffBtn_Click;
+
+            //Member Events
+            memberships1.dataGridView1.CellContentClick += SelctedMemberRow;
+            memberships1.NewMemberBtn.Click += NewMemberBtn_Click;
+            memberships1.EditMemberBtn.Click += EditMemberBtn_Click;
+            memberships1.DeleteMemberBtn.Click += DeleteMemberBtn_Click;
+            memberships1.SearchTxtBox.TextChanged += SearchTxtBox_Member;
+            memberships1.ColumnCombobox.SelectedIndexChanged += MemberColumnCombobox_SelectedIndexChanged;
 
             this.Username = Username;
             this.UserType = UserType;
@@ -62,9 +73,7 @@ namespace Gym_Management_system
                 StaffBtn.Enabled = false;
                 StaffBtn.BackColor = Color.FromArgb(51, 60, 67);
             }
-
         }
-
 
 
 
@@ -78,8 +87,6 @@ namespace Gym_Management_system
 
 
 
-
-
         // Form CloseEvents
         private void PlansClosedEvent(object sender, FormClosedEventArgs e)
         {
@@ -87,10 +94,13 @@ namespace Gym_Management_system
             plansdata = sql.getPlansDshBdData() ?? null;
             plansDashboard1_Load(sender, e);
         }
-
         private void StaffClosedEvent(object sender, FormClosedEventArgs e)
         {
             staff1_Load(sender, e);
+        }
+        private void MemberClosedEvent(object sender, FormClosedEventArgs e)
+        { 
+            memberships1_Load(sender, e);
         }
 
 
@@ -99,8 +109,6 @@ namespace Gym_Management_system
         //Load init data 
         private void plansDashboard1_Load(object sender, EventArgs e)
         {
-
-            List<string>? plansList = new List<string>();
             plansList = sql.getPlans();
             if (plansList.Count != 0)
             {
@@ -121,8 +129,6 @@ namespace Gym_Management_system
             string query = @"SELECT * FROM staff_information";
             staff1.dataGridView1.DataSource = sql.GetStaffData(query);
         }
-
-
         private void memberships1_Load(object sender, EventArgs e)
         {
             string query = @"select * from Customer_info";
@@ -130,6 +136,8 @@ namespace Gym_Management_system
         }
 
 
+
+        //Buttons 
         private void PlansComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selected = (string)plansDashboard1.PlansComboBox.SelectedItem;
@@ -146,22 +154,31 @@ namespace Gym_Management_system
         }
 
 
-
+        // Delete btn
         private void DeletePlan_Click(object sender, EventArgs e)
         {
             string selected = (string)plansDashboard1.PlansComboBox.SelectedItem;
             string DeleteQuery = $@"DELETE from plans where plan_name = '{selected}';";
-            sql.DeletePlanFromDb(DeleteQuery);
+            sql.ExcuteQuery(DeleteQuery);
             plansDashboard1.PlansComboBox.Items.Remove(selected);
         }
-
         private void DeleteStaffBtn_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(StaffCellID);
-            sql.DeleteStaff(StaffCellID);
+            string query = $@"DELETE from staff_information where id = {StaffCellID};";
+
+            sql.ExcuteQuery(query);
             staff1_Load(sender, e);
         }
+        private void DeleteMemberBtn_Click(object sender, EventArgs e)
+        {
+            string query = $@"DELETE from Customer_info where id = {MemberCellID};";
+            sql.ExcuteQuery(query);
+            memberships1_Load(sender, e);
+        }
 
+
+
+        // Edit Btn
         private void EditPlan_Click(object sender, EventArgs e)
         {
             string selected = (string)plansDashboard1.PlansComboBox.SelectedItem;
@@ -177,47 +194,71 @@ namespace Gym_Management_system
                 MessageBox.Show("Select Plan");
             }
         }
-
         private void EditStaffBtn_Click(object sender, EventArgs e)
         {
             DataGridViewRow row = staff1.dataGridView1.Rows[rowindex];
             EditStaff editStaffform = new EditStaff(row);
+            editStaffform.FormClosed += StaffClosedEvent;
             editStaffform.ShowDialog();
+        }
+
+        private void EditMemberBtn_Click(object obj, EventArgs e)
+        {
+            DataGridViewRow row = memberships1.dataGridView1.Rows[rowindex];
+            EditMember editMemberform = new EditMember(row, plansdata);
+            editMemberform.ShowDialog();
+
         }
 
 
 
 
+        //Search Events
         private void SearchTxtBox_TextChanged(object sender, EventArgs e)
         {
             string SrhTxt = staff1.SearchTxtBox.Text;
             string query = $@"Select * from staff_information where {SearchFilter} like '{SrhTxt}%'";
             staff1.dataGridView1.DataSource = sql.GetStaffData(query);
         }
-
-
-        private void ColumnCombobox_SelectedIndexChanged(object sender, EventArgs e)
+        private void StaffColumnCombobox_SelectedIndexChanged(object sender, EventArgs e)
         {
             SearchFilter = staff1.ColumnCombobox.SelectedItem.ToString();
-            Console.WriteLine(SearchFilter);
+        }
+
+        private void SearchTxtBox_Member(object sender, EventArgs e)
+        {
+            string SrhTxt = memberships1.SearchTxtBox.Text;
+            string query = $@"Select * from Customer_info where {SearchFilter} like '{SrhTxt}%'";
+            memberships1.dataGridView1.DataSource = sql.GetMembersData(query);
+        }
+        private void MemberColumnCombobox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SearchFilter = memberships1.ColumnCombobox.SelectedItem.ToString();
         }
 
 
-
+        //AddBtn
         public void NewStaffBtn_Click(object sender, EventArgs e)
         {
             AddStaff addstaff = new AddStaff();
             addstaff.FormClosed += StaffClosedEvent;
             addstaff.ShowDialog();
         }
-
         private void AddPlan_Click(object sender, EventArgs e)
         {
             AddPlanForm addPlanForm = new AddPlanForm();
             addPlanForm.FormClosed += PlansClosedEvent;
             addPlanForm.ShowDialog();
         }
+        private void NewMemberBtn_Click(object sender, EventArgs args){
+            AddMember addmember = new AddMember(plansdata);
+            //addmember.FormClosed += 
+            addmember.ShowDialog();
+        }
 
+
+
+        //GridEvents
         private void SelctedStaffRow(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= -1)
@@ -228,18 +269,26 @@ namespace Gym_Management_system
             }
         }
 
+        private void SelctedMemberRow(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.RowIndex >= -1)
+            {
+                rowindex = e.RowIndex;
+                DataGridViewRow row = memberships1.dataGridView1.Rows[e.RowIndex];
+                MemberCellID = (int)row.Cells[0].Value;
+            }
+        }
 
 
+
+        //Time
         private void timer1_Tick(object sender, EventArgs e)
         {
             Timerlabel.Text = DateTime.Now.ToString("hh:mm tt");
         }
 
 
-
-
-
-
+        //Close Window
         private void iconButton8_Click(object sender, EventArgs e)
         {
             this.Close();

@@ -67,6 +67,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(245, 243, 244);
             Controls.Add(panel1);
             Controls.Add(label1);
             Name = "Attendance";

@@ -71,10 +71,10 @@ namespace Gym_Management_system
             panel1.Controls.Add(UserNameLbl);
             panel1.Controls.Add(iconPictureBox1);
             panel1.Dock = DockStyle.Left;
-            panel1.Location = new Point(0, 0);
+            panel1.Location = new Point(10, 10);
             panel1.Margin = new Padding(2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(347, 911);
+            panel1.Size = new Size(347, 891);
             panel1.TabIndex = 0;
             // 
             // Timerlabel
@@ -125,7 +125,7 @@ namespace Gym_Management_system
             iconButton8.IconColor = Color.White;
             iconButton8.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconButton8.ImageAlign = ContentAlignment.MiddleLeft;
-            iconButton8.Location = new Point(0, 850);
+            iconButton8.Location = new Point(0, 830);
             iconButton8.Margin = new Padding(2);
             iconButton8.Name = "iconButton8";
             iconButton8.Padding = new Padding(9, 0, 0, 0);
@@ -313,37 +313,37 @@ namespace Gym_Management_system
             // 
             dashboard1.BackColor = Color.FromArgb(245, 243, 244);
             dashboard1.Dock = DockStyle.Fill;
-            dashboard1.Location = new Point(347, 0);
+            dashboard1.Location = new Point(357, 10);
             dashboard1.Margin = new Padding(2);
             dashboard1.Name = "dashboard1";
-            dashboard1.Size = new Size(1464, 911);
+            dashboard1.Size = new Size(1446, 891);
             dashboard1.TabIndex = 1;
             // 
             // attendance1
             // 
             attendance1.Dock = DockStyle.Fill;
-            attendance1.Location = new Point(347, 0);
+            attendance1.Location = new Point(357, 10);
             attendance1.Margin = new Padding(2);
             attendance1.Name = "attendance1";
-            attendance1.Size = new Size(1464, 911);
+            attendance1.Size = new Size(1446, 891);
             attendance1.TabIndex = 2;
             // 
             // plansDashboard1
             // 
             plansDashboard1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             plansDashboard1.Dock = DockStyle.Fill;
-            plansDashboard1.Location = new Point(347, 0);
+            plansDashboard1.Location = new Point(357, 10);
             plansDashboard1.Name = "plansDashboard1";
-            plansDashboard1.Size = new Size(1464, 911);
+            plansDashboard1.Size = new Size(1446, 891);
             plansDashboard1.TabIndex = 3;
             plansDashboard1.Load += plansDashboard1_Load;
             // 
             // staff1
             // 
             staff1.Dock = DockStyle.Fill;
-            staff1.Location = new Point(347, 0);
+            staff1.Location = new Point(357, 10);
             staff1.Name = "staff1";
-            staff1.Size = new Size(1464, 911);
+            staff1.Size = new Size(1446, 891);
             staff1.TabIndex = 4;
             staff1.Load += staff1_Load;
             // 
@@ -353,10 +353,11 @@ namespace Gym_Management_system
             // 
             // memberships1
             // 
+            memberships1.BackColor = Color.FromArgb(245, 243, 244);
             memberships1.Dock = DockStyle.Fill;
-            memberships1.Location = new Point(347, 0);
+            memberships1.Location = new Point(357, 10);
             memberships1.Name = "memberships1";
-            memberships1.Size = new Size(1464, 911);
+            memberships1.Size = new Size(1446, 891);
             memberships1.TabIndex = 5;
             memberships1.Load += memberships1_Load;
             // 
@@ -364,8 +365,8 @@ namespace Gym_Management_system
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
-            ClientSize = new Size(1811, 911);
+            BackColor = Color.FromArgb(22, 26, 29);
+            ClientSize = new Size(1813, 911);
             Controls.Add(memberships1);
             Controls.Add(staff1);
             Controls.Add(plansDashboard1);
@@ -374,6 +375,7 @@ namespace Gym_Management_system
             Controls.Add(panel1);
             Margin = new Padding(2);
             Name = "MainForm";
+            Padding = new Padding(10);
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form2";
             Load += MainForm_Load;

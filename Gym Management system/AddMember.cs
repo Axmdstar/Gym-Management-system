@@ -11,28 +11,37 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace Gym_Management_system
 {
-    public partial class AddStaff : Form
+    public partial class AddMember : Form
     {
-        string FirstName;
-        string LastName;
-        string Dob;
-        string Tell;
-        string Email;
-        string Sex;
-        string City;
-        string Village;
-        string Em_Contact;
-        string Em_Tell;
-        string Em_Relation;
-        string Shift;
-        string Staff_type;
-        float Salary;
+        string? FirstName;
+        string? LastName;
+        string? Dob;
+        string? Tell;
+        string? Email;
+        string? Sex;
+        string? City;
+        float? Weight;
+        string? Village;
+        string? Em_Contact;
+        string? Em_Tell;
+        string? Em_Relation;
+        int? PlanId;
+        Dictionary<string, List<object>>? PlanData;
+        //Memberships member = new Memberships();
+
 
         SqlClass sqlclass = new SqlClass();
 
-        public AddStaff()
+        public AddMember(Dictionary<string, List<object>>? PlanData)
         {
             InitializeComponent();
+            this.PlanData = PlanData;
+
+            foreach (List<object> value in PlanData.Values)
+            {
+                //Console.WriteLine(value[9]);
+                PlansComboBox.Items.Add(value[0]);
+            }
         }
 
 
@@ -41,6 +50,7 @@ namespace Gym_Management_system
         {
             FirstName = FirstNameTextBox.Text;
         }
+
         private void LastNameText_TextChanged(object sender, EventArgs e)
         {
             LastName = LastNameTextBox.Text;
@@ -53,18 +63,17 @@ namespace Gym_Management_system
         {
             Email = EmailTextBox.Text;
         }
+
         private void CityText_TextChanged(object sender, EventArgs args)
         {
             City = CityTextBox.Text;
         }
-        private void SalaryTextBox_TextChanged(object sender, EventArgs args)
-        {
-            Salary = Convert.ToSingle(SalaryTextBox.Text);
-        }
+
         private void dateTimePicker1_TextChanged(object sender, EventArgs args)
         {
             Dob = dateTimePicker1.Text;
         }
+
         private void SexComboBox_TextChanged(object sender, EventArgs args)
         {
             Sex = SexComboBox.SelectedItem.ToString();
@@ -77,6 +86,7 @@ namespace Gym_Management_system
         {
             Em_Contact = ContactTextBox.Text;
         }
+
         private void RelationComboBox_TextChanged(object sender, EventArgs args)
         {
             Em_Relation = RelationComboBox.SelectedItem.ToString();
@@ -85,44 +95,28 @@ namespace Gym_Management_system
         {
             Em_Tell = ContactTellTextBox.Text;
         }
-        private void StaffTypeComboBox_TextChanged(object sender, EventArgs args)
-        {
-            Staff_type = StaffTypeComboBox.SelectedItem.ToString();
-        }
-        private void ShiftComboBox_TextChanged(object sender, EventArgs args)
-        {
-            Shift = ShiftComboBox.SelectedItem.ToString();
-        }
 
-
+        private void WeightTextBox_TextChanged(object sender, EventArgs e)
+        {
+            Weight = Convert.ToSingle(WeightTextBox.Text);
+        }
+        private void PlansComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PlanId = (int)PlanData[PlansComboBox.SelectedItem.ToString()][9];
+        }
 
 
         private void AddStaffBtn_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(FirstName);
-            Console.WriteLine(LastName);
-            Console.WriteLine(Dob);
-            Console.WriteLine(Tell);
-            Console.WriteLine(Email);
-            Console.WriteLine(Sex);
-            Console.WriteLine(City);
-            Console.WriteLine(Village);
-            Console.WriteLine(Em_Contact);
-            Console.WriteLine(Em_Tell);
-            Console.WriteLine(Em_Relation);
-            Console.WriteLine(Shift);
-            Console.WriteLine(Staff_type);
-            Console.WriteLine(Salary);
 
-            string query = $@"INSERT INTO staff_information (firstname, lastname, dob, tell, email, sex, city, village,
-                                                            emergency_contact, emergency_name, emergency_relation,shift,
-                                                            staff_type,salary)
-                                                            VALUES('{FirstName}', '{LastName}', Date('{Dob}'), '{Tell}', '{Email}',
-                                                                   '{Sex}', '{City}', '{Village}', '{Em_Contact}', '{Em_Tell}',
-                                                                   '{Em_Relation}', '{Shift}', '{Staff_type}', {Salary});";
-            // emmergence_contact
+            string query = $@"INSERT into Customer_info(firstname, lastname, dob, Tell, email, sex, weight, city, village, emmergence_contact, emmergency_name, emergency_relation, planId)
+              VALUES('{FirstName}','{LastName}',Date('{Dob}'),'{Tell}','{Email}','{Sex}',{Weight},'{City}','{Village}','{Em_Contact}','{Em_Tell}','{Em_Relation}',{PlanId});";
+            
+
             sqlclass.ExcuteQuery(query);
 
         }
+
+        
     }
 }

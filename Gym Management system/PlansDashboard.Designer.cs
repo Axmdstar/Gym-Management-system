@@ -321,6 +321,7 @@ namespace Gym_Management_system
             PlansComboBox.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
             PlansComboBox.ForeColor = Color.FromArgb(222, 0, 0, 0);
             PlansComboBox.FormattingEnabled = true;
+            PlansComboBox.Hint = "Choose A Plan";
             PlansComboBox.IntegralHeight = false;
             PlansComboBox.ItemHeight = 43;
             PlansComboBox.Location = new Point(12, 238);
@@ -346,6 +347,7 @@ namespace Gym_Management_system
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            BackColor = Color.FromArgb(245, 243, 244);
             Controls.Add(label8);
             Controls.Add(panel1);
             Name = "PlansDashboard";

@@ -1,6 +1,6 @@
 ﻿namespace Gym_Management_system
 {
-    partial class EditStaff
+    partial class AddMember
     {
         /// <summary>
         /// Required designer variable.
@@ -9,7 +9,7 @@
 
         /// <summary>
         /// Clean up any resources being used.
-        /// </summary>s
+        /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
@@ -33,22 +33,19 @@
             TellTxtBox = new MaterialSkin2DotNet.Controls.MaterialMaskedTextBox();
             EmailTextBox = new MaterialSkin2DotNet.Controls.MaterialMaskedTextBox();
             CityTextBox = new MaterialSkin2DotNet.Controls.MaterialMaskedTextBox();
-            SalaryTextBox = new MaterialSkin2DotNet.Controls.MaterialMaskedTextBox();
             ContactTellTextBox = new MaterialSkin2DotNet.Controls.MaterialMaskedTextBox();
             dateTimePicker1 = new DateTimePicker();
             SexComboBox = new MaterialSkin2DotNet.Controls.MaterialComboBox();
             VillageTextBox = new MaterialSkin2DotNet.Controls.MaterialMaskedTextBox();
             ContactTextBox = new MaterialSkin2DotNet.Controls.MaterialMaskedTextBox();
             RelationComboBox = new MaterialSkin2DotNet.Controls.MaterialComboBox();
-            ShiftComboBox = new MaterialSkin2DotNet.Controls.MaterialComboBox();
-            StaffTypeComboBox = new MaterialSkin2DotNet.Controls.MaterialComboBox();
             groupBox1 = new GroupBox();
+            PlansComboBox = new MaterialSkin2DotNet.Controls.MaterialComboBox();
+            WeightTextBox = new MaterialSkin2DotNet.Controls.MaterialMaskedTextBox();
             groupBox2 = new GroupBox();
-            groupBox3 = new GroupBox();
             AddStaffBtn = new FontAwesome.Sharp.IconButton();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
-            groupBox3.SuspendLayout();
             SuspendLayout();
             // 
             // FirstNameTextBox
@@ -92,7 +89,8 @@
             FirstNameTextBox.TrailingIcon = null;
             FirstNameTextBox.UseSystemPasswordChar = false;
             FirstNameTextBox.ValidatingType = null;
-            
+            FirstNameTextBox.TextChanged += FirstNameTextBox_TextChanged;
+            // 
             // LastNameTextBox
             // 
             LastNameTextBox.AllowPromptAsInput = true;
@@ -134,6 +132,7 @@
             LastNameTextBox.TrailingIcon = null;
             LastNameTextBox.UseSystemPasswordChar = false;
             LastNameTextBox.ValidatingType = null;
+            LastNameTextBox.TextChanged += LastNameText_TextChanged;
             // 
             // TellTxtBox
             // 
@@ -176,6 +175,7 @@
             TellTxtBox.TrailingIcon = null;
             TellTxtBox.UseSystemPasswordChar = false;
             TellTxtBox.ValidatingType = null;
+            TellTxtBox.TextChanged += TellTxtBox_TextChanged;
             // 
             // EmailTextBox
             // 
@@ -218,6 +218,7 @@
             EmailTextBox.TrailingIcon = null;
             EmailTextBox.UseSystemPasswordChar = false;
             EmailTextBox.ValidatingType = null;
+            EmailTextBox.TextChanged += EmailTextBox_TextChanged;
             // 
             // CityTextBox
             // 
@@ -260,49 +261,7 @@
             CityTextBox.TrailingIcon = null;
             CityTextBox.UseSystemPasswordChar = false;
             CityTextBox.ValidatingType = null;
-            // 
-            // SalaryTextBox
-            // 
-            SalaryTextBox.AllowPromptAsInput = true;
-            SalaryTextBox.AnimateReadOnly = false;
-            SalaryTextBox.AsciiOnly = false;
-            SalaryTextBox.BackgroundImageLayout = ImageLayout.None;
-            SalaryTextBox.BeepOnError = false;
-            SalaryTextBox.CutCopyMaskFormat = MaskFormat.IncludeLiterals;
-            SalaryTextBox.Depth = 0;
-            SalaryTextBox.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            SalaryTextBox.HidePromptOnLeave = false;
-            SalaryTextBox.HideSelection = true;
-            SalaryTextBox.Hint = "Salary";
-            SalaryTextBox.InsertKeyMode = InsertKeyMode.Default;
-            SalaryTextBox.LeadingIcon = null;
-            SalaryTextBox.Location = new Point(6, 34);
-            SalaryTextBox.Mask = "";
-            SalaryTextBox.MaxLength = 32767;
-            SalaryTextBox.MouseState = MaterialSkin2DotNet.MouseState.OUT;
-            SalaryTextBox.Name = "SalaryTextBox";
-            SalaryTextBox.PasswordChar = '\0';
-            SalaryTextBox.PrefixSuffix = MaterialSkin2DotNet.Controls.MaterialMaskedTextBox.PrefixSuffixTypes.Prefix;
-            SalaryTextBox.PrefixSuffixText = "$";
-            SalaryTextBox.PromptChar = '_';
-            SalaryTextBox.ReadOnly = false;
-            SalaryTextBox.RejectInputOnFirstFailure = false;
-            SalaryTextBox.ResetOnPrompt = true;
-            SalaryTextBox.ResetOnSpace = true;
-            SalaryTextBox.RightToLeft = RightToLeft.No;
-            SalaryTextBox.SelectedText = "";
-            SalaryTextBox.SelectionLength = 0;
-            SalaryTextBox.SelectionStart = 0;
-            SalaryTextBox.ShortcutsEnabled = true;
-            SalaryTextBox.Size = new Size(375, 48);
-            SalaryTextBox.SkipLiterals = true;
-            SalaryTextBox.TabIndex = 5;
-            SalaryTextBox.TabStop = false;
-            SalaryTextBox.TextAlign = HorizontalAlignment.Left;
-            SalaryTextBox.TextMaskFormat = MaskFormat.IncludeLiterals;
-            SalaryTextBox.TrailingIcon = null;
-            SalaryTextBox.UseSystemPasswordChar = false;
-            SalaryTextBox.ValidatingType = null;
+            CityTextBox.TextChanged += CityText_TextChanged;
             // 
             // ContactTellTextBox
             // 
@@ -345,6 +304,7 @@
             ContactTellTextBox.TrailingIcon = null;
             ContactTellTextBox.UseSystemPasswordChar = false;
             ContactTellTextBox.ValidatingType = null;
+            ContactTellTextBox.TextChanged += ContactTellTextBox_TextChanged;
             // 
             // dateTimePicker1
             // 
@@ -354,6 +314,7 @@
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(375, 31);
             dateTimePicker1.TabIndex = 7;
+            dateTimePicker1.TextChanged += dateTimePicker1_TextChanged;
             // 
             // SexComboBox
             // 
@@ -378,6 +339,7 @@
             SexComboBox.Size = new Size(375, 49);
             SexComboBox.StartIndex = 0;
             SexComboBox.TabIndex = 8;
+            SexComboBox.SelectedIndexChanged += SexComboBox_TextChanged;
             // 
             // VillageTextBox
             // 
@@ -420,7 +382,7 @@
             VillageTextBox.TrailingIcon = null;
             VillageTextBox.UseSystemPasswordChar = false;
             VillageTextBox.ValidatingType = null;
-            
+            VillageTextBox.TextChanged += VillageTextBox_TextChanged;
             // 
             // ContactTextBox
             // 
@@ -463,7 +425,7 @@
             ContactTextBox.TrailingIcon = null;
             ContactTextBox.UseSystemPasswordChar = false;
             ContactTextBox.ValidatingType = null;
-            
+            ContactTextBox.TextChanged += ContactTextBox_TextChanged;
             // 
             // RelationComboBox
             // 
@@ -488,60 +450,12 @@
             RelationComboBox.Size = new Size(375, 49);
             RelationComboBox.StartIndex = 0;
             RelationComboBox.TabIndex = 11;
-            
-            // 
-            // ShiftComboBox
-            // 
-            ShiftComboBox.AutoResize = false;
-            ShiftComboBox.BackColor = Color.FromArgb(255, 255, 255);
-            ShiftComboBox.Depth = 0;
-            ShiftComboBox.DrawMode = DrawMode.OwnerDrawVariable;
-            ShiftComboBox.DropDownHeight = 174;
-            ShiftComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            ShiftComboBox.DropDownWidth = 121;
-            ShiftComboBox.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
-            ShiftComboBox.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            ShiftComboBox.FormattingEnabled = true;
-            ShiftComboBox.Hint = "Shift";
-            ShiftComboBox.IntegralHeight = false;
-            ShiftComboBox.ItemHeight = 43;
-            ShiftComboBox.Items.AddRange(new object[] { "Moring", "Evening", "Night" });
-            ShiftComboBox.Location = new Point(408, 34);
-            ShiftComboBox.MaxDropDownItems = 4;
-            ShiftComboBox.MouseState = MaterialSkin2DotNet.MouseState.OUT;
-            ShiftComboBox.Name = "ShiftComboBox";
-            ShiftComboBox.Size = new Size(375, 49);
-            ShiftComboBox.StartIndex = 0;
-            ShiftComboBox.TabIndex = 12;
-            
-            // 
-            // StaffTypeComboBox
-            // 
-            StaffTypeComboBox.AutoResize = false;
-            StaffTypeComboBox.BackColor = Color.FromArgb(255, 255, 255);
-            StaffTypeComboBox.Depth = 0;
-            StaffTypeComboBox.DrawMode = DrawMode.OwnerDrawVariable;
-            StaffTypeComboBox.DropDownHeight = 174;
-            StaffTypeComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            StaffTypeComboBox.DropDownWidth = 121;
-            StaffTypeComboBox.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
-            StaffTypeComboBox.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            StaffTypeComboBox.FormattingEnabled = true;
-            StaffTypeComboBox.Hint = "Staff Type";
-            StaffTypeComboBox.IntegralHeight = false;
-            StaffTypeComboBox.ItemHeight = 43;
-            StaffTypeComboBox.Items.AddRange(new object[] { "Trainer", "User", "Cleaner" });
-            StaffTypeComboBox.Location = new Point(6, 95);
-            StaffTypeComboBox.MaxDropDownItems = 4;
-            StaffTypeComboBox.MouseState = MaterialSkin2DotNet.MouseState.OUT;
-            StaffTypeComboBox.Name = "StaffTypeComboBox";
-            StaffTypeComboBox.Size = new Size(375, 49);
-            StaffTypeComboBox.StartIndex = 0;
-            StaffTypeComboBox.TabIndex = 13;
-            
+            RelationComboBox.SelectedIndexChanged += RelationComboBox_TextChanged;
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(PlansComboBox);
+            groupBox1.Controls.Add(WeightTextBox);
             groupBox1.Controls.Add(FirstNameTextBox);
             groupBox1.Controls.Add(LastNameTextBox);
             groupBox1.Controls.Add(TellTxtBox);
@@ -552,61 +466,114 @@
             groupBox1.Controls.Add(EmailTextBox);
             groupBox1.Location = new Point(40, 12);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(792, 338);
+            groupBox1.Size = new Size(792, 410);
             groupBox1.TabIndex = 14;
             groupBox1.TabStop = false;
-            groupBox1.Text = "Staff Info";
+            groupBox1.Text = "Member Info";
+            // 
+            // PlansComboBox
+            // 
+            PlansComboBox.AutoResize = false;
+            PlansComboBox.BackColor = Color.FromArgb(255, 255, 255);
+            PlansComboBox.Depth = 0;
+            PlansComboBox.DrawMode = DrawMode.OwnerDrawVariable;
+            PlansComboBox.DropDownHeight = 174;
+            PlansComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            PlansComboBox.DropDownWidth = 121;
+            PlansComboBox.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            PlansComboBox.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            PlansComboBox.FormattingEnabled = true;
+            PlansComboBox.Hint = "Choose A Plan";
+            PlansComboBox.IntegralHeight = false;
+            PlansComboBox.ItemHeight = 43;
+            PlansComboBox.Location = new Point(408, 342);
+            PlansComboBox.MaxDropDownItems = 4;
+            PlansComboBox.MouseState = MaterialSkin2DotNet.MouseState.OUT;
+            PlansComboBox.Name = "PlansComboBox";
+            PlansComboBox.Size = new Size(375, 49);
+            PlansComboBox.StartIndex = 0;
+            PlansComboBox.TabIndex = 18;
+            PlansComboBox.SelectedIndexChanged += PlansComboBox_SelectedIndexChanged;
+            // 
+            // WeightTextBox
+            // 
+            WeightTextBox.AllowPromptAsInput = true;
+            WeightTextBox.AnimateReadOnly = false;
+            WeightTextBox.AsciiOnly = false;
+            WeightTextBox.BackgroundImageLayout = ImageLayout.None;
+            WeightTextBox.BeepOnError = false;
+            WeightTextBox.CutCopyMaskFormat = MaskFormat.IncludeLiterals;
+            WeightTextBox.Depth = 0;
+            WeightTextBox.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            WeightTextBox.HidePromptOnLeave = false;
+            WeightTextBox.HideSelection = true;
+            WeightTextBox.Hint = "Weight";
+            WeightTextBox.InsertKeyMode = InsertKeyMode.Default;
+            WeightTextBox.LeadingIcon = null;
+            WeightTextBox.Location = new Point(6, 343);
+            WeightTextBox.Mask = "";
+            WeightTextBox.MaxLength = 32767;
+            WeightTextBox.MouseState = MaterialSkin2DotNet.MouseState.OUT;
+            WeightTextBox.Name = "WeightTextBox";
+            WeightTextBox.PasswordChar = '\0';
+            WeightTextBox.PrefixSuffixText = null;
+            WeightTextBox.PromptChar = '_';
+            WeightTextBox.ReadOnly = false;
+            WeightTextBox.RejectInputOnFirstFailure = false;
+            WeightTextBox.ResetOnPrompt = true;
+            WeightTextBox.ResetOnSpace = true;
+            WeightTextBox.RightToLeft = RightToLeft.No;
+            WeightTextBox.SelectedText = "";
+            WeightTextBox.SelectionLength = 0;
+            WeightTextBox.SelectionStart = 0;
+            WeightTextBox.ShortcutsEnabled = true;
+            WeightTextBox.Size = new Size(375, 48);
+            WeightTextBox.SkipLiterals = true;
+            WeightTextBox.TabIndex = 10;
+            WeightTextBox.TabStop = false;
+            WeightTextBox.TextAlign = HorizontalAlignment.Left;
+            WeightTextBox.TextMaskFormat = MaskFormat.IncludeLiterals;
+            WeightTextBox.TrailingIcon = null;
+            WeightTextBox.UseSystemPasswordChar = false;
+            WeightTextBox.ValidatingType = null;
+            WeightTextBox.TextChanged += WeightTextBox_TextChanged;
             // 
             // groupBox2
             // 
             groupBox2.Controls.Add(ContactTextBox);
             groupBox2.Controls.Add(RelationComboBox);
             groupBox2.Controls.Add(ContactTellTextBox);
-            groupBox2.Location = new Point(40, 369);
+            groupBox2.Location = new Point(40, 428);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(792, 193);
             groupBox2.TabIndex = 15;
             groupBox2.TabStop = false;
             groupBox2.Text = "Emergency Info";
             // 
-            // groupBox3
-            // 
-            groupBox3.Controls.Add(SalaryTextBox);
-            groupBox3.Controls.Add(ShiftComboBox);
-            groupBox3.Controls.Add(StaffTypeComboBox);
-            groupBox3.Location = new Point(40, 568);
-            groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(792, 150);
-            groupBox3.TabIndex = 16;
-            groupBox3.TabStop = false;
-            groupBox3.Text = "Work Info";
-            // 
             // AddStaffBtn
             // 
             AddStaffBtn.IconChar = FontAwesome.Sharp.IconChar.Add;
             AddStaffBtn.IconColor = Color.Black;
             AddStaffBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            AddStaffBtn.Location = new Point(40, 728);
+            AddStaffBtn.Location = new Point(40, 627);
             AddStaffBtn.Name = "AddStaffBtn";
             AddStaffBtn.Size = new Size(792, 53);
             AddStaffBtn.TabIndex = 17;
             AddStaffBtn.UseVisualStyleBackColor = true;
-            AddStaffBtn.Click += EditStaffBtn_Click;
+            AddStaffBtn.Click += AddStaffBtn_Click;
             // 
-            // AddStaff
+            // AddMember
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(866, 804);
+            ClientSize = new Size(866, 701);
             Controls.Add(AddStaffBtn);
-            Controls.Add(groupBox3);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
-            Name = "AddStaff";
-            Text = "AddStaff";
+            Name = "AddMember";
+            Text = "Add a Member";
             groupBox1.ResumeLayout(false);
             groupBox2.ResumeLayout(false);
-            groupBox3.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -617,18 +584,16 @@
         private MaterialSkin2DotNet.Controls.MaterialMaskedTextBox TellTxtBox;
         private MaterialSkin2DotNet.Controls.MaterialMaskedTextBox EmailTextBox;
         private MaterialSkin2DotNet.Controls.MaterialMaskedTextBox CityTextBox;
-        private MaterialSkin2DotNet.Controls.MaterialMaskedTextBox SalaryTextBox;
         private MaterialSkin2DotNet.Controls.MaterialMaskedTextBox ContactTellTextBox;
         private DateTimePicker dateTimePicker1;
         private MaterialSkin2DotNet.Controls.MaterialComboBox SexComboBox;
         private MaterialSkin2DotNet.Controls.MaterialMaskedTextBox VillageTextBox;
         private MaterialSkin2DotNet.Controls.MaterialMaskedTextBox ContactTextBox;
         private MaterialSkin2DotNet.Controls.MaterialComboBox RelationComboBox;
-        private MaterialSkin2DotNet.Controls.MaterialComboBox ShiftComboBox;
-        private MaterialSkin2DotNet.Controls.MaterialComboBox StaffTypeComboBox;
         private GroupBox groupBox1;
         private GroupBox groupBox2;
-        private GroupBox groupBox3;
         private FontAwesome.Sharp.IconButton AddStaffBtn;
+        private MaterialSkin2DotNet.Controls.MaterialMaskedTextBox WeightTextBox;
+        public MaterialSkin2DotNet.Controls.MaterialComboBox PlansComboBox;
     }
 }
