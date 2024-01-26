@@ -15,8 +15,13 @@ namespace Gym_Management_system
         public Dashboard()
         {
             InitializeComponent();
+            CheckedInBtn.Click += CheckedInBtn_Click;
+            NewMemberBtn.Click += NewMemberBtn_Click;
+            AttSearch_TxtBox.TextChanged += AttSearch_TxtBox_TextChanged;
         }
 
-
+        private void CheckedInBtn_Click(object sender, EventArgs e) { }
+        private void NewMemberBtn_Click(object sender, EventArgs e) { }
+        private void AttSearch_TxtBox_TextChanged(object sender, EventArgs e) { }
     }
 }

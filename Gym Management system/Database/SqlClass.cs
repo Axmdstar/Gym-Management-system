@@ -17,8 +17,14 @@ public class SqlClass
     public string ConnetionStr { get { return helper.ConnectionString; } }
 
 
-
-
+    //QueryExcuter Method
+    public void ExcuteQuery(string query)
+    {
+        helper.QueryWriter(query, r =>
+        {
+            Console.WriteLine(r.msg);
+        });
+    }
 
 
     // Get Methods
@@ -161,7 +167,6 @@ public class SqlClass
                         );
                 StaffList.Add(staffs);
             }
-            Console.WriteLine(StaffList.Count);
         });
 
         return StaffList;
@@ -221,60 +226,44 @@ public class SqlClass
 
 
 
-
-    public void ExcuteQuery(string query)
+    public List<AttendanceModal> GetAttendance()
     {
-        helper.QueryWriter(query, r =>
+
+
+
+        string query = @"select att.customer_id,
+	   cus.firstname || ' ' || cus.lastname AS full_name,
+	   att.AttDate,
+	   att.attendanced
+from attendance as att 
+INNER JOIN Customer_info as cus on att.customer_id = cus.id
+where date(att.AttDate) = date()
+order by att.AttDate DESC";
+
+        List<AttendanceModal> AttendanceList = new List<AttendanceModal>();
+
+        helper.QueryReader(query, r =>
         {
             Console.WriteLine(r.msg);
+            while (r.ReaderData.Read())
+            {
+                int Customer_ID = r.ReaderData.GetInt32(0);
+                string Fullname = r.ReaderData.GetString(1);
+                string Date = r.ReaderData.GetString(2);
+                bool Attended = r.ReaderData.GetBoolean(3);
+
+                AttendanceModal attendance = new AttendanceModal( Customer_ID, Fullname, Date, Attended );
+
+                
+                AttendanceList.Add(attendance);
+            }
         });
+
+        return AttendanceList;   
     }
 
-    //Add Methods
-    public void AddPlantoDb(string query)
-    {
-        helper.QueryWriter(query, r =>
-        {
-            Console.WriteLine(r.msg);
-        });
-    }
 
-    //public void AddStaffToDb(string query)
-    //{
-    //    helper.QueryWriter(query, r => {
-    //        Console.WriteLine(r.msg);
-    //    });
-    //}
-
-
-    //// Delete Methods
-    //public void DeletePlanFromDb(string query)
-    //{
-    //    helper.QueryWriter(query, r =>
-    //    {
-    //        Console.WriteLine(r.msg);
-    //    });
-    //}
-
-    public void DeleteStaff(int id)
-    {
-        string query = $@"DELETE from staff_information where id = {id};";
-        helper.QueryWriter(query, r =>
-        {
-            Console.WriteLine(r.msg);
-        });
-    }
-
-    // update Methods
-
-    //public void EditStaffToDb(string query)
-    //{
-    //   helper.QueryWriter(query, r => {  
-    //       Console.WriteLine(r.msg);
-    //   });
-    //}
-
-
+   
 
     
 

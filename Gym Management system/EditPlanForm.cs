@@ -65,11 +65,12 @@ namespace Gym_Management_system
                                 staff_id = {TrainerId},
                                 signup_fee = {SignUpfee}
 	                            WHERE id = {planid};
+
                             UPDATE  Schedule
                             SET time_in = time('{timeIn}'),
                                 time_out = time('{timeOut}')
                             where plan_id = {planid}";
-            sqlClass.AddPlantoDb(query);
+            sqlClass.ExcuteQuery(query);
         }
 
 

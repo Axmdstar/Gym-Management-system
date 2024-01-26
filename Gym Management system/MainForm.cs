@@ -135,6 +135,10 @@ namespace Gym_Management_system
             memberships1.dataGridView1.DataSource = sql.GetMembersData(query);
         }
 
+        private void attendance1_Load(object sender, EventArgs e)
+        {
+            attendance1.AttendanceGridView.DataSource = sql.GetAttendance();
+        }
 
 
         //Buttons 
@@ -165,7 +169,6 @@ namespace Gym_Management_system
         private void DeleteStaffBtn_Click(object sender, EventArgs e)
         {
             string query = $@"DELETE from staff_information where id = {StaffCellID};";
-
             sql.ExcuteQuery(query);
             staff1_Load(sender, e);
         }
@@ -214,7 +217,8 @@ namespace Gym_Management_system
 
 
         //Search Events
-        private void SearchTxtBox_TextChanged(object sender, EventArgs e)
+        private void SearchTxtBox_TextChanged(object sender, EventArgs e)  
+
         {
             string SrhTxt = staff1.SearchTxtBox.Text;
             string query = $@"Select * from staff_information where {SearchFilter} like '{SrhTxt}%'";
