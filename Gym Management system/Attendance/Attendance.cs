@@ -17,10 +17,14 @@ namespace Gym_Management_system
             InitializeComponent();
             CheckedInBtn.Click += CheckedInBtn_Click;
             AttSearch_TxtBox.TextChanged += AttSearch_TxtBox_TextChanged;
+            ViewThisMonth.Click += ViewThisMonth_Click;
+            ViewToDay.Click += ViewToDay_Click;
         }
 
 
-        private void AttSearch_TxtBox_TextChanged(object sender, EventArgs e) { }
-        private void CheckedInBtn_Click(object sender, EventArgs e) { }
+        private void AttSearch_TxtBox_TextChanged(object sender, EventArgs e) {}
+        private void CheckedInBtn_Click(object sender, EventArgs e) {}
+        private void ViewThisMonth_Click(object sender, EventArgs e) {}
+        private void ViewToDay_Click(object sender, EventArgs e) {}
     }
 }

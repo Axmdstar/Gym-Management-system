@@ -11,7 +11,7 @@ namespace Gym_Management_system.Database
     public class Helper
     {
         private static string path = @"C:\Users\Farah\source\repos\Gym-Management-system\Gym Management system\Database\Gym.db";
-        public string ConnectionString = @$"Data Source={path};Version=3;";
+        public string ConnectionString = @$"Data Source={path}; Version=3;";
 
 
         public struct Result

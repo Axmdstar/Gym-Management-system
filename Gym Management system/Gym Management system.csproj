@@ -18,14 +18,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="EditMember.cs">
+    <Compile Update="Members\EditMember.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="AddMember.cs">
+    <Compile Update="Members\AddMember.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="EditStaffForm.cs" />
-    <Compile Update="EditPlanForm.cs">
+    <Compile Update="Staff\EditStaffForm.cs" />
+    <Compile Update="Plans\EditPlanForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
@@ -33,7 +33,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Update="MemberShips.cs">
+    <Compile Update="Members\MemberShips.cs">
       <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>

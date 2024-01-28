@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/Farah/source/repos/Gym-Management-system/Gym Management system/Database/Gym.db" readonly="0" foreign_keys="" case_sensitive_like="" temp_store="" wal_autocheckpoint="" synchronous=""/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="75"/><column_width id="3" width="2307"/><column_width id="4" width="0"/></tab_structure><tab_browse><current_table name="0,0:"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">INSERT into attendance(customer_id,AttDate, attendanced)
+VALUES(2, datetime('now'), 1)
+
+-- search 
+SELECT * from attendance as att 
+ join Customer_info as cus on att.customer_id = cus.id
+-- where cus.id = 3 and date(AttDate) = date() 
+GROUP by att.AttDate
+
+
+-- check if attended today 
+select 
+customer_id,
+date(),
+firstname || ' ' || cus.lastname AS full_name,
+ case
+	WHEN date(AttDate) = date('now')
+		THEN 1 
+	ELSE
+		0 END as Attended
+from Customer_info as cus
+join attendance on customer_id = cus.id
+WHERE cus.id = 3
+ORDER by AttDate DESC
+limit 1
+
+
+
+
+
+	
+
+
+-- GROUP by firstname
+
+
+
+SELECT date(AttDate), date('now') from attendance
+where date(AttDate) = date('now')
+
+-- get
+select att.customer_id,
+	   cus.firstname || ' ' || cus.lastname AS full_name,
+	   att.AttDate,
+	   att.attendanced
+from attendance as att 
+INNER JOIN Customer_info as cus on att.customer_id = cus.id
+where date(att.AttDate) = date()
+order by att.AttDate DESC
+
+
+
+
+-- Get today Attend
+select att.customer_id,
+	    cus.firstname || ' ' || cus.lastname AS full_name,
+	    att.AttDate,
+	    att.attendanced
+       from attendance as att 
+        INNER JOIN Customer_info as cus on att.customer_id = cus.id
+         where date(att.AttDate) = date()
+        order by att.AttDate DESC;
+
+ SELECT julianday(date('now')) - julianday(date('now', 'start of month')) 
+
+-- attendance count  
+SELECT count(AttDate)as persent FROM attendance
+WHERE customer_id = 3 and date(AttDate) &gt;= date('now', 'start of month')
+
+SELECT att.customer_id,
+	    cus.firstname || ' ' || cus.lastname AS full_name,
+	    att.AttDate,
+	    att.attendanced  from attendance as att
+inner join Customer_info as cus on cus.id = att.customer_id
+WHERE date(AttDate) &gt;= date('now', 'start of month') and cus.id = 2
+order by AttDate ASC
+
+
+		
+		
+		</sql><current_tab id="0"/></tab_sql></sqlb_project>

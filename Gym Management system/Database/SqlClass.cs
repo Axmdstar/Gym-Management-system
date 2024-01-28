@@ -232,46 +232,119 @@ public class SqlClass
 
 
         string query = @"select att.customer_id,
-	   cus.firstname || ' ' || cus.lastname AS full_name,
-	   att.AttDate,
-	   att.attendanced
-from attendance as att 
-INNER JOIN Customer_info as cus on att.customer_id = cus.id
-where date(att.AttDate) = date()
-order by att.AttDate DESC";
+	    cus.firstname || ' ' || cus.lastname AS full_name,
+	    att.AttDate,
+	    att.attendanced
+       from attendance as att 
+        INNER JOIN Customer_info as cus on att.customer_id = cus.id
+        where date(att.AttDate) = date()
+        order by att.AttDate DESC";
 
         List<AttendanceModal> AttendanceList = new List<AttendanceModal>();
 
         helper.QueryReader(query, r =>
         {
-            Console.WriteLine(r.msg);
+            Console.WriteLine(r.msg + " Attendances");
+
             while (r.ReaderData.Read())
             {
                 int Customer_ID = r.ReaderData.GetInt32(0);
                 string Fullname = r.ReaderData.GetString(1);
                 string Date = r.ReaderData.GetString(2);
                 bool Attended = r.ReaderData.GetBoolean(3);
+                AttendanceModal attendance = new AttendanceModal(Customer_ID, Fullname, Date, Attended);
 
-                AttendanceModal attendance = new AttendanceModal( Customer_ID, Fullname, Date, Attended );
 
-                
                 AttendanceList.Add(attendance);
             }
         });
 
-        return AttendanceList;   
+        return AttendanceList;
+    }
+
+    public List<AttendanceModal> checkAttended(int memberid)
+    {
+        string query = $@"SELECT
+                        cus.id,
+                        firstname || ' ' || cus.lastname AS full_name,
+                        date(),
+                        case
+	                        WHEN date(AttDate) = date('now')
+		                        THEN 1 
+	                        ELSE
+		                        0 END as Attended
+                        from Customer_info as cus
+                        join attendance on customer_id = cus.id
+                        WHERE cus.id = {memberid}
+                        ORDER by AttDate DESC
+                        limit 1";
+
+
+        List<AttendanceModal> AttendanceList = new List<AttendanceModal>();
+        helper.QueryReader(query, r =>
+        {
+            while (r.ReaderData.Read())
+            {
+                int Customer_ID = r.ReaderData.GetInt16(0);
+                string Fullname = r.ReaderData.GetString(1);
+                string Date = r.ReaderData.GetString(2);
+                bool Attended = r.ReaderData.GetBoolean(3);
+
+                AttendanceModal attendance = new AttendanceModal(Customer_ID, Fullname, Date, Attended);
+                AttendanceList.Add(attendance);
+            }
+        });
+
+        return AttendanceList;
     }
 
 
-   
+    public void Attended(int memberid)
+    {
+        string query = $@"INSERT into attendance(customer_id,AttDate, attendanced)
+                         VALUES({memberid}, datetime('now'), 1)";
 
-    
+        helper.QueryWriter(query, r =>
+        {
+            Console.WriteLine(r.msg);
+        });
+    }
 
 
 
+    public List<AttendanceModal> ViewThisMonth(int? memberid)
+    {
+
+        string query = $@"SELECT 
+                            att.customer_id,
+	                        cus.firstname || ' ' || cus.lastname AS full_name,
+	                        att.AttDate,
+	                        att.attendanced  from attendance as att
+                            inner join Customer_info as cus on cus.id = att.customer_id
+                            WHERE date(AttDate) >= date('now', 'start of month') and cus.id = {memberid}
+                            order by AttDate ASC";
+
+        List<AttendanceModal> AttendanceList = new List<AttendanceModal>();
+        helper.QueryReader(query, r =>
+        {
+
+            while (r.ReaderData.Read())
+            {
+                int Customer_ID = r.ReaderData.GetInt16(0);
+                string Fullname = r.ReaderData.GetString(1);
+                string Date = r.ReaderData.GetString(2);
+                bool Attended = r.ReaderData.GetBoolean(3);
+
+                AttendanceModal attendance = new AttendanceModal(Customer_ID, Fullname, Date, Attended);
+                AttendanceList.Add(attendance);
+
+            }
+        });
+        return AttendanceList;
+    }
 
 
-    
+
 
 
     //public struct Staffs

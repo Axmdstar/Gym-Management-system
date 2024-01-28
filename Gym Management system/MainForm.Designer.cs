@@ -321,10 +321,12 @@ namespace Gym_Management_system
             // 
             // attendance1
             // 
+            attendance1.BackColor = Color.FromArgb(245, 243, 244);
             attendance1.Dock = DockStyle.Fill;
             attendance1.Location = new Point(357, 10);
             attendance1.Margin = new Padding(2);
             attendance1.Name = "attendance1";
+            attendance1.Padding = new Padding(10);
             attendance1.Size = new Size(1446, 891);
             attendance1.TabIndex = 2;
             attendance1.Load += attendance1_Load;
@@ -332,6 +334,7 @@ namespace Gym_Management_system
             // plansDashboard1
             // 
             plansDashboard1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            plansDashboard1.BackColor = Color.FromArgb(245, 243, 244);
             plansDashboard1.Dock = DockStyle.Fill;
             plansDashboard1.Location = new Point(357, 10);
             plansDashboard1.Name = "plansDashboard1";
@@ -341,9 +344,11 @@ namespace Gym_Management_system
             // 
             // staff1
             // 
+            staff1.BackColor = Color.FromArgb(245, 243, 244);
             staff1.Dock = DockStyle.Fill;
             staff1.Location = new Point(357, 10);
             staff1.Name = "staff1";
+            staff1.Padding = new Padding(10);
             staff1.Size = new Size(1446, 891);
             staff1.TabIndex = 4;
             staff1.Load += staff1_Load;
@@ -358,6 +363,7 @@ namespace Gym_Management_system
             memberships1.Dock = DockStyle.Fill;
             memberships1.Location = new Point(357, 10);
             memberships1.Name = "memberships1";
+            memberships1.Padding = new Padding(10);
             memberships1.Size = new Size(1446, 891);
             memberships1.TabIndex = 5;
             memberships1.Load += memberships1_Load;

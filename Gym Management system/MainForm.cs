@@ -14,11 +14,13 @@ namespace Gym_Management_system
         SqlClass sql = new SqlClass();
         List<string>? plansList = new List<string>();
 
-
+        // Cell IDs
         int StaffCellID;
         int MemberCellID;
         int rowindex;
 
+        //member ID
+        int memberId = 0;
 
         //userInfo
         string Username;
@@ -58,6 +60,12 @@ namespace Gym_Management_system
             memberships1.DeleteMemberBtn.Click += DeleteMemberBtn_Click;
             memberships1.SearchTxtBox.TextChanged += SearchTxtBox_Member;
             memberships1.ColumnCombobox.SelectedIndexChanged += MemberColumnCombobox_SelectedIndexChanged;
+
+            //Attendance
+            attendance1.AttSearch_TxtBox.TextChanged += AttSearch_TxtBox_TextChanged;
+            attendance1.CheckedInBtn.Click += CheckedInBtn_Click;
+            attendance1.ViewThisMonth.Click += ViewThisMonth_Click;
+            attendance1.ViewToDay.Click += ViewToDay_Click;
 
             this.Username = Username;
             this.UserType = UserType;
@@ -99,7 +107,7 @@ namespace Gym_Management_system
             staff1_Load(sender, e);
         }
         private void MemberClosedEvent(object sender, FormClosedEventArgs e)
-        { 
+        {
             memberships1_Load(sender, e);
         }
 
@@ -217,7 +225,7 @@ namespace Gym_Management_system
 
 
         //Search Events
-        private void SearchTxtBox_TextChanged(object sender, EventArgs e)  
+        private void SearchTxtBox_TextChanged(object sender, EventArgs e)
 
         {
             string SrhTxt = staff1.SearchTxtBox.Text;
@@ -241,6 +249,10 @@ namespace Gym_Management_system
         }
 
 
+
+
+
+
         //AddBtn
         public void NewStaffBtn_Click(object sender, EventArgs e)
         {
@@ -254,7 +266,8 @@ namespace Gym_Management_system
             addPlanForm.FormClosed += PlansClosedEvent;
             addPlanForm.ShowDialog();
         }
-        private void NewMemberBtn_Click(object sender, EventArgs args){
+        private void NewMemberBtn_Click(object sender, EventArgs args)
+        {
             AddMember addmember = new AddMember(plansdata);
             //addmember.FormClosed += 
             addmember.ShowDialog();
@@ -275,7 +288,7 @@ namespace Gym_Management_system
 
         private void SelctedMemberRow(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.RowIndex >= -1)
+            if (e.RowIndex >= -1)
             {
                 rowindex = e.RowIndex;
                 DataGridViewRow row = memberships1.dataGridView1.Rows[e.RowIndex];
@@ -284,6 +297,50 @@ namespace Gym_Management_system
         }
 
 
+
+        // AttSearch_TxtBox_TextChanged
+        private void AttSearch_TxtBox_TextChanged(object sender, EventArgs e)
+        {
+            if(attendance1.AttSearch_TxtBox.Text == "")
+            {
+                memberId = 0;
+            }
+
+            if(int.TryParse(attendance1.AttSearch_TxtBox.Text, out int parsed) )
+            {
+                memberId = parsed;
+                attendance1.AttendanceGridView.DataSource = sql.checkAttended(memberId);
+            }
+            else
+            {
+                MessageBox.Show("error");
+            }
+
+        }
+        private void CheckedInBtn_Click(object sender, EventArgs e) 
+        {
+            if (memberId != 0)
+            {
+                sql.Attended(memberId);
+            }
+            else { MessageBox.Show("error"); }
+            attendance1_Load(sender, e);
+        }
+
+        private void ViewThisMonth_Click(object sender, EventArgs e)
+        {
+            if (memberId != 0)
+            {
+                attendance1.AttendanceGridView.DataSource = sql.ViewThisMonth(memberId);
+            } 
+            else 
+            { MessageBox.Show("error"); }
+        }
+
+        private void ViewToDay_Click(object sender, EventArgs e)
+        {
+            attendance1_Load(sender, e);
+        }
 
         //Time
         private void timer1_Tick(object sender, EventArgs e)
