@@ -1,10 +1,16 @@
-﻿using System;
+﻿using Gym_Management_system;
+using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
 using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
+using System.Diagnostics.Eventing.Reader;
 
 namespace Gym_Management_system.Database
 {
@@ -92,3 +98,4 @@ namespace Gym_Management_system.Database
         }
     }
 }
+

@@ -67,6 +67,11 @@ namespace Gym_Management_system
             attendance1.ViewThisMonth.Click += ViewThisMonth_Click;
             attendance1.ViewToDay.Click += ViewToDay_Click;
 
+            //Dashboard
+            dashboard1.NewMemberBtn.Click += NewMemberBtndsh_Click;
+            dashboard1.DshSearch_TxtBox.TextChanged += dshSearch_TxtBox_TextChanged;
+            dashboard1.DshCheckedInBtn.Click += dshCheckedInBtn_Click;
+
             this.Username = Username;
             this.UserType = UserType;
             plansdata = sql.getPlansDshBdData() ?? null;
@@ -83,6 +88,11 @@ namespace Gym_Management_system
             }
         }
 
+
+        //############################################################################
+        //Add load Functions to their associted tab
+        //Duplicate errors
+        //############################################################################
 
 
         // Tabs
@@ -110,6 +120,9 @@ namespace Gym_Management_system
         {
             memberships1_Load(sender, e);
         }
+
+
+
 
 
 
@@ -148,6 +161,17 @@ namespace Gym_Management_system
             attendance1.AttendanceGridView.DataSource = sql.GetAttendance();
         }
 
+        private void dashboard1_Load(object sender, EventArgs e)
+        {
+            Dictionary<string, int> counts = sql.dashboardSummary();
+
+            dashboard1.TotalMember.Text = counts["Cus_Count"].ToString();
+            dashboard1.StaffTotal.Text = counts["Stf_Count"].ToString();
+            dashboard1.AttToday.Text = counts["today_Count"].ToString();
+
+            //Attendance
+            dashboard1.AttGridView.DataSource = sql.GetAttendLast5();
+        }
 
         //Buttons 
         private void PlansComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -301,52 +325,100 @@ namespace Gym_Management_system
         // AttSearch_TxtBox_TextChanged
         private void AttSearch_TxtBox_TextChanged(object sender, EventArgs e)
         {
-            if(attendance1.AttSearch_TxtBox.Text == "")
+            if (attendance1.AttSearch_TxtBox.Text != "")
+            {
+
+                if (int.TryParse(attendance1.AttSearch_TxtBox.Text, out int parsed))
+                {
+                    memberId = parsed;
+                    attendance1.AttendanceGridView.DataSource = sql.checkAttended(memberId);
+                }
+                else
+                {
+                    MessageBox.Show("error");
+                }
+            }
+            else
             {
                 memberId = 0;
             }
 
-            if(int.TryParse(attendance1.AttSearch_TxtBox.Text, out int parsed) )
-            {
-                memberId = parsed;
-                attendance1.AttendanceGridView.DataSource = sql.checkAttended(memberId);
-            }
-            else
-            {
-                MessageBox.Show("error");
-            }
-
         }
-        private void CheckedInBtn_Click(object sender, EventArgs e) 
+
+        private void CheckedInBtn_Click(object sender, EventArgs e)
         {
             if (memberId != 0)
             {
                 sql.Attended(memberId);
             }
-            else { MessageBox.Show("error"); }
+            else { MessageBox.Show("error else"); }
+            attendance1_Load(sender, e);
+            dashboard1_Load(sender, e);
+        }
+
+        // Dashboard Events
+        private void dshSearch_TxtBox_TextChanged(object sender, EventArgs e)
+        {
+            if (dashboard1.DshSearch_TxtBox.Text != "")
+            {
+                if (int.TryParse(dashboard1.DshSearch_TxtBox.Text, out int parsed))
+                {
+                    Console.WriteLine(memberId);
+                    memberId = parsed;
+                    dashboard1.AttGridView.DataSource = sql.checkAttended(memberId);
+                }
+                else
+                {
+                    MessageBox.Show("error Dash");
+                }
+            }
+            else
+            {
+                memberId = 0;
+            }
+
+
+        }
+
+        private void dshCheckedInBtn_Click(object sender, EventArgs e)
+        {
+            CheckedInBtn_Click(sender, e);
+            dashboard1.DshSearch_TxtBox.Clear();
+            dashboard1_Load(sender, e);
             attendance1_Load(sender, e);
         }
+
 
         private void ViewThisMonth_Click(object sender, EventArgs e)
         {
             if (memberId != 0)
             {
                 attendance1.AttendanceGridView.DataSource = sql.ViewThisMonth(memberId);
-            } 
-            else 
+            }
+            else
             { MessageBox.Show("error"); }
         }
+
+
+        private void NewMemberBtndsh_Click(object sender, EventArgs args)
+        {
+            NewMemberBtn_Click(sender, args);
+        }
+
 
         private void ViewToDay_Click(object sender, EventArgs e)
         {
             attendance1_Load(sender, e);
         }
 
+
+
         //Time
         private void timer1_Tick(object sender, EventArgs e)
         {
             Timerlabel.Text = DateTime.Now.ToString("hh:mm tt");
         }
+
 
 
         //Close Window

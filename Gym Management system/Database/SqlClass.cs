@@ -228,9 +228,6 @@ public class SqlClass
 
     public List<AttendanceModal> GetAttendance()
     {
-
-
-
         string query = @"select att.customer_id,
 	    cus.firstname || ' ' || cus.lastname AS full_name,
 	    att.AttDate,
@@ -347,8 +344,62 @@ public class SqlClass
 
 
 
-    //public struct Staffs
-    //{
-    //}
+    public Dictionary<string, int> dashboardSummary()
+    {
+        Dictionary<string, int> SummaryData = new Dictionary<string, int>();
+
+        string query = @"SELECT (SELECT count(*) FROM Customer_info) as cus_Count,
+		                 (SELECT count(*) from staff_information) as Stf_Count,
+		                 (SELECT count(attendanced) from attendance
+		                 where date(AttDate) = date('now')) as today_Count";
+
+        helper.QueryReader(query, r =>
+        {
+            while (r.ReaderData.Read())
+            {
+                SummaryData.Add("Cus_Count", r.ReaderData.GetInt16(0));
+                SummaryData.Add("Stf_Count", r.ReaderData.GetInt16(1));
+                SummaryData.Add("today_Count", r.ReaderData.GetInt16(2));
+            }
+        });
+        return SummaryData;
+    }
+
+
+    public List<AttendanceModal> GetAttendLast5()
+    {
+        string query = @"select att.customer_id,
+	    cus.firstname || ' ' || cus.lastname AS full_name,
+	    att.AttDate,
+	    att.attendanced
+       from attendance as att 
+        INNER JOIN Customer_info as cus on att.customer_id = cus.id
+        where date(att.AttDate) = date()
+        order by att.AttDate DESC
+        LIMIT 5
+";
+
+        List<AttendanceModal> AttendanceList = new List<AttendanceModal>();
+
+        helper.QueryReader(query, r =>
+        {
+            Console.WriteLine(r.msg + " Attendances 5");
+
+            while (r.ReaderData.Read())
+            {
+                int Customer_ID = r.ReaderData.GetInt32(0);
+                string Fullname = r.ReaderData.GetString(1);
+                string Date = r.ReaderData.GetString(2);
+                bool Attended = r.ReaderData.GetBoolean(3);
+                AttendanceModal attendance = new AttendanceModal(Customer_ID, Fullname, Date, Attended);
+
+
+                AttendanceList.Add(attendance);
+            }
+        });
+
+        return AttendanceList;
+    }
+
 }
 

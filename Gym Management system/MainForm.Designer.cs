@@ -318,6 +318,7 @@ namespace Gym_Management_system
             dashboard1.Name = "dashboard1";
             dashboard1.Size = new Size(1446, 891);
             dashboard1.TabIndex = 1;
+            dashboard1.Load += dashboard1_Load;
             // 
             // attendance1
             // 
