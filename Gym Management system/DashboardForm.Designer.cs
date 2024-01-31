@@ -1,6 +1,6 @@
 ﻿namespace Gym_Management_system
 {
-    partial class Dashboard
+    partial class DashboardForm
     {
         /// <summary> 
         /// Required designer variable.
@@ -161,7 +161,6 @@
             DshCheckedInBtn.Text = "materialFloatingActionButton2";
             DshCheckedInBtn.UseVisualStyleBackColor = true;
             DshCheckedInBtn.Click += dshCheckedInBtn_Click;
-            
             // 
             // label2
             // 
@@ -306,12 +305,13 @@
             AttToday.TabIndex = 8;
             AttToday.Text = "00";
             // 
-            // Dashboard
+            // DashboardForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
             BackColor = Color.FromArgb(245, 243, 244);
+            ClientSize = new Size(1389, 994);
             Controls.Add(label6);
             Controls.Add(panel3);
             Controls.Add(panel2);
@@ -320,9 +320,9 @@
             Controls.Add(panel1);
             Controls.Add(label4);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(2);
-            Name = "Dashboard";
-            Size = new Size(1411, 1050);
+            Name = "DashboardForm";
             Load += Dashboard_Load;
             panel3.ResumeLayout(false);
             panel3.PerformLayout();

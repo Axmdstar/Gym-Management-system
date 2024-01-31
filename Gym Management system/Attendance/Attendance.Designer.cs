@@ -67,7 +67,7 @@
             AttendanceGridView.Name = "AttendanceGridView";
             AttendanceGridView.ReadOnly = true;
             AttendanceGridView.RowHeadersWidth = 80;
-            AttendanceGridView.Size = new Size(1453, 708);
+            AttendanceGridView.Size = new Size(1431, 708);
             AttendanceGridView.TabIndex = 1;
             // 
             // panel1
@@ -75,9 +75,9 @@
             panel1.Controls.Add(panel2);
             panel1.Controls.Add(AttendanceGridView);
             panel1.Dock = DockStyle.Bottom;
-            panel1.Location = new Point(10, 83);
+            panel1.Location = new Point(10, 118);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1453, 708);
+            panel1.Size = new Size(1431, 708);
             panel1.TabIndex = 2;
             // 
             // panel2
@@ -87,7 +87,7 @@
             panel2.Dock = DockStyle.Bottom;
             panel2.Location = new Point(0, 631);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1453, 77);
+            panel2.Size = new Size(1431, 77);
             panel2.TabIndex = 10;
             // 
             // AttSearch_TxtBox
@@ -179,13 +179,15 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(245, 243, 244);
+            ClientSize = new Size(1451, 836);
             Controls.Add(ViewToDay);
             Controls.Add(ViewThisMonth);
             Controls.Add(panel1);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "Attendance";
             Padding = new Padding(10);
-            Size = new Size(1473, 801);
+            Load += attendance_Load;
             ((System.ComponentModel.ISupportInitialize)AttendanceGridView).EndInit();
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);

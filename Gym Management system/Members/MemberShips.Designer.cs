@@ -44,11 +44,11 @@
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Dock = DockStyle.Bottom;
-            dataGridView1.Location = new Point(10, 445);
+            dataGridView1.Location = new Point(10, 389);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.RowTemplate.Height = 33;
-            dataGridView1.Size = new Size(1585, 368);
+            dataGridView1.Size = new Size(1563, 368);
             dataGridView1.TabIndex = 1;
             dataGridView1.CellContentClick += SelctedMemberRow;
             // 
@@ -63,6 +63,7 @@
             NewMemberBtn.TabIndex = 2;
             NewMemberBtn.TextAlign = ContentAlignment.MiddleRight;
             NewMemberBtn.UseVisualStyleBackColor = true;
+            NewMemberBtn.Click += NewMemberBtn_Click;
             // 
             // SearchTxtBox
             // 
@@ -105,6 +106,7 @@
             SearchTxtBox.TrailingIcon = null;
             SearchTxtBox.UseSystemPasswordChar = false;
             SearchTxtBox.ValidatingType = null;
+            SearchTxtBox.TextChanged += SearchTxtBox_Member;
             // 
             // ColumnCombobox
             // 
@@ -128,6 +130,7 @@
             ColumnCombobox.Size = new Size(182, 49);
             ColumnCombobox.StartIndex = 0;
             ColumnCombobox.TabIndex = 6;
+            ColumnCombobox.SelectedIndexChanged += MemberColumnCombobox_SelectedIndexChanged;
             // 
             // EditMemberBtn
             // 
@@ -139,6 +142,7 @@
             EditMemberBtn.Size = new Size(107, 55);
             EditMemberBtn.TabIndex = 7;
             EditMemberBtn.UseVisualStyleBackColor = true;
+            EditMemberBtn.Click += EditMemberBtn_Click;
             // 
             // DeleteMemberBtn
             // 
@@ -151,6 +155,7 @@
             DeleteMemberBtn.TabIndex = 8;
             DeleteMemberBtn.TextAlign = ContentAlignment.MiddleRight;
             DeleteMemberBtn.UseVisualStyleBackColor = true;
+            DeleteMemberBtn.Click += DeleteMemberBtn_Click;
             // 
             // flowLayoutPanel1
             // 
@@ -160,9 +165,9 @@
             flowLayoutPanel1.Controls.Add(EditMemberBtn);
             flowLayoutPanel1.Controls.Add(DeleteMemberBtn);
             flowLayoutPanel1.Dock = DockStyle.Bottom;
-            flowLayoutPanel1.Location = new Point(10, 380);
+            flowLayoutPanel1.Location = new Point(10, 324);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(1585, 65);
+            flowLayoutPanel1.Size = new Size(1563, 65);
             flowLayoutPanel1.TabIndex = 9;
             // 
             // label4
@@ -180,12 +185,15 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(245, 243, 244);
+            ClientSize = new Size(1583, 767);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(dataGridView1);
             Controls.Add(label4);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "Memberships";
             Padding = new Padding(10);
-            Size = new Size(1605, 823);
+            FormClosed += MemberClosed;
+            Load += memberships_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             flowLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);

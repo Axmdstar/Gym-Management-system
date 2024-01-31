@@ -3,6 +3,7 @@ using MaterialSkin2DotNet.Animations;
 using MaterialSkin2DotNet;
 using System.Data;
 using MaterialSkin2DotNet.Controls;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Gym_Management_system
 {
@@ -10,17 +11,8 @@ namespace Gym_Management_system
     public partial class MainForm : Form
     {
         //fields
-        Dictionary<string, List<object>>? plansdata = new Dictionary<string, List<object>>();
+        Dictionary<string, List<object>>?  plansdata  = new Dictionary<string, List<object>>();
         SqlClass sql = new SqlClass();
-        List<string>? plansList = new List<string>();
-
-        // Cell IDs
-        int StaffCellID;
-        int MemberCellID;
-        int rowindex;
-
-        //member ID
-        int memberId = 0;
 
         //userInfo
         string Username;
@@ -39,38 +31,7 @@ namespace Gym_Management_system
             //materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
             //materialSkinManager.ColorScheme = new ColorScheme(Primary.LightGreen900, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightGreen400, TextShade.BLACK);
 
-            //Plans Events
-            plansDashboard1.PlansComboBox.SelectedIndexChanged += PlansComboBox_SelectedIndexChanged;
-            plansDashboard1.AddPlan.Click += AddPlan_Click;
-            plansDashboard1.DeletePlan.Click += DeletePlan_Click;
-            plansDashboard1.EditPlan.Click += EditPlan_Click;
-
-            //Staff Events
-            staff1.dataGridView1.CellContentClick += SelctedStaffRow;
-            staff1.SearchTxtBox.TextChanged += SearchTxtBox_TextChanged;
-            staff1.ColumnCombobox.SelectedIndexChanged += StaffColumnCombobox_SelectedIndexChanged;
-            staff1.NewStaffBtn.Click += NewStaffBtn_Click;
-            staff1.EditStaffBtn.Click += EditStaffBtn_Click;
-            staff1.DeleteStaffBtn.Click += DeleteStaffBtn_Click;
-
-            //Member Events
-            memberships1.dataGridView1.CellContentClick += SelctedMemberRow;
-            memberships1.NewMemberBtn.Click += NewMemberBtn_Click;
-            memberships1.EditMemberBtn.Click += EditMemberBtn_Click;
-            memberships1.DeleteMemberBtn.Click += DeleteMemberBtn_Click;
-            memberships1.SearchTxtBox.TextChanged += SearchTxtBox_Member;
-            memberships1.ColumnCombobox.SelectedIndexChanged += MemberColumnCombobox_SelectedIndexChanged;
-
-            //Attendance
-            attendance1.AttSearch_TxtBox.TextChanged += AttSearch_TxtBox_TextChanged;
-            attendance1.CheckedInBtn.Click += CheckedInBtn_Click;
-            attendance1.ViewThisMonth.Click += ViewThisMonth_Click;
-            attendance1.ViewToDay.Click += ViewToDay_Click;
-
-            //Dashboard
-            dashboard1.NewMemberBtn.Click += NewMemberBtndsh_Click;
-            dashboard1.DshSearch_TxtBox.TextChanged += dshSearch_TxtBox_TextChanged;
-            dashboard1.DshCheckedInBtn.Click += dshCheckedInBtn_Click;
+            
 
             this.Username = Username;
             this.UserType = UserType;
@@ -89,6 +50,23 @@ namespace Gym_Management_system
         }
 
 
+        //Switch btw Forms
+        public void Switcher(object Form)
+        {
+            if (this.DisplayPanel.Controls.Count > 0)
+            {
+                this.DisplayPanel.Controls.RemoveAt(0);
+            }
+
+            Form Wform = Form as Form;
+            Wform.TopLevel = false;
+            Wform.Dock = DockStyle.Fill;
+            this.DisplayPanel.Controls.Add(Wform);
+            this.DisplayPanel.Tag = Wform;
+            Wform.Show();
+        }
+
+
         //############################################################################
         //Add load Functions to their associted tab
         //Duplicate errors
@@ -96,321 +74,13 @@ namespace Gym_Management_system
 
 
         // Tabs
-        private void iconButton1_Click(object sender, EventArgs e) => dashboard1.BringToFront();
-        private void iconButton2_Click(object sender, EventArgs e) => attendance1.BringToFront();
-        private void MainForm_Load(object sender, EventArgs e) => dashboard1.BringToFront();
-        private void PlansBtn_Click(object sender, EventArgs e) => plansDashboard1.BringToFront();
-        private void StaffBtn_Click(object sender, EventArgs e) => staff1.BringToFront();
-        private void MemberShips_Click(object sender, EventArgs e) => memberships1.BringToFront();
 
-
-
-        // Form CloseEvents
-        private void PlansClosedEvent(object sender, FormClosedEventArgs e)
-        {
-            plansDashboard1.PlansComboBox.Items.Clear();
-            plansdata = sql.getPlansDshBdData() ?? null;
-            plansDashboard1_Load(sender, e);
-        }
-        private void StaffClosedEvent(object sender, FormClosedEventArgs e)
-        {
-            staff1_Load(sender, e);
-        }
-        private void MemberClosedEvent(object sender, FormClosedEventArgs e)
-        {
-            memberships1_Load(sender, e);
-        }
-
-
-
-
-
-
-
-        //Load init data 
-        private void plansDashboard1_Load(object sender, EventArgs e)
-        {
-            plansList = sql.getPlans();
-            if (plansList.Count != 0)
-            {
-                foreach (string s in plansList)
-                {
-                    plansDashboard1.PlansComboBox.Items.Add(s);
-                }
-            }
-            else
-            {
-                plansDashboard1.PlansComboBox.Items.Add("No Plans");
-                plansDashboard1.PlansComboBox.SelectedItem = "No Plans";
-            }
-        }
-
-        private void staff1_Load(object sender, EventArgs e)
-        {
-            string query = @"SELECT * FROM staff_information";
-            staff1.dataGridView1.DataSource = sql.GetStaffData(query);
-        }
-        private void memberships1_Load(object sender, EventArgs e)
-        {
-            string query = @"select * from Customer_info";
-            memberships1.dataGridView1.DataSource = sql.GetMembersData(query);
-        }
-
-        private void attendance1_Load(object sender, EventArgs e)
-        {
-            attendance1.AttendanceGridView.DataSource = sql.GetAttendance();
-        }
-
-        private void dashboard1_Load(object sender, EventArgs e)
-        {
-            Dictionary<string, int> counts = sql.dashboardSummary();
-
-            dashboard1.TotalMember.Text = counts["Cus_Count"].ToString();
-            dashboard1.StaffTotal.Text = counts["Stf_Count"].ToString();
-            dashboard1.AttToday.Text = counts["today_Count"].ToString();
-
-            //Attendance
-            dashboard1.AttGridView.DataSource = sql.GetAttendLast5();
-        }
-
-        //Buttons 
-        private void PlansComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string selected = (string)plansDashboard1.PlansComboBox.SelectedItem;
-            if (plansdata.Count != 0)
-            {
-                plansDashboard1.PlanNameResult.Text = plansdata[selected][0].ToString();
-                plansDashboard1.SignUpFeeResult.Text = plansdata[selected][1].ToString();
-                plansDashboard1.PriceResult.Text = plansdata[selected][2].ToString();
-                plansDashboard1.PlanTypeResult.Text = plansdata[selected][3].ToString();
-                plansDashboard1.TrainerResult.Text = plansdata[selected][4].ToString();
-                plansDashboard1.TphoneResult.Text = plansdata[selected][5].ToString();
-                plansDashboard1.S_EtimeResult.Text = plansdata[selected][7].ToString() + " to " + plansdata[selected][8].ToString();
-            }
-        }
-
-
-        // Delete btn
-        private void DeletePlan_Click(object sender, EventArgs e)
-        {
-            string selected = (string)plansDashboard1.PlansComboBox.SelectedItem;
-            string DeleteQuery = $@"DELETE from plans where plan_name = '{selected}';";
-            sql.ExcuteQuery(DeleteQuery);
-            plansDashboard1.PlansComboBox.Items.Remove(selected);
-        }
-        private void DeleteStaffBtn_Click(object sender, EventArgs e)
-        {
-            string query = $@"DELETE from staff_information where id = {StaffCellID};";
-            sql.ExcuteQuery(query);
-            staff1_Load(sender, e);
-        }
-        private void DeleteMemberBtn_Click(object sender, EventArgs e)
-        {
-            string query = $@"DELETE from Customer_info where id = {MemberCellID};";
-            sql.ExcuteQuery(query);
-            memberships1_Load(sender, e);
-        }
-
-
-
-        // Edit Btn
-        private void EditPlan_Click(object sender, EventArgs e)
-        {
-            string selected = (string)plansDashboard1.PlansComboBox.SelectedItem;
-            //Console.WriteLine(plansdata[selected][1]);
-            if (selected != null)
-            {
-                EditPlanForm editPlanForm = new EditPlanForm(plansdata[selected]);
-                editPlanForm.FormClosed += PlansClosedEvent;
-                editPlanForm.ShowDialog();
-            }
-            else
-            {
-                MessageBox.Show("Select Plan");
-            }
-        }
-        private void EditStaffBtn_Click(object sender, EventArgs e)
-        {
-            DataGridViewRow row = staff1.dataGridView1.Rows[rowindex];
-            EditStaff editStaffform = new EditStaff(row);
-            editStaffform.FormClosed += StaffClosedEvent;
-            editStaffform.ShowDialog();
-        }
-
-        private void EditMemberBtn_Click(object obj, EventArgs e)
-        {
-            DataGridViewRow row = memberships1.dataGridView1.Rows[rowindex];
-            EditMember editMemberform = new EditMember(row, plansdata);
-            editMemberform.ShowDialog();
-
-        }
-
-
-
-
-        //Search Events
-        private void SearchTxtBox_TextChanged(object sender, EventArgs e)
-
-        {
-            string SrhTxt = staff1.SearchTxtBox.Text;
-            string query = $@"Select * from staff_information where {SearchFilter} like '{SrhTxt}%'";
-            staff1.dataGridView1.DataSource = sql.GetStaffData(query);
-        }
-        private void StaffColumnCombobox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SearchFilter = staff1.ColumnCombobox.SelectedItem.ToString();
-        }
-
-        private void SearchTxtBox_Member(object sender, EventArgs e)
-        {
-            string SrhTxt = memberships1.SearchTxtBox.Text;
-            string query = $@"Select * from Customer_info where {SearchFilter} like '{SrhTxt}%'";
-            memberships1.dataGridView1.DataSource = sql.GetMembersData(query);
-        }
-        private void MemberColumnCombobox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SearchFilter = memberships1.ColumnCombobox.SelectedItem.ToString();
-        }
-
-
-
-
-
-
-        //AddBtn
-        public void NewStaffBtn_Click(object sender, EventArgs e)
-        {
-            AddStaff addstaff = new AddStaff();
-            addstaff.FormClosed += StaffClosedEvent;
-            addstaff.ShowDialog();
-        }
-        private void AddPlan_Click(object sender, EventArgs e)
-        {
-            AddPlanForm addPlanForm = new AddPlanForm();
-            addPlanForm.FormClosed += PlansClosedEvent;
-            addPlanForm.ShowDialog();
-        }
-        private void NewMemberBtn_Click(object sender, EventArgs args)
-        {
-            AddMember addmember = new AddMember(plansdata);
-            //addmember.FormClosed += 
-            addmember.ShowDialog();
-        }
-
-
-
-        //GridEvents
-        private void SelctedStaffRow(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= -1)
-            {
-                rowindex = e.RowIndex;
-                DataGridViewRow row = staff1.dataGridView1.Rows[e.RowIndex];
-                StaffCellID = (int)row.Cells[0].Value;
-            }
-        }
-
-        private void SelctedMemberRow(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= -1)
-            {
-                rowindex = e.RowIndex;
-                DataGridViewRow row = memberships1.dataGridView1.Rows[e.RowIndex];
-                MemberCellID = (int)row.Cells[0].Value;
-            }
-        }
-
-
-
-        // AttSearch_TxtBox_TextChanged
-        private void AttSearch_TxtBox_TextChanged(object sender, EventArgs e)
-        {
-            if (attendance1.AttSearch_TxtBox.Text != "")
-            {
-
-                if (int.TryParse(attendance1.AttSearch_TxtBox.Text, out int parsed))
-                {
-                    memberId = parsed;
-                    attendance1.AttendanceGridView.DataSource = sql.checkAttended(memberId);
-                }
-                else
-                {
-                    MessageBox.Show("error");
-                }
-            }
-            else
-            {
-                memberId = 0;
-            }
-
-        }
-
-        private void CheckedInBtn_Click(object sender, EventArgs e)
-        {
-            if (memberId != 0)
-            {
-                sql.Attended(memberId);
-            }
-            else { MessageBox.Show("error else"); }
-            attendance1_Load(sender, e);
-            dashboard1_Load(sender, e);
-        }
-
-        // Dashboard Events
-        private void dshSearch_TxtBox_TextChanged(object sender, EventArgs e)
-        {
-            if (dashboard1.DshSearch_TxtBox.Text != "")
-            {
-                if (int.TryParse(dashboard1.DshSearch_TxtBox.Text, out int parsed))
-                {
-                    Console.WriteLine(memberId);
-                    memberId = parsed;
-                    dashboard1.AttGridView.DataSource = sql.checkAttended(memberId);
-                }
-                else
-                {
-                    MessageBox.Show("error Dash");
-                }
-            }
-            else
-            {
-                memberId = 0;
-            }
-
-
-        }
-
-        private void dshCheckedInBtn_Click(object sender, EventArgs e)
-        {
-            CheckedInBtn_Click(sender, e);
-            dashboard1.DshSearch_TxtBox.Clear();
-            dashboard1_Load(sender, e);
-            attendance1_Load(sender, e);
-        }
-
-
-        private void ViewThisMonth_Click(object sender, EventArgs e)
-        {
-            if (memberId != 0)
-            {
-                attendance1.AttendanceGridView.DataSource = sql.ViewThisMonth(memberId);
-            }
-            else
-            { MessageBox.Show("error"); }
-        }
-
-
-        private void NewMemberBtndsh_Click(object sender, EventArgs args)
-        {
-            NewMemberBtn_Click(sender, args);
-        }
-
-
-        private void ViewToDay_Click(object sender, EventArgs e)
-        {
-            attendance1_Load(sender, e);
-        }
-
+        private void Dashboard_Click(object sender, EventArgs e) => Switcher(new DashboardForm());
+        private void iconButton2_Click(object sender, EventArgs e) => Switcher(new Attendance());
+        private void MainForm_Load(object sender, EventArgs e) => Switcher(new DashboardForm());
+        private void PlansBtn_Click(object sender, EventArgs e) => Switcher(new PlansDashboard( ref plansdata));
+        private void StaffBtn_Click(object sender, EventArgs e) => Switcher(new Staff());
+        private void MemberShips_Click(object sender, EventArgs e) => Switcher(new Memberships(plansdata));
 
 
         //Time
@@ -426,6 +96,13 @@ namespace Gym_Management_system
         {
             this.Close();
         }
+
+        private void DisplayPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+
 
     }
 }

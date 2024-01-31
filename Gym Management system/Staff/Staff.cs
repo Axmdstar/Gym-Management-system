@@ -10,27 +10,73 @@ using System.Windows.Forms;
 
 namespace Gym_Management_system
 {
-    public partial class Staff : UserControl
+    public partial class Staff : Form
     {
+        int rowindex;
+        int StaffCellID;
+        SqlClass sql = new SqlClass();
+        string SearchFilter = "firstName";
+
         public Staff()
         {
             InitializeComponent();
-            SearchTxtBox.TextChanged += SearchTxtBox_TextChanged;
-            NewStaffBtn.Click += NewStaffBtn_Click;
-            EditStaffBtn.Click += EditStaffBtn_Click;
-            DeleteStaffBtn.Click += DeleteStaffBtn_Click;
-            ColumnCombobox.SelectedIndexChanged += StaffColumnCombobox_SelectedIndexChanged;
-            dataGridView1.CellContentClick += SelctedStaffRow;
-
         }
 
-        public void SelctedStaffRow(object sender, DataGridViewCellEventArgs e) { }
-        public void SearchTxtBox_TextChanged(object sender, EventArgs e) { }
-        public void NewStaffBtn_Click(object sender, EventArgs e) { }
-        public void EditStaffBtn_Click(object sender, EventArgs e) { }
-        public void DeleteStaffBtn_Click(object sender, EventArgs e) { }
-        public void StaffColumnCombobox_SelectedIndexChanged(object sender, EventArgs args) { }
+        private void Staff_Load(object sender, EventArgs e)
+        {
+            string query = @"SELECT * FROM staff_information";
+            dataGridView1.DataSource = sql.GetStaffData(query);
+        }
 
 
+        public void SelctedStaffRow(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= -1)
+            {
+                rowindex = e.RowIndex;
+                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+                StaffCellID = (int)row.Cells[0].Value;
+            }
+        }
+        public void SearchTxtBox_TextChanged(object sender, EventArgs e)
+        {
+            string SrhTxt = SearchTxtBox.Text;
+            string query = $@"Select * from staff_information where {SearchFilter} like '{SrhTxt}%'";
+            dataGridView1.DataSource = sql.GetStaffData(query);
+        }
+        public void StaffColumnCombobox_SelectedIndexChanged(object sender, EventArgs args)
+        {
+            SearchFilter = ColumnCombobox.SelectedItem.ToString();
+        }
+
+
+        private void StaffClosedEvent(object sender, FormClosedEventArgs e)
+        {
+            Staff_Load(sender, e);
+        }
+
+
+        public void NewStaffBtn_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("New Is Click");
+            AddStaff addstaff = new AddStaff();
+            addstaff.FormClosed += StaffClosedEvent;
+            addstaff.ShowDialog();
+        }
+        public void EditStaffBtn_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row = dataGridView1.Rows[rowindex];
+            EditStaff editStaffform = new EditStaff(row);
+            editStaffform.FormClosed += StaffClosedEvent;
+            editStaffform.ShowDialog();
+        }
+        public void DeleteStaffBtn_Click(object sender, EventArgs e)
+        {
+            string query = $@"DELETE from staff_information where id = {StaffCellID};";
+            sql.ExcuteQuery(query);
+            Staff_Load(sender, e);
+        }
+
+        
     }
 }

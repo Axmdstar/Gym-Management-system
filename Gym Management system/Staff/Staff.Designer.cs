@@ -44,11 +44,11 @@
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Dock = DockStyle.Bottom;
-            dataGridView1.Location = new Point(10, 179);
+            dataGridView1.Location = new Point(10, 164);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.RowTemplate.Height = 33;
-            dataGridView1.Size = new Size(1585, 584);
+            dataGridView1.Size = new Size(1563, 584);
             dataGridView1.TabIndex = 1;
             dataGridView1.CellContentClick += SelctedStaffRow;
             // 
@@ -63,6 +63,7 @@
             NewStaffBtn.TabIndex = 2;
             NewStaffBtn.TextAlign = ContentAlignment.MiddleRight;
             NewStaffBtn.UseVisualStyleBackColor = true;
+            NewStaffBtn.Click += NewStaffBtn_Click;
             // 
             // SearchTxtBox
             // 
@@ -105,6 +106,7 @@
             SearchTxtBox.TrailingIcon = null;
             SearchTxtBox.UseSystemPasswordChar = false;
             SearchTxtBox.ValidatingType = null;
+            SearchTxtBox.TextChanged += SearchTxtBox_TextChanged;
             // 
             // ColumnCombobox
             // 
@@ -128,6 +130,7 @@
             ColumnCombobox.Size = new Size(182, 49);
             ColumnCombobox.StartIndex = 0;
             ColumnCombobox.TabIndex = 6;
+            ColumnCombobox.SelectedIndexChanged += StaffColumnCombobox_SelectedIndexChanged;
             // 
             // EditStaffBtn
             // 
@@ -139,6 +142,7 @@
             EditStaffBtn.Size = new Size(107, 55);
             EditStaffBtn.TabIndex = 7;
             EditStaffBtn.UseVisualStyleBackColor = true;
+            EditStaffBtn.Click += EditStaffBtn_Click;
             // 
             // DeleteStaffBtn
             // 
@@ -151,6 +155,7 @@
             DeleteStaffBtn.TabIndex = 8;
             DeleteStaffBtn.TextAlign = ContentAlignment.MiddleRight;
             DeleteStaffBtn.UseVisualStyleBackColor = true;
+            DeleteStaffBtn.Click += DeleteStaffBtn_Click;
             // 
             // flowLayoutPanel1
             // 
@@ -160,9 +165,9 @@
             flowLayoutPanel1.Controls.Add(EditStaffBtn);
             flowLayoutPanel1.Controls.Add(DeleteStaffBtn);
             flowLayoutPanel1.Dock = DockStyle.Bottom;
-            flowLayoutPanel1.Location = new Point(10, 108);
+            flowLayoutPanel1.Location = new Point(10, 93);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(1585, 71);
+            flowLayoutPanel1.Size = new Size(1563, 71);
             flowLayoutPanel1.TabIndex = 9;
             // 
             // label4
@@ -180,12 +185,15 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(245, 243, 244);
+            ClientSize = new Size(1583, 758);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(dataGridView1);
             Controls.Add(label4);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "Staff";
             Padding = new Padding(10);
-            Size = new Size(1605, 773);
+            FormClosed += StaffClosedEvent;
+            Load += Staff_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             flowLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);

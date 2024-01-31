@@ -331,6 +331,7 @@ namespace Gym_Management_system
             PlansComboBox.Size = new Size(242, 49);
             PlansComboBox.StartIndex = 0;
             PlansComboBox.TabIndex = 9;
+            PlansComboBox.SelectedIndexChanged += PlansComboBox_SelectedIndexChanged;
             // 
             // label8
             // 
@@ -348,10 +349,13 @@ namespace Gym_Management_system
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackColor = Color.FromArgb(245, 243, 244);
+            ClientSize = new Size(1382, 728);
             Controls.Add(label8);
             Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "PlansDashboard";
-            Size = new Size(1369, 755);
+            FormClosed += PlansClosedEvent;
+            Load += Plans_Load;
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             panel1.ResumeLayout(false);
