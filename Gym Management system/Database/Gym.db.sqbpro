@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/Farah/source/repos/Gym-Management-system/Gym Management system/Database/Gym.db" readonly="0" foreign_keys="0" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="0" synchronous="1"/><attached/><window><main_tabs open="structure browser pragmas query" current="1"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="75"/><column_width id="3" width="2307"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,10:mainattendance"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="Customer_info" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="25"/><column index="2" value="55"/><column index="3" value="53"/><column index="4" value="47"/><column index="5" value="46"/><column index="6" value="49"/><column index="7" value="28"/><column index="8" value="41"/><column index="9" value="40"/><column index="10" value="41"/><column index="11" value="115"/><column index="12" value="106"/><column index="13" value="107"/><column index="14" value="39"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="attendance" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="25"/><column index="2" value="70"/><column index="3" value="101"/><column index="4" value="69"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="measurement" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="25"/><column index="2" value="69"/><column index="3" value="41"/><column index="4" value="61"/><column index="5" value="62"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="plans" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="25"/><column index="2" value="62"/><column index="3" value="62"/><column index="4" value="32"/><column index="5" value="45"/><column index="6" value="57"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="schedule" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="25"/><column index="2" value="44"/><column index="3" value="126"/><column index="4" value="52"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1">INSERT into attendance(customer_id,AttDate, attendanced)
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/Farah/source/repos/Gym-Management-system/Gym Management system/Database/Gym.db" readonly="0" foreign_keys="0" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="0" synchronous="1"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="75"/><column_width id="3" width="2307"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,8:mainsalaries"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="Customer_info" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="25"/><column index="2" value="55"/><column index="3" value="53"/><column index="4" value="58"/><column index="5" value="51"/><column index="6" value="58"/><column index="7" value="28"/><column index="8" value="41"/><column index="9" value="40"/><column index="10" value="41"/><column index="11" value="115"/><column index="12" value="106"/><column index="13" value="107"/><column index="14" value="39"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="attendance" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="25"/><column index="2" value="70"/><column index="3" value="101"/><column index="4" value="69"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="measurement" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="25"/><column index="2" value="69"/><column index="3" value="41"/><column index="4" value="61"/><column index="5" value="62"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="plans" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="25"/><column index="2" value="62"/><column index="3" value="62"/><column index="4" value="32"/><column index="5" value="45"/><column index="6" value="108"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="revenue" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="25"/><column index="2" value="69"/><column index="3" value="73"/><column index="4" value="44"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="salaries" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="25"/><column index="2" value="45"/><column index="3" value="73"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="schedule" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="25"/><column index="2" value="44"/><column index="3" value="47"/><column index="4" value="52"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="staff_information" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="25"/><column index="2" value="55"/><column index="3" value="53"/><column index="4" value="58"/><column index="5" value="57"/><column index="6" value="67"/><column index="7" value="39"/><column index="8" value="36"/><column index="9" value="40"/><column index="10" value="106"/><column index="11" value="96"/><column index="12" value="107"/><column index="13" value="38"/><column index="14" value="61"/><column index="15" value="37"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="users" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="25"/><column index="2" value="45"/><column index="3" value="56"/><column index="4" value="55"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1">INSERT into attendance(customer_id,AttDate, attendanced)
 VALUES(2, datetime('now'), 1)
+
 
 -- search 
 SELECT * from attendance as att 
- join Customer_info as cus on att.customer_id = cus.id
--- where cus.id = 3 and date(AttDate) = date() 
+join Customer_info as cus on att.customer_id = cus.id
 GROUP by att.AttDate
 
 
@@ -28,15 +28,9 @@ limit 1
 
 
 
-	
-
-
 -- GROUP by firstname
-
-
-
-SELECT * from attendance
-order by AttDate DESC
+SELECT * from attendance
+order by AttDate DESC
 LIMIT 5
 
 -- get
@@ -60,7 +54,7 @@ select att.customer_id,
        from attendance as att 
         INNER JOIN Customer_info as cus on att.customer_id = cus.id
          where date(att.AttDate) = date()
-        order by att.AttDate DESC
+        order by att.AttDate DESC
 		LIMIT 5;
 
 
@@ -85,4 +79,111 @@ SELECT (SELECT count(*) FROM Customer_info) as cus_Count,
 		where date(AttDate) = date('now')) as today_Count
 		
 		
-		</sql><current_tab id="0"/></tab_sql></sqlb_project>
+-- staff salary totals
+-- end of month
+SELECT date('now','start of month','+1 month','-1 day');
+-- ____________________
+
+-- Grand Total
+select sum(stff.salary) as Grand_Total from salaries as sal
+inner join staff_information as stff on stff.id = sal.staff_id
+
+-- this month Total
+select sum(stff.salary) as This_Month from salaries as sal
+inner join staff_information as stff on stff.id = sal.staff_id
+where sal.date_created = date('now','+0 month')
+
+-- this year Total
+select sum(stff.salary) as This_Year from salaries as sal
+inner join staff_information as stff on stff.id = sal.staff_id
+where sal.date_created = date('now', '-0 year')
+
+
+SELECT sum(p.price) + sum(p.signup_fee) from revenue as r
+inner join Customer_info as cus on cus.id = r.customer_id
+inner join plans as p on p.id = cus.planId
+as TotalRev,
+
+SELECT p.price , cus.firstname from revenue as r
+inner join Customer_info as cus on cus.id = r.customer_id
+inner join plans as p on p.id = cus.planId
+where strftime('%m', date(r.date_created)) = strftime('%m', date('now'))
+
+
+
+(SELECT sum(p.price) from revenue as r
+inner join Customer_info as cus on cus.id = r.customer_id
+inner join plans as p on p.id = cus.planId
+WHERE strftime('%Y', date(r.date_created)) = strftime('%Y', date('now'))
+AND r.date_created &lt;= date('now'))
+as YearRev
+
+
+
+
+INSERT into salaries(staff_id, date_created) 
+VALUES(1 , date('now','start of month','-0 month','-1 day')),
+(2 , date('now','start of month','-0 month','-1 day')),
+(3 , date('now','start of month','-0 month','-1 day')),
+(4 , date('now','start of month','-0 month','-1 day')),
+(5 , date('now','start of month','-0 month','-1 day')),
+(6 , date('now','start of month','-0 month','-1 day')),
+(7 , date('now','start of month','-0 month','-1 day'))
+
+
+-- plan	
+SELECT sum(p.price), p.plan_name from revenue as r
+inner join Customer_info as cus on cus.id = r.customer_id
+inner join plans as p on p.id = cus.planId
+where p.plan_name = 'planName';
+
+
+-- payed
+-- SELECT  p.price , cus.firstname, cus.id,
+--  CASE when strftime('%m', date(r.date_created)) = strftime('%m', date('now')) 
+-- 	THEN 'Payed' 
+-- 	ELSE 'Not Payed' 
+-- 	END as Payed   from  Customer_info as cus
+-- LEFT  join revenue as r  on cus.id = r.customer_id
+-- LEFT  join plans as p on p.id = cus.planId
+-- WHERE strftime('%m', date(r.date_created)) = strftime('%m', date('now')) OR r.date_created IS NULL;
+		
+		
+
+		
+		
+-- Non-Payed
+SELECT 
+	p.price,
+	cus.firstname||' '||cus.lastname,
+	cus.id,
+	CASE 
+	WHEN max(strftime('%m', date(r.date_created))) = strftime('%m', date('now')) THEN 'Payed'
+	ELSE 'Not Payed'
+END AS Payed
+FROM 
+    Customer_info AS cus
+LEFT JOIN 
+    revenue AS r ON cus.id = r.customer_id
+LEFT JOIN 
+    plans AS p ON p.id = cus.planId
+GROUP BY 
+    cus.id
+HAVING 
+    Payed = 'Not Payed';
+	
+INSERT INTO revenue(customer_id, date_created, user_id)VALUES(6, date('now'), 1);
+
+
+SELECT p.plan_name, sch.time_in, sch.time_out, stff.firstname||' '||stff.lastname as Fullname from schedule as sch
+INNER JOIN plans as p on sch.plan_id = p.id
+INNER JOIN staff_information as stff on stff.id = p.staff_id
+
+
+
+SELECT stf.id, stf.firstname||' '||stf.lastname,stf.salary, sal.date_created from salaries as sal
+inner join staff_information as stf on sal.staff_id = stf.id
+
+INSERT INTO salaries(staff_id, date_created)VALUES( ,date('now'))
+SELECT id from staff_information
+</sql><current_tab id="0"/></tab_sql></sqlb_project>

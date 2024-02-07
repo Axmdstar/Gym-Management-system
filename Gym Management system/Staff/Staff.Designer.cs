@@ -35,20 +35,22 @@
             EditStaffBtn = new FontAwesome.Sharp.IconButton();
             DeleteStaffBtn = new FontAwesome.Sharp.IconButton();
             flowLayoutPanel1 = new FlowLayoutPanel();
-            label4 = new Label();
+            panel1 = new Panel();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             flowLayoutPanel1.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // dataGridView1
             // 
+            dataGridView1.BackgroundColor = SystemColors.ButtonFace;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Dock = DockStyle.Bottom;
-            dataGridView1.Location = new Point(10, 164);
+            dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.Location = new Point(0, 0);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.RowTemplate.Height = 33;
-            dataGridView1.Size = new Size(1563, 584);
+            dataGridView1.Size = new Size(1563, 656);
             dataGridView1.TabIndex = 1;
             dataGridView1.CellContentClick += SelctedStaffRow;
             // 
@@ -164,31 +166,30 @@
             flowLayoutPanel1.Controls.Add(NewStaffBtn);
             flowLayoutPanel1.Controls.Add(EditStaffBtn);
             flowLayoutPanel1.Controls.Add(DeleteStaffBtn);
-            flowLayoutPanel1.Dock = DockStyle.Bottom;
-            flowLayoutPanel1.Location = new Point(10, 93);
+            flowLayoutPanel1.Dock = DockStyle.Top;
+            flowLayoutPanel1.Location = new Point(10, 10);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(1563, 71);
+            flowLayoutPanel1.Size = new Size(1563, 76);
             flowLayoutPanel1.TabIndex = 9;
+            flowLayoutPanel1.Paint += flowLayoutPanel1_Paint;
             // 
-            // label4
+            // panel1
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Open Sans Extrabold", 24F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.Location = new Point(13, 25);
-            label4.Name = "label4";
-            label4.Size = new Size(174, 65);
-            label4.TabIndex = 9;
-            label4.Text = "Staffs";
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            panel1.Controls.Add(dataGridView1);
+            panel1.Location = new Point(10, 92);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1563, 656);
+            panel1.TabIndex = 10;
             // 
             // Staff
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(245, 243, 244);
-            ClientSize = new Size(1583, 758);
+            ClientSize = new Size(1583, 827);
             Controls.Add(flowLayoutPanel1);
-            Controls.Add(dataGridView1);
-            Controls.Add(label4);
+            Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "Staff";
             Padding = new Padding(10);
@@ -196,8 +197,8 @@
             Load += Staff_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             flowLayoutPanel1.ResumeLayout(false);
+            panel1.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -209,6 +210,6 @@
         public FontAwesome.Sharp.IconButton EditStaffBtn;
         public FontAwesome.Sharp.IconButton DeleteStaffBtn;
         private FlowLayoutPanel flowLayoutPanel1;
-        private Label label4;
+        private Panel panel1;
     }
 }

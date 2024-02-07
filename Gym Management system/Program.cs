@@ -18,7 +18,7 @@ namespace Gym_Management_system
 
             if (loginForm.Auth)
             {
-                Application.Run(new MainForm(loginForm.Username, loginForm.UserType));
+                Application.Run(new MainForm(loginForm.Username, loginForm.UserType, loginForm.UserId));
             }
             
 

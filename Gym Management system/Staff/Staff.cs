@@ -77,6 +77,9 @@ namespace Gym_Management_system
             Staff_Load(sender, e);
         }
 
-        
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

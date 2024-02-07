@@ -35,22 +35,22 @@ namespace Gym_Management_system
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             Timerlabel = new Label();
-            iconButton5 = new FontAwesome.Sharp.IconButton();
+            financialBtn = new FontAwesome.Sharp.IconButton();
             iconButton8 = new FontAwesome.Sharp.IconButton();
             PlansBtn = new FontAwesome.Sharp.IconButton();
             MemberShips = new FontAwesome.Sharp.IconButton();
             StaffBtn = new FontAwesome.Sharp.IconButton();
-            iconButton3 = new FontAwesome.Sharp.IconButton();
-            iconButton2 = new FontAwesome.Sharp.IconButton();
+            ScheduleBtn = new FontAwesome.Sharp.IconButton();
+            Attendance = new FontAwesome.Sharp.IconButton();
             Dashboard = new FontAwesome.Sharp.IconButton();
             UserNameLbl = new Label();
             iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             timer1 = new System.Windows.Forms.Timer(components);
             DisplayPanel = new Panel();
-            flowLayoutPanel1 = new FlowLayoutPanel();
+            flowLayoutBtn = new FlowLayoutPanel();
             panel2 = new Panel();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).BeginInit();
-            flowLayoutPanel1.SuspendLayout();
+            flowLayoutBtn.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
             // 
@@ -65,35 +65,36 @@ namespace Gym_Management_system
             Timerlabel.TabIndex = 8;
             Timerlabel.Text = "label7";
             // 
-            // iconButton5
+            // financialBtn
             // 
-            iconButton5.BackColor = Color.FromArgb(22, 26, 29);
-            iconButton5.BackgroundImageLayout = ImageLayout.None;
-            iconButton5.FlatAppearance.BorderSize = 0;
-            iconButton5.FlatAppearance.MouseDownBackColor = SystemColors.WindowFrame;
-            iconButton5.FlatAppearance.MouseOverBackColor = Color.FromArgb(64, 64, 64);
-            iconButton5.FlatStyle = FlatStyle.Flat;
-            iconButton5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            iconButton5.ForeColor = Color.White;
-            iconButton5.IconChar = FontAwesome.Sharp.IconChar.SquarePollVertical;
-            iconButton5.IconColor = Color.White;
-            iconButton5.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton5.ImageAlign = ContentAlignment.MiddleLeft;
-            iconButton5.Location = new Point(6, 622);
-            iconButton5.Margin = new Padding(6, 2, 6, 6);
-            iconButton5.Name = "iconButton5";
-            iconButton5.Padding = new Padding(9, 0, 0, 0);
-            iconButton5.Size = new Size(325, 61);
-            iconButton5.TabIndex = 8;
-            iconButton5.Text = "xxx";
-            iconButton5.UseVisualStyleBackColor = false;
+            financialBtn.BackColor = Color.FromArgb(22, 26, 29);
+            financialBtn.BackgroundImageLayout = ImageLayout.None;
+            financialBtn.FlatAppearance.BorderSize = 0;
+            financialBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(22, 26, 29);
+            financialBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(64, 64, 64);
+            financialBtn.FlatStyle = FlatStyle.Flat;
+            financialBtn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            financialBtn.ForeColor = Color.White;
+            financialBtn.IconChar = FontAwesome.Sharp.IconChar.SquarePollVertical;
+            financialBtn.IconColor = Color.White;
+            financialBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            financialBtn.ImageAlign = ContentAlignment.MiddleLeft;
+            financialBtn.Location = new Point(6, 622);
+            financialBtn.Margin = new Padding(6, 2, 6, 6);
+            financialBtn.Name = "financialBtn";
+            financialBtn.Padding = new Padding(9, 0, 0, 0);
+            financialBtn.Size = new Size(346, 61);
+            financialBtn.TabIndex = 8;
+            financialBtn.Text = "Financial ";
+            financialBtn.UseVisualStyleBackColor = false;
+            financialBtn.Click += financial_Click;
             // 
             // iconButton8
             // 
             iconButton8.BackColor = Color.FromArgb(22, 26, 29);
             iconButton8.BackgroundImageLayout = ImageLayout.None;
             iconButton8.FlatAppearance.BorderSize = 0;
-            iconButton8.FlatAppearance.MouseDownBackColor = SystemColors.WindowFrame;
+            iconButton8.FlatAppearance.MouseDownBackColor = Color.FromArgb(22, 26, 29);
             iconButton8.FlatStyle = FlatStyle.Flat;
             iconButton8.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Point);
             iconButton8.ForeColor = Color.White;
@@ -105,7 +106,7 @@ namespace Gym_Management_system
             iconButton8.Margin = new Padding(2);
             iconButton8.Name = "iconButton8";
             iconButton8.Padding = new Padding(9, 0, 0, 0);
-            iconButton8.Size = new Size(343, 61);
+            iconButton8.Size = new Size(346, 61);
             iconButton8.TabIndex = 7;
             iconButton8.Text = "LogOut";
             iconButton8.UseVisualStyleBackColor = false;
@@ -116,7 +117,7 @@ namespace Gym_Management_system
             PlansBtn.BackColor = Color.FromArgb(22, 26, 29);
             PlansBtn.BackgroundImageLayout = ImageLayout.None;
             PlansBtn.FlatAppearance.BorderSize = 0;
-            PlansBtn.FlatAppearance.MouseDownBackColor = SystemColors.WindowFrame;
+            PlansBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(22, 26, 29);
             PlansBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(64, 64, 64);
             PlansBtn.FlatStyle = FlatStyle.Flat;
             PlansBtn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
@@ -129,7 +130,7 @@ namespace Gym_Management_system
             PlansBtn.Margin = new Padding(6);
             PlansBtn.Name = "PlansBtn";
             PlansBtn.Padding = new Padding(9, 0, 0, 0);
-            PlansBtn.Size = new Size(325, 61);
+            PlansBtn.Size = new Size(346, 61);
             PlansBtn.TabIndex = 6;
             PlansBtn.Text = "Plans";
             PlansBtn.UseMnemonic = false;
@@ -141,7 +142,7 @@ namespace Gym_Management_system
             MemberShips.BackColor = Color.FromArgb(22, 26, 29);
             MemberShips.BackgroundImageLayout = ImageLayout.None;
             MemberShips.FlatAppearance.BorderSize = 0;
-            MemberShips.FlatAppearance.MouseDownBackColor = SystemColors.WindowFrame;
+            MemberShips.FlatAppearance.MouseDownBackColor = Color.FromArgb(22, 26, 29);
             MemberShips.FlatAppearance.MouseOverBackColor = Color.FromArgb(64, 64, 64);
             MemberShips.FlatStyle = FlatStyle.Flat;
             MemberShips.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Point);
@@ -154,7 +155,7 @@ namespace Gym_Management_system
             MemberShips.Margin = new Padding(6);
             MemberShips.Name = "MemberShips";
             MemberShips.Padding = new Padding(9, 0, 0, 0);
-            MemberShips.Size = new Size(325, 61);
+            MemberShips.Size = new Size(346, 61);
             MemberShips.TabIndex = 5;
             MemberShips.Text = "MemberShip";
             MemberShips.UseVisualStyleBackColor = false;
@@ -165,7 +166,7 @@ namespace Gym_Management_system
             StaffBtn.BackColor = Color.FromArgb(22, 26, 29);
             StaffBtn.BackgroundImageLayout = ImageLayout.None;
             StaffBtn.FlatAppearance.BorderSize = 0;
-            StaffBtn.FlatAppearance.MouseDownBackColor = SystemColors.WindowFrame;
+            StaffBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(22, 26, 29);
             StaffBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(64, 64, 64);
             StaffBtn.FlatStyle = FlatStyle.Flat;
             StaffBtn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
@@ -178,65 +179,66 @@ namespace Gym_Management_system
             StaffBtn.Margin = new Padding(6, 2, 6, 6);
             StaffBtn.Name = "StaffBtn";
             StaffBtn.Padding = new Padding(9, 0, 0, 0);
-            StaffBtn.Size = new Size(325, 61);
+            StaffBtn.Size = new Size(346, 61);
             StaffBtn.TabIndex = 5;
             StaffBtn.Text = "Staff";
             StaffBtn.UseVisualStyleBackColor = false;
             StaffBtn.Click += StaffBtn_Click;
             // 
-            // iconButton3
+            // ScheduleBtn
             // 
-            iconButton3.BackColor = Color.FromArgb(22, 26, 29);
-            iconButton3.BackgroundImageLayout = ImageLayout.None;
-            iconButton3.FlatAppearance.BorderSize = 0;
-            iconButton3.FlatAppearance.MouseDownBackColor = SystemColors.WindowFrame;
-            iconButton3.FlatAppearance.MouseOverBackColor = Color.FromArgb(64, 64, 64);
-            iconButton3.FlatStyle = FlatStyle.Flat;
-            iconButton3.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            iconButton3.ForeColor = Color.White;
-            iconButton3.IconChar = FontAwesome.Sharp.IconChar.CalendarCheck;
-            iconButton3.IconColor = Color.White;
-            iconButton3.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton3.ImageAlign = ContentAlignment.MiddleLeft;
-            iconButton3.Location = new Point(6, 411);
-            iconButton3.Margin = new Padding(6);
-            iconButton3.Name = "iconButton3";
-            iconButton3.Padding = new Padding(9, 0, 0, 0);
-            iconButton3.Size = new Size(325, 61);
-            iconButton3.TabIndex = 4;
-            iconButton3.Text = "Schedules";
-            iconButton3.UseVisualStyleBackColor = false;
+            ScheduleBtn.BackColor = Color.FromArgb(22, 26, 29);
+            ScheduleBtn.BackgroundImageLayout = ImageLayout.None;
+            ScheduleBtn.FlatAppearance.BorderSize = 0;
+            ScheduleBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(22, 26, 29);
+            ScheduleBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(64, 64, 64);
+            ScheduleBtn.FlatStyle = FlatStyle.Flat;
+            ScheduleBtn.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            ScheduleBtn.ForeColor = Color.White;
+            ScheduleBtn.IconChar = FontAwesome.Sharp.IconChar.CalendarCheck;
+            ScheduleBtn.IconColor = Color.White;
+            ScheduleBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            ScheduleBtn.ImageAlign = ContentAlignment.MiddleLeft;
+            ScheduleBtn.Location = new Point(6, 411);
+            ScheduleBtn.Margin = new Padding(6);
+            ScheduleBtn.Name = "ScheduleBtn";
+            ScheduleBtn.Padding = new Padding(9, 0, 0, 0);
+            ScheduleBtn.Size = new Size(346, 61);
+            ScheduleBtn.TabIndex = 4;
+            ScheduleBtn.Text = "Schedules";
+            ScheduleBtn.UseVisualStyleBackColor = false;
+            ScheduleBtn.Click += ScheduleBtn_Click;
             // 
-            // iconButton2
+            // Attendance
             // 
-            iconButton2.BackColor = Color.FromArgb(22, 26, 29);
-            iconButton2.BackgroundImageLayout = ImageLayout.None;
-            iconButton2.FlatAppearance.BorderSize = 0;
-            iconButton2.FlatAppearance.MouseDownBackColor = SystemColors.WindowFrame;
-            iconButton2.FlatAppearance.MouseOverBackColor = Color.FromArgb(64, 64, 64);
-            iconButton2.FlatStyle = FlatStyle.Flat;
-            iconButton2.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            iconButton2.ForeColor = Color.White;
-            iconButton2.IconChar = FontAwesome.Sharp.IconChar.List;
-            iconButton2.IconColor = Color.White;
-            iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton2.ImageAlign = ContentAlignment.MiddleLeft;
-            iconButton2.Location = new Point(6, 265);
-            iconButton2.Margin = new Padding(6);
-            iconButton2.Name = "iconButton2";
-            iconButton2.Padding = new Padding(9, 0, 0, 0);
-            iconButton2.Size = new Size(325, 61);
-            iconButton2.TabIndex = 3;
-            iconButton2.Text = "Attendance";
-            iconButton2.UseVisualStyleBackColor = false;
-            iconButton2.Click += iconButton2_Click;
+            Attendance.BackColor = Color.FromArgb(22, 26, 29);
+            Attendance.BackgroundImageLayout = ImageLayout.None;
+            Attendance.FlatAppearance.BorderSize = 0;
+            Attendance.FlatAppearance.MouseDownBackColor = Color.FromArgb(22, 26, 29);
+            Attendance.FlatAppearance.MouseOverBackColor = Color.FromArgb(64, 64, 64);
+            Attendance.FlatStyle = FlatStyle.Flat;
+            Attendance.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            Attendance.ForeColor = Color.White;
+            Attendance.IconChar = FontAwesome.Sharp.IconChar.List;
+            Attendance.IconColor = Color.White;
+            Attendance.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            Attendance.ImageAlign = ContentAlignment.MiddleLeft;
+            Attendance.Location = new Point(6, 265);
+            Attendance.Margin = new Padding(6);
+            Attendance.Name = "Attendance";
+            Attendance.Padding = new Padding(9, 0, 0, 0);
+            Attendance.Size = new Size(346, 61);
+            Attendance.TabIndex = 3;
+            Attendance.Text = "Attendance";
+            Attendance.UseVisualStyleBackColor = false;
+            Attendance.Click += Attendance_Click;
             // 
             // Dashboard
             // 
             Dashboard.BackColor = Color.FromArgb(22, 26, 29);
             Dashboard.BackgroundImageLayout = ImageLayout.None;
             Dashboard.FlatAppearance.BorderSize = 0;
-            Dashboard.FlatAppearance.MouseDownBackColor = SystemColors.WindowFrame;
+            Dashboard.FlatAppearance.MouseDownBackColor = Color.FromArgb(22, 26, 29);
             Dashboard.FlatAppearance.MouseOverBackColor = Color.FromArgb(64, 64, 64);
             Dashboard.FlatStyle = FlatStyle.Flat;
             Dashboard.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Point);
@@ -249,7 +251,7 @@ namespace Gym_Management_system
             Dashboard.Margin = new Padding(6);
             Dashboard.Name = "Dashboard";
             Dashboard.Padding = new Padding(9, 0, 0, 0);
-            Dashboard.Size = new Size(325, 61);
+            Dashboard.Size = new Size(346, 61);
             Dashboard.TabIndex = 1;
             Dashboard.Text = "Dashboard";
             Dashboard.UseVisualStyleBackColor = false;
@@ -292,30 +294,31 @@ namespace Gym_Management_system
             // DisplayPanel
             // 
             DisplayPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            DisplayPanel.Location = new Point(362, 10);
+            DisplayPanel.Location = new Point(349, 10);
+            DisplayPanel.Margin = new Padding(0, 3, 3, 3);
             DisplayPanel.Name = "DisplayPanel";
-            DisplayPanel.Size = new Size(1441, 891);
+            DisplayPanel.Size = new Size(1454, 891);
             DisplayPanel.TabIndex = 6;
             DisplayPanel.Paint += DisplayPanel_Paint;
             // 
-            // flowLayoutPanel1
+            // flowLayoutBtn
             // 
-            flowLayoutPanel1.Controls.Add(panel2);
-            flowLayoutPanel1.Controls.Add(Dashboard);
-            flowLayoutPanel1.Controls.Add(iconButton2);
-            flowLayoutPanel1.Controls.Add(MemberShips);
-            flowLayoutPanel1.Controls.Add(iconButton3);
-            flowLayoutPanel1.Controls.Add(PlansBtn);
-            flowLayoutPanel1.Controls.Add(StaffBtn);
-            flowLayoutPanel1.Controls.Add(iconButton5);
-            flowLayoutPanel1.Controls.Add(iconButton8);
-            flowLayoutPanel1.Dock = DockStyle.Left;
-            flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
-            flowLayoutPanel1.Location = new Point(10, 10);
-            flowLayoutPanel1.MaximumSize = new Size(345, 900);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(345, 891);
-            flowLayoutPanel1.TabIndex = 2;
+            flowLayoutBtn.Controls.Add(panel2);
+            flowLayoutBtn.Controls.Add(Dashboard);
+            flowLayoutBtn.Controls.Add(Attendance);
+            flowLayoutBtn.Controls.Add(MemberShips);
+            flowLayoutBtn.Controls.Add(ScheduleBtn);
+            flowLayoutBtn.Controls.Add(PlansBtn);
+            flowLayoutBtn.Controls.Add(StaffBtn);
+            flowLayoutBtn.Controls.Add(financialBtn);
+            flowLayoutBtn.Controls.Add(iconButton8);
+            flowLayoutBtn.Dock = DockStyle.Left;
+            flowLayoutBtn.FlowDirection = FlowDirection.TopDown;
+            flowLayoutBtn.Location = new Point(10, 10);
+            flowLayoutBtn.MaximumSize = new Size(345, 900);
+            flowLayoutBtn.Name = "flowLayoutBtn";
+            flowLayoutBtn.Size = new Size(336, 891);
+            flowLayoutBtn.TabIndex = 2;
             // 
             // panel2
             // 
@@ -333,7 +336,7 @@ namespace Gym_Management_system
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(22, 26, 29);
             ClientSize = new Size(1813, 911);
-            Controls.Add(flowLayoutPanel1);
+            Controls.Add(flowLayoutBtn);
             Controls.Add(DisplayPanel);
             Margin = new Padding(2);
             Name = "MainForm";
@@ -342,7 +345,7 @@ namespace Gym_Management_system
             Text = "Form2";
             Load += MainForm_Load;
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).EndInit();
-            flowLayoutPanel1.ResumeLayout(false);
+            flowLayoutBtn.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ResumeLayout(false);
@@ -356,13 +359,13 @@ namespace Gym_Management_system
         private FontAwesome.Sharp.IconButton PlansBtn;
         private FontAwesome.Sharp.IconButton MemberShips;
         private FontAwesome.Sharp.IconButton StaffBtn;
-        private FontAwesome.Sharp.IconButton iconButton3;
-        private FontAwesome.Sharp.IconButton iconButton2;
-        private FontAwesome.Sharp.IconButton iconButton5;
+        private FontAwesome.Sharp.IconButton ScheduleBtn;
+        private FontAwesome.Sharp.IconButton Attendance;
+        private FontAwesome.Sharp.IconButton financialBtn;
         private System.Windows.Forms.Timer timer1;
         public Label Timerlabel;
         private Panel DisplayPanel;
-        private FlowLayoutPanel flowLayoutPanel1;
+        private FlowLayoutPanel flowLayoutBtn;
         private Panel panel2;
     }
 }

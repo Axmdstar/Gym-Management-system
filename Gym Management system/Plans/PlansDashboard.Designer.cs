@@ -53,7 +53,6 @@ namespace Gym_Management_system
             DeletePlan = new FontAwesome.Sharp.IconButton();
             panel1 = new Panel();
             PlansComboBox = new MaterialSkin2DotNet.Controls.MaterialComboBox();
-            label8 = new Label();
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -304,9 +303,9 @@ namespace Gym_Management_system
             panel1.Controls.Add(DeletePlan);
             panel1.Controls.Add(AddPlan);
             panel1.Controls.Add(EditPlan);
-            panel1.Location = new Point(23, 91);
+            panel1.Location = new Point(23, 27);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1318, 305);
+            panel1.Size = new Size(1318, 330);
             panel1.TabIndex = 8;
             // 
             // PlansComboBox
@@ -333,16 +332,6 @@ namespace Gym_Management_system
             PlansComboBox.TabIndex = 9;
             PlansComboBox.SelectedIndexChanged += PlansComboBox_SelectedIndexChanged;
             // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Open Sans Extrabold", 24F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.Location = new Point(23, 13);
-            label8.Name = "label8";
-            label8.Size = new Size(162, 65);
-            label8.TabIndex = 10;
-            label8.Text = "Plans";
-            // 
             // PlansDashboard
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -350,7 +339,6 @@ namespace Gym_Management_system
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackColor = Color.FromArgb(245, 243, 244);
             ClientSize = new Size(1382, 728);
-            Controls.Add(label8);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "PlansDashboard";
@@ -361,7 +349,6 @@ namespace Gym_Management_system
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -386,6 +373,5 @@ namespace Gym_Management_system
         public Label TrainerResult;
         public Label TphoneResult;
         public Label S_EtimeResult;
-        private Label label8;
     }
 }

@@ -68,11 +68,6 @@ namespace Gym_Management_system
         }
 
 
-
-
-
-
-
         public void AddPlan_Click(object sender, EventArgs e)
         {
             AddPlanForm addPlanForm = new AddPlanForm();

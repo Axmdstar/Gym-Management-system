@@ -10,6 +10,7 @@ using System.Data.SqlClient;
 using Gym_Management_system.Database;
 using static Gym_Management_system.Database.Helper;
 using System.Windows.Controls.Primitives;
+using Gym_Management_system.Schedules;
 
 public class SqlClass
 {
@@ -334,14 +335,35 @@ public class SqlClass
 
                 AttendanceModal attendance = new AttendanceModal(Customer_ID, Fullname, Date, Attended);
                 AttendanceList.Add(attendance);
-
             }
         });
         return AttendanceList;
     }
 
 
+    public List<ScheduleModel> SchedulesList()
+    {
+        string query = @"SELECT p.plan_name, sch.time_in, sch.time_out, stff.firstname||' '||stff.lastname as Fullname from schedule as sch
+                        INNER JOIN plans as p on sch.plan_id = p.id
+                        INNER JOIN staff_information as stff on stff.id = p.staff_id";
 
+        List<ScheduleModel> SchList = new List<ScheduleModel>();
+        helper.QueryReader(query, r => 
+        {
+            while (r.ReaderData.Read())
+            {
+                string planName = r.ReaderData.GetString(0);
+                string timeIn = r.ReaderData.GetDateTime(1).ToString("HH:mm:ss");
+                string timeOut = r.ReaderData.GetDateTime(2).ToString("HH:mm:ss");
+                string fullName = r.ReaderData.GetString(3);
+
+                ScheduleModel model = new ScheduleModel(planName, timeIn, timeOut, fullName);
+                SchList.Add(model);
+            }
+        });
+
+        return SchList;
+    }
 
 
     public Dictionary<string, int> dashboardSummary()
@@ -380,11 +402,8 @@ public class SqlClass
 ";
 
         List<AttendanceModal> AttendanceList = new List<AttendanceModal>();
-
         helper.QueryReader(query, r =>
         {
-            Console.WriteLine(r.msg + " Attendances 5");
-
             while (r.ReaderData.Read())
             {
                 int Customer_ID = r.ReaderData.GetInt32(0);
@@ -401,5 +420,214 @@ public class SqlClass
         return AttendanceList;
     }
 
+    
+
+
+
+    public Dictionary<string, float> FinanceSummary()
+    {
+        string query = @"SELECT  
+        (select sum(stff.salary) as Grand_Total from salaries as sal
+	    inner join staff_information as stff on stff.id = sal.staff_id)
+		as TotalExp,
+		
+		(select sum(stff.salary) as This_Month from salaries as sal
+		inner join staff_information as stff on stff.id = sal.staff_id
+		where strftime('%m', date(sal.date_created)) = strftime('%m', date('now')))
+		as MonExp,
+	
+		(select sum(stff.salary) as This_Year from salaries as sal
+		inner join staff_information as stff on stff.id = sal.staff_id
+		WHERE strftime('%Y', date(sal.date_created)) = strftime('%Y', date('now'))
+		AND sal.date_created <= date('now'))
+		as YearExp,
+		
+		(SELECT sum(p.price) + sum(p.signup_fee) from revenue as r
+        inner join Customer_info as cus on cus.id = r.customer_id
+        inner join plans as p on p.id = cus.planId) 
+        as TotalRev,
+
+        (SELECT sum(p.price) from revenue as r
+        inner join Customer_info as cus on cus.id = r.customer_id
+        inner join plans as p on p.id = cus.planId
+        where strftime('%m', date(r.date_created)) = strftime('%m', date('now')))
+        as MonRev,
+
+        (SELECT sum(p.price) from revenue as r
+        inner join Customer_info as cus on cus.id = r.customer_id
+        inner join plans as p on p.id = cus.planId
+        WHERE strftime('%Y', date(r.date_created)) = strftime('%Y', date('now'))
+	    AND r.date_created <= date('now'))
+        as YearRev
+        ";
+
+        Dictionary<string, float> FinanceSummary = new Dictionary<string, float>();
+        helper.QueryReader(query, r =>
+        {
+            while (r.ReaderData.Read())
+            {
+                FinanceSummary.Add("TotalExp", r.ReaderData.GetFloat(0));
+                FinanceSummary.Add("MonExp", r.ReaderData.GetFloat(1));
+                FinanceSummary.Add("YearExp", r.ReaderData.GetFloat(2));
+
+                FinanceSummary.Add("TotalRev", r.ReaderData.GetFloat(3));
+                FinanceSummary.Add("MonRev", r.ReaderData.GetFloat(4));
+                FinanceSummary.Add("YearRev", r.ReaderData.GetFloat(5));
+            }
+        });
+
+        return FinanceSummary;
+    }
+
+
+
+    public struct PayementStatus
+    {
+        public float Price { get; set; }
+        public string Fullname { get; set; }
+        public int Id { get; set; }
+        public string Pay_status { get; set; }
+
+        public PayementStatus(float price, string fullname, int id, string pay_status)
+        {
+            Price = price;
+            Fullname = fullname;
+            Id = id;
+            Pay_status = pay_status;
+        }
+    }
+
+    
+    
+    public List<PayementStatus> PayedMember()
+    {
+        string query = @"SELECT  p.price , cus.firstname||' '||cus.lastname, cus.id,
+                            CASE when strftime('%m', date(r.date_created)) = strftime('%m', date('now')) 
+	                        THEN 'Payed' 
+	                        ELSE 'Not Payed' 
+	                        END as Payed   from  Customer_info as cus
+                         LEFT  join revenue as r  on cus.id = r.customer_id
+                         LEFT  join plans as p on p.id = cus.planId
+                            WHERE strftime('%m', date(r.date_created)) = strftime('%m', date('now')) OR r.date_created IS NULL;";
+
+        List<PayementStatus> PayedList = new List<PayementStatus>();
+        helper.QueryReader(query, r => {
+
+            while (r.ReaderData.Read())
+            {
+                float price = r.ReaderData.GetFloat(0);
+                string fullname = r.ReaderData.GetString(1);
+                int id = r.ReaderData.GetInt16(2);
+                string status = r.ReaderData.GetString(3);
+
+                PayementStatus payed = new PayementStatus(price, fullname, id, status);
+                PayedList.Add(payed);
+            }
+        });
+
+        return PayedList;
+    }
+
+
+
+    public List<PayementStatus> NonPayedMember()
+    {
+        string query = @"SELECT p.price,cus.firstname||' '||cus.lastname,cus.id,
+                        CASE 
+                            WHEN max(strftime('%m', date(r.date_created))) = strftime('%m', date('now')) THEN 'Payed'
+                            ELSE 'Not Payed'
+                        END AS Payed
+                        FROM Customer_info AS cus
+                        LEFT JOIN 
+                            revenue AS r ON cus.id = r.customer_id
+                        LEFT JOIN 
+                            plans AS p ON p.id = cus.planId
+                        GROUP BY 
+                            cus.id
+                        HAVING 
+                            Payed = 'Not Payed';";
+
+        List<PayementStatus> PayedList = new List<PayementStatus>();
+        helper.QueryReader(query, r => {
+
+            while (r.ReaderData.Read())
+            {
+                float price = r.ReaderData.GetFloat(0);
+                string fullname = r.ReaderData.GetString(1);
+                int id = r.ReaderData.GetInt16(2);
+                string status = r.ReaderData.GetString(3);
+
+                PayementStatus payed = new PayementStatus(price, fullname, id, status);
+                PayedList.Add(payed);
+            }
+        });
+
+        return PayedList;
+    }
+
+
+
+    public struct StaffSalary
+    {
+        
+
+        public int ID { get; set; }
+        public string Staff_Name { get; set; }
+        public float Staff_Salary {  get; set; }
+        public DateTime Date_Created { get; set; }
+
+        public StaffSalary(int iD, string staff_Name, float staff_Salary, DateTime date_Created)
+        {
+            ID = iD;
+            Staff_Name = staff_Name;
+            Staff_Salary = staff_Salary;
+            Date_Created = date_Created;
+        }
+
+    }
+
+    public List<StaffSalary> StaffSalaryGrid()
+    {
+        string query = @"SELECT 
+                            stf.id,
+                            stf.firstname||' '||stf.lastname, 
+                            stf.salary,
+                            sal.date_created
+                            from salaries as sal
+                         inner join staff_information as stf on sal.staff_id = stf.id";
+
+        List<StaffSalary> StaffSalary_List = new List<StaffSalary>();
+        helper.QueryReader(query, r =>
+        {
+            while (r.ReaderData.Read())
+            {
+                int id = r.ReaderData.GetInt16(0);
+                string Fullname = r.ReaderData.GetString(1);
+                float salary = r.ReaderData.GetFloat(2);
+                DateTime date_created = r.ReaderData.GetDateTime(3);
+
+                StaffSalary staff_row = new StaffSalary(id,Fullname,salary,date_created);
+                StaffSalary_List.Add(staff_row);
+            }
+        });
+
+        return StaffSalary_List;
+    }
+
+    public List<int> staffIds()
+    {
+        string query = @"SELECT id from staff_information";
+
+        List <int> ids = new List<int>();
+        helper.QueryReader(query, r =>
+        {
+            while (r.ReaderData.Read())
+            {
+                int id = r.ReaderData.GetInt32(0);
+                ids.Add(id);
+            }
+        });
+        return ids;
+    }
 }
 

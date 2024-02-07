@@ -4,6 +4,8 @@ using MaterialSkin2DotNet;
 using System.Data;
 using MaterialSkin2DotNet.Controls;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Gym_Management_system.Salary;
+using Gym_Management_system.Schedules;
 
 namespace Gym_Management_system
 {
@@ -11,17 +13,17 @@ namespace Gym_Management_system
     public partial class MainForm : Form
     {
         //fields
-        Dictionary<string, List<object>>?  plansdata  = new Dictionary<string, List<object>>();
+        Dictionary<string, List<object>>? plansdata = new Dictionary<string, List<object>>();
         SqlClass sql = new SqlClass();
 
         //userInfo
         string Username;
         string UserType;
-
+        int UserId;
         //default search filter
         string SearchFilter = "firstName";
 
-        public MainForm(string Username, string UserType)
+        public MainForm(string Username, string UserType, int Userid)
         {
             InitializeComponent();
             timer1.Start();
@@ -31,10 +33,12 @@ namespace Gym_Management_system
             //materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
             //materialSkinManager.ColorScheme = new ColorScheme(Primary.LightGreen900, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightGreen400, TextShade.BLACK);
 
-            
+
 
             this.Username = Username;
             this.UserType = UserType;
+            this.UserId = Userid;
+
             plansdata = sql.getPlansDshBdData() ?? null;
             UserNameLbl.Text = Username;
 
@@ -74,13 +78,82 @@ namespace Gym_Management_system
 
 
         // Tabs
+        //22, 26, 29
+        //private void Dashboard_Click(object sender, EventArgs e) => Switcher(new DashboardForm());
 
-        private void Dashboard_Click(object sender, EventArgs e) => Switcher(new DashboardForm());
-        private void iconButton2_Click(object sender, EventArgs e) => Switcher(new Attendance());
-        private void MainForm_Load(object sender, EventArgs e) => Switcher(new DashboardForm());
-        private void PlansBtn_Click(object sender, EventArgs e) => Switcher(new PlansDashboard( ref plansdata));
-        private void StaffBtn_Click(object sender, EventArgs e) => Switcher(new Staff());
-        private void MemberShips_Click(object sender, EventArgs e) => Switcher(new Memberships(plansdata));
+        private void RemoveActiveColor()
+        {
+            System.Collections.IList list = this.flowLayoutBtn.Controls;
+            for (int i = 1; i < list.Count; i++)
+            {
+                FontAwesome.Sharp.IconButton item = (FontAwesome.Sharp.IconButton)list[i];
+                if (item.GetType().ToString() == "FontAwesome.Sharp.IconButton")
+                {
+                    item.BackColor = Color.FromArgb(22, 26, 29);
+                    item.ForeColor = Color.White;
+                    item.IconColor = Color.White;
+                }
+            }
+        }
+
+        private void ActiveTab(FontAwesome.Sharp.IconButton control)
+        {
+            control.BackColor = Color.FromArgb(245, 243, 244);
+            control.ForeColor = Color.Black;
+            control.IconColor = Color.Black;
+        }
+        private void Dashboard_Click(object sender, EventArgs e)
+        {
+            RemoveActiveColor();
+            Switcher(new DashboardForm());
+            ActiveTab(Dashboard);
+        }
+
+        private void Attendance_Click(object sender, EventArgs e)
+        {
+            RemoveActiveColor();
+            Switcher(new Attendance());
+            ActiveTab(Attendance);
+        }
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            RemoveActiveColor();
+            Switcher(new DashboardForm());
+            ActiveTab(Dashboard);
+        }
+        private void PlansBtn_Click(object sender, EventArgs e)
+        {
+            RemoveActiveColor();
+            Switcher(new PlansDashboard(ref plansdata));
+            ActiveTab(PlansBtn);
+        }
+        private void StaffBtn_Click(object sender, EventArgs e)
+        {
+            RemoveActiveColor();
+            Switcher(new Staff());
+            ActiveTab(StaffBtn);
+        }
+        private void financial_Click(object sender, EventArgs e)
+        {
+            RemoveActiveColor();
+            Switcher(new Financial(UserId));
+            ActiveTab(financialBtn);
+        }
+        private void MemberShips_Click(object sender, EventArgs e)
+        {
+            RemoveActiveColor();
+            Switcher(new Memberships(plansdata));
+            ActiveTab(MemberShips);
+        }
+        private void ScheduleBtn_Click(object sender, EventArgs e)
+        {
+            RemoveActiveColor();
+            Switcher(new Schedule());
+            ActiveTab(ScheduleBtn);
+        }
+
+
+
 
 
         //Time
@@ -88,8 +161,6 @@ namespace Gym_Management_system
         {
             Timerlabel.Text = DateTime.Now.ToString("hh:mm tt");
         }
-
-
 
         //Close Window
         private void iconButton8_Click(object sender, EventArgs e)
@@ -102,7 +173,6 @@ namespace Gym_Management_system
 
         }
 
-
-
+        
     }
 }

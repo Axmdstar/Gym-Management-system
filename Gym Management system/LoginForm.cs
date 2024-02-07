@@ -10,6 +10,7 @@ namespace Gym_Management_system
         public string Username;
         public string Password;
         public string UserType;
+        public int UserId;
 
         Helper helper = new Helper();
         SqlClass sql = new SqlClass();
@@ -19,32 +20,29 @@ namespace Gym_Management_system
         {
             InitializeComponent();
             TableCreater.Init();
-
         }
 
 
         public void UserAuthentication(string username, string password)
         {
-            string q = $@"select username, password, staff_type From users as usr
+            string q = $@"select username, password, staff_type, usr.staff_id From users as usr
                           INNER JOIN staff_information as stf on usr.staff_id = stf.id
                           where username = '{username}' and password = '{password}';";
             helper.QueryReader(q, r =>
             {
                 if (r.msg.Contains("Error"))
                 {
-                    Console.WriteLine(r.msg);
-
                     MessageBox.Show("Incorrect usesrname or password");
                 }
                 else
                 {
                     r.ReaderData.Read();
                     UserType = r.ReaderData.GetString(2);
+                    UserId = r.ReaderData.GetInt16(3);
                     Auth = true;
                     this.Close();
                 }
             });
-
         }
 
         private void textBoxUserName_TextChanged(object sender, EventArgs e)
@@ -55,12 +53,10 @@ namespace Gym_Management_system
         private void textBoxPassword_TextChanged(object sender, EventArgs e)
         {
             string Password = textBoxPassword.Text;
-            //textBoxPassword.
+            
             if (string.IsNullOrEmpty(Password))
             {
                 textBoxPassword.ErrorMessage = "Password is required";
-
-                //PasswordErrorCheck.Visible = true;
             }
         }
 
@@ -80,8 +76,6 @@ namespace Gym_Management_system
             {
                 PasswordErrorCheck.Text = "Password is required";
                 PasswordErrorCheck.Visible = true;
-
-
             }
             else
             {

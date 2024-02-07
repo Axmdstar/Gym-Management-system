@@ -35,20 +35,20 @@
             EditMemberBtn = new FontAwesome.Sharp.IconButton();
             DeleteMemberBtn = new FontAwesome.Sharp.IconButton();
             flowLayoutPanel1 = new FlowLayoutPanel();
-            label4 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             flowLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // dataGridView1
             // 
+            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            dataGridView1.BackgroundColor = SystemColors.ButtonFace;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Dock = DockStyle.Bottom;
-            dataGridView1.Location = new Point(10, 389);
+            dataGridView1.Location = new Point(10, 81);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.RowTemplate.Height = 33;
-            dataGridView1.Size = new Size(1563, 368);
+            dataGridView1.Size = new Size(1563, 676);
             dataGridView1.TabIndex = 1;
             dataGridView1.CellContentClick += SelctedMemberRow;
             // 
@@ -164,21 +164,11 @@
             flowLayoutPanel1.Controls.Add(NewMemberBtn);
             flowLayoutPanel1.Controls.Add(EditMemberBtn);
             flowLayoutPanel1.Controls.Add(DeleteMemberBtn);
-            flowLayoutPanel1.Dock = DockStyle.Bottom;
-            flowLayoutPanel1.Location = new Point(10, 324);
+            flowLayoutPanel1.Dock = DockStyle.Top;
+            flowLayoutPanel1.Location = new Point(10, 10);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Size = new Size(1563, 65);
             flowLayoutPanel1.TabIndex = 9;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Open Sans Extrabold", 24F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.Location = new Point(28, 25);
-            label4.Name = "label4";
-            label4.Size = new Size(367, 65);
-            label4.TabIndex = 9;
-            label4.Text = "Memberships";
             // 
             // Memberships
             // 
@@ -188,7 +178,6 @@
             ClientSize = new Size(1583, 767);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(dataGridView1);
-            Controls.Add(label4);
             FormBorderStyle = FormBorderStyle.None;
             Name = "Memberships";
             Padding = new Padding(10);
@@ -197,7 +186,6 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             flowLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -209,6 +197,5 @@
         public FontAwesome.Sharp.IconButton EditMemberBtn;
         public FontAwesome.Sharp.IconButton DeleteMemberBtn;
         private FlowLayoutPanel flowLayoutPanel1;
-        private Label label4;
     }
 }
