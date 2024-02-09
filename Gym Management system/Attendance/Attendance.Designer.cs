@@ -28,64 +28,74 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            AttendanceGridView = new DataGridView();
-            panel1 = new Panel();
+            ViewThisMonth = new FontAwesome.Sharp.IconButton();
+            ViewToDay = new FontAwesome.Sharp.IconButton();
+            ReportBtn = new FontAwesome.Sharp.IconButton();
             panel2 = new Panel();
             AttSearch_TxtBox = new MaterialSkin2DotNet.Controls.MaterialMaskedTextBox();
             CheckedInBtn = new MaterialSkin2DotNet.Controls.MaterialFloatingActionButton();
-            ViewThisMonth = new FontAwesome.Sharp.IconButton();
-            ViewToDay = new FontAwesome.Sharp.IconButton();
-            ((System.ComponentModel.ISupportInitialize)AttendanceGridView).BeginInit();
-            panel1.SuspendLayout();
+            AttendanceGridView = new DataGridView();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)AttendanceGridView).BeginInit();
             SuspendLayout();
             // 
-            // label1
+            // ViewThisMonth
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Open Sans Extrabold", 24F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(36, 19);
-            label1.Name = "label1";
-            label1.Size = new Size(318, 65);
-            label1.TabIndex = 0;
-            label1.Text = "Attendance";
+            ViewThisMonth.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            ViewThisMonth.FlatAppearance.BorderSize = 0;
+            ViewThisMonth.FlatStyle = FlatStyle.Flat;
+            ViewThisMonth.IconChar = FontAwesome.Sharp.IconChar.CalendarDays;
+            ViewThisMonth.IconColor = Color.Black;
+            ViewThisMonth.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            ViewThisMonth.Location = new Point(1389, 29);
+            ViewThisMonth.Name = "ViewThisMonth";
+            ViewThisMonth.Size = new Size(62, 48);
+            ViewThisMonth.TabIndex = 3;
+            ViewThisMonth.UseVisualStyleBackColor = true;
+            ViewThisMonth.Click += ViewThisMonth_Click;
             // 
-            // AttendanceGridView
+            // ViewToDay
             // 
-            AttendanceGridView.AllowUserToAddRows = false;
-            AttendanceGridView.AllowUserToDeleteRows = false;
-            AttendanceGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            AttendanceGridView.BackgroundColor = SystemColors.Control;
-            AttendanceGridView.BorderStyle = BorderStyle.Fixed3D;
-            AttendanceGridView.CellBorderStyle = DataGridViewCellBorderStyle.Raised;
-            AttendanceGridView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            AttendanceGridView.ColumnHeadersHeight = 32;
-            AttendanceGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            AttendanceGridView.Dock = DockStyle.Fill;
-            AttendanceGridView.Location = new Point(0, 0);
-            AttendanceGridView.Name = "AttendanceGridView";
-            AttendanceGridView.ReadOnly = true;
-            AttendanceGridView.RowHeadersWidth = 80;
-            AttendanceGridView.Size = new Size(1431, 708);
-            AttendanceGridView.TabIndex = 1;
+            ViewToDay.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            ViewToDay.FlatAppearance.BorderSize = 0;
+            ViewToDay.FlatStyle = FlatStyle.Flat;
+            ViewToDay.IconChar = FontAwesome.Sharp.IconChar.CalendarCheck;
+            ViewToDay.IconColor = Color.Black;
+            ViewToDay.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            ViewToDay.Location = new Point(1321, 28);
+            ViewToDay.Name = "ViewToDay";
+            ViewToDay.Size = new Size(62, 48);
+            ViewToDay.TabIndex = 4;
+            ViewToDay.UseVisualStyleBackColor = true;
+            ViewToDay.Click += ViewToDay_Click;
             // 
-            // panel1
+            // ReportBtn
             // 
-            panel1.Controls.Add(panel2);
-            panel1.Controls.Add(AttendanceGridView);
-            panel1.Dock = DockStyle.Bottom;
-            panel1.Location = new Point(10, 118);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1431, 708);
-            panel1.TabIndex = 2;
+            ReportBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            ReportBtn.AutoSize = true;
+            ReportBtn.BackColor = Color.FromArgb(255, 64, 129);
+            ReportBtn.FlatAppearance.BorderSize = 0;
+            ReportBtn.FlatStyle = FlatStyle.Flat;
+            ReportBtn.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            ReportBtn.ForeColor = Color.White;
+            ReportBtn.IconChar = FontAwesome.Sharp.IconChar.None;
+            ReportBtn.IconColor = Color.Black;
+            ReportBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            ReportBtn.Location = new Point(10, 772);
+            ReportBtn.Name = "ReportBtn";
+            ReportBtn.Size = new Size(112, 54);
+            ReportBtn.TabIndex = 11;
+            ReportBtn.Text = "Report";
+            ReportBtn.UseVisualStyleBackColor = false;
+            ReportBtn.Click += ReportBtn_Click;
             // 
             // panel2
             // 
+            panel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panel2.BackColor = Color.White;
             panel2.Controls.Add(AttSearch_TxtBox);
             panel2.Controls.Add(CheckedInBtn);
-            panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(0, 631);
+            panel2.Location = new Point(10, 96);
             panel2.Name = "panel2";
             panel2.Size = new Size(1431, 77);
             panel2.TabIndex = 10;
@@ -146,64 +156,53 @@
             CheckedInBtn.UseVisualStyleBackColor = true;
             CheckedInBtn.Click += CheckedInBtn_Click;
             // 
-            // ViewThisMonth
+            // AttendanceGridView
             // 
-            ViewThisMonth.FlatAppearance.BorderSize = 0;
-            ViewThisMonth.FlatStyle = FlatStyle.Flat;
-            ViewThisMonth.IconChar = FontAwesome.Sharp.IconChar.CalendarDays;
-            ViewThisMonth.IconColor = Color.Black;
-            ViewThisMonth.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            ViewThisMonth.Location = new Point(1389, 29);
-            ViewThisMonth.Name = "ViewThisMonth";
-            ViewThisMonth.Size = new Size(62, 48);
-            ViewThisMonth.TabIndex = 3;
-            ViewThisMonth.UseVisualStyleBackColor = true;
-            ViewThisMonth.Click += ViewThisMonth_Click;
-            // 
-            // ViewToDay
-            // 
-            ViewToDay.FlatAppearance.BorderSize = 0;
-            ViewToDay.FlatStyle = FlatStyle.Flat;
-            ViewToDay.IconChar = FontAwesome.Sharp.IconChar.CalendarCheck;
-            ViewToDay.IconColor = Color.Black;
-            ViewToDay.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            ViewToDay.Location = new Point(1321, 28);
-            ViewToDay.Name = "ViewToDay";
-            ViewToDay.Size = new Size(62, 48);
-            ViewToDay.TabIndex = 4;
-            ViewToDay.UseVisualStyleBackColor = true;
-            ViewToDay.Click += ViewToDay_Click;
+            AttendanceGridView.AllowUserToAddRows = false;
+            AttendanceGridView.AllowUserToDeleteRows = false;
+            AttendanceGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            AttendanceGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            AttendanceGridView.BackgroundColor = Color.White;
+            AttendanceGridView.BorderStyle = BorderStyle.Fixed3D;
+            AttendanceGridView.CellBorderStyle = DataGridViewCellBorderStyle.Raised;
+            AttendanceGridView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            AttendanceGridView.ColumnHeadersHeight = 32;
+            AttendanceGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            AttendanceGridView.Location = new Point(10, 179);
+            AttendanceGridView.Name = "AttendanceGridView";
+            AttendanceGridView.ReadOnly = true;
+            AttendanceGridView.RowHeadersWidth = 80;
+            AttendanceGridView.Size = new Size(1431, 587);
+            AttendanceGridView.TabIndex = 1;
             // 
             // Attendance
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(245, 243, 244);
+            BackColor = SystemColors.ButtonFace;
             ClientSize = new Size(1451, 836);
+            Controls.Add(AttendanceGridView);
+            Controls.Add(ReportBtn);
+            Controls.Add(panel2);
             Controls.Add(ViewToDay);
             Controls.Add(ViewThisMonth);
-            Controls.Add(panel1);
-            Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "Attendance";
             Padding = new Padding(10);
             Load += attendance_Load;
-            ((System.ComponentModel.ISupportInitialize)AttendanceGridView).EndInit();
-            panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)AttendanceGridView).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Label label1;
-        public DataGridView AttendanceGridView;
-        private Panel panel1;
-        private Panel panel2;
-        public MaterialSkin2DotNet.Controls.MaterialFloatingActionButton CheckedInBtn;
-        public MaterialSkin2DotNet.Controls.MaterialMaskedTextBox AttSearch_TxtBox;
         public FontAwesome.Sharp.IconButton ViewThisMonth;
         public FontAwesome.Sharp.IconButton ViewToDay;
+        private FontAwesome.Sharp.IconButton ReportBtn;
+        private Panel panel2;
+        public MaterialSkin2DotNet.Controls.MaterialMaskedTextBox AttSearch_TxtBox;
+        public MaterialSkin2DotNet.Controls.MaterialFloatingActionButton CheckedInBtn;
+        public DataGridView AttendanceGridView;
     }
 }

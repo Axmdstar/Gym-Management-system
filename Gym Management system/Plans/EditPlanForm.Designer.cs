@@ -148,6 +148,7 @@
             PriceTxtBox.TrailingIcon = null;
             PriceTxtBox.UseSystemPasswordChar = false;
             PriceTxtBox.ValidatingType = null;
+            PriceTxtBox.TextChanged += PriceTxtBox_TextChange;
             // 
             // SignUPFeeTxtBox
             // 
@@ -191,6 +192,7 @@
             SignUPFeeTxtBox.TrailingIcon = null;
             SignUPFeeTxtBox.UseSystemPasswordChar = false;
             SignUPFeeTxtBox.ValidatingType = null;
+            SignUPFeeTxtBox.TextChanged += SignUPFeeTxtBox_TextChange;
             // 
             // panel1
             // 

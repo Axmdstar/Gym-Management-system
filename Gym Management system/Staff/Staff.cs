@@ -81,5 +81,11 @@ namespace Gym_Management_system
         {
 
         }
+
+        private void ReportBtn_Click(object sender, EventArgs e)
+        {
+            ReportForm report = new ReportForm(dataGridView1);
+            report.ShowDialog();
+        }
     }
 }

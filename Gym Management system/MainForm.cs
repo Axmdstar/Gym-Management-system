@@ -152,6 +152,11 @@ namespace Gym_Management_system
             ActiveTab(ScheduleBtn);
         }
 
+        private void Reporttab_Click(object sender, EventArgs e)
+        {
+            
+        }
+
 
 
 

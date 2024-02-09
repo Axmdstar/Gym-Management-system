@@ -42,6 +42,7 @@
             TotalRevenue = new Label();
             label6 = new Label();
             panel1 = new Panel();
+            ReportBtn = new FontAwesome.Sharp.IconButton();
             StaffIDcombobox = new MaterialSkin2DotNet.Controls.MaterialComboBox();
             StaffExpenseBtn = new MaterialSkin2DotNet.Controls.MaterialFloatingActionButton();
             Stafffinance = new DataGridView();
@@ -53,6 +54,7 @@
             label5 = new Label();
             ExpenseTotal = new Label();
             panel4 = new Panel();
+            iconButton1 = new FontAwesome.Sharp.IconButton();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)PayedGrid).BeginInit();
             ((System.ComponentModel.ISupportInitialize)NonPayedGrid).BeginInit();
@@ -62,7 +64,9 @@
             // 
             // panel2
             // 
+            panel2.BackColor = Color.White;
             panel2.BorderStyle = BorderStyle.FixedSingle;
+            panel2.Controls.Add(iconButton1);
             panel2.Controls.Add(MemPayed);
             panel2.Controls.Add(PayedGrid);
             panel2.Controls.Add(NonPayedGrid);
@@ -228,7 +232,9 @@
             // 
             // panel1
             // 
+            panel1.BackColor = Color.White;
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(ReportBtn);
             panel1.Controls.Add(StaffIDcombobox);
             panel1.Controls.Add(StaffExpenseBtn);
             panel1.Controls.Add(Stafffinance);
@@ -243,6 +249,26 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1400, 647);
             panel1.TabIndex = 12;
+            // 
+            // ReportBtn
+            // 
+            ReportBtn.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            ReportBtn.AutoSize = true;
+            ReportBtn.BackColor = Color.FromArgb(255, 64, 129);
+            ReportBtn.FlatAppearance.BorderSize = 0;
+            ReportBtn.FlatStyle = FlatStyle.Flat;
+            ReportBtn.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            ReportBtn.ForeColor = Color.White;
+            ReportBtn.IconChar = FontAwesome.Sharp.IconChar.None;
+            ReportBtn.IconColor = Color.Black;
+            ReportBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            ReportBtn.Location = new Point(18, 575);
+            ReportBtn.Name = "ReportBtn";
+            ReportBtn.Size = new Size(112, 54);
+            ReportBtn.TabIndex = 16;
+            ReportBtn.Text = "Report";
+            ReportBtn.UseVisualStyleBackColor = false;
+            ReportBtn.Click += ReportBtn_Click;
             // 
             // StaffIDcombobox
             // 
@@ -386,6 +412,26 @@
             panel4.Size = new Size(1423, 96);
             panel4.TabIndex = 15;
             // 
+            // iconButton1
+            // 
+            iconButton1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            iconButton1.AutoSize = true;
+            iconButton1.BackColor = Color.FromArgb(255, 64, 129);
+            iconButton1.FlatAppearance.BorderSize = 0;
+            iconButton1.FlatStyle = FlatStyle.Flat;
+            iconButton1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            iconButton1.ForeColor = Color.White;
+            iconButton1.IconChar = FontAwesome.Sharp.IconChar.None;
+            iconButton1.IconColor = Color.Black;
+            iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconButton1.Location = new Point(23, 624);
+            iconButton1.Name = "iconButton1";
+            iconButton1.Size = new Size(112, 54);
+            iconButton1.TabIndex = 20;
+            iconButton1.Text = "Report";
+            iconButton1.UseVisualStyleBackColor = false;
+            iconButton1.Click += iconButton1_Click;
+            // 
             // Financial
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -440,5 +486,7 @@
         private Panel panel4;
         private MaterialSkin2DotNet.Controls.MaterialComboBox StaffIDcombobox;
         private MaterialSkin2DotNet.Controls.MaterialFloatingActionButton StaffExpenseBtn;
+        private FontAwesome.Sharp.IconButton ReportBtn;
+        private FontAwesome.Sharp.IconButton iconButton1;
     }
 }

@@ -29,10 +29,9 @@
         private void InitializeComponent()
         {
             DshSearch_TxtBox = new TextBox();
-            label4 = new Label();
-            panel3 = new Panel();
+            Panel3 = new Panel();
+            DshSchGrid = new DataGridView();
             label3 = new Label();
-            label6 = new Label();
             panel2 = new Panel();
             AttGridView = new DataGridView();
             panel4 = new Panel();
@@ -49,7 +48,8 @@
             panel6 = new Panel();
             label9 = new Label();
             AttToday = new Label();
-            panel3.SuspendLayout();
+            Panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)DshSchGrid).BeginInit();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)AttGridView).BeginInit();
             panel4.SuspendLayout();
@@ -68,48 +68,39 @@
             DshSearch_TxtBox.TabIndex = 3;
             DshSearch_TxtBox.TextChanged += dshSearch_TxtBox_TextChanged;
             // 
-            // label4
+            // Panel3
             // 
-            label4.FlatStyle = FlatStyle.Flat;
-            label4.Font = new Font("Open Sans Extrabold", 24F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.Location = new Point(20, 17);
-            label4.Margin = new Padding(0);
-            label4.Name = "label4";
-            label4.Size = new Size(302, 64);
-            label4.TabIndex = 5;
-            label4.Text = "DashBoard";
-            label4.TextAlign = ContentAlignment.MiddleLeft;
+            Panel3.BackColor = Color.White;
+            Panel3.Controls.Add(DshSchGrid);
+            Panel3.Controls.Add(label3);
+            Panel3.Location = new Point(691, 387);
+            Panel3.Margin = new Padding(2);
+            Panel3.Name = "Panel3";
+            Panel3.Size = new Size(695, 397);
+            Panel3.TabIndex = 1;
             // 
-            // panel3
+            // DshSchGrid
             // 
-            panel3.BackColor = Color.White;
-            panel3.Controls.Add(label3);
-            panel3.Location = new Point(691, 387);
-            panel3.Margin = new Padding(2);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(695, 397);
-            panel3.TabIndex = 1;
+            DshSchGrid.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            DshSchGrid.BackgroundColor = Color.White;
+            DshSchGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DshSchGrid.Location = new Point(3, 50);
+            DshSchGrid.Name = "DshSchGrid";
+            DshSchGrid.RowHeadersWidth = 62;
+            DshSchGrid.RowTemplate.Height = 33;
+            DshSchGrid.Size = new Size(689, 344);
+            DshSchGrid.TabIndex = 3;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Font = new Font("Century Gothic", 11F, FontStyle.Bold, GraphicsUnit.Point);
             label3.Location = new Point(14, 11);
             label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
-            label3.Size = new Size(103, 26);
+            label3.Size = new Size(111, 26);
             label3.TabIndex = 2;
             label3.Text = "Schedule";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(53, 958);
-            label6.Margin = new Padding(2, 0, 2, 0);
-            label6.Name = "label6";
-            label6.Size = new Size(59, 25);
-            label6.TabIndex = 6;
-            label6.Text = "label6";
             // 
             // panel2
             // 
@@ -189,11 +180,11 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Century Gothic", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(24, 127);
+            label1.Font = new Font("Century Gothic", 24F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(24, 41);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(163, 38);
+            label1.Size = new Size(243, 56);
             label1.TabIndex = 0;
             label1.Text = "Summary";
             // 
@@ -216,7 +207,7 @@
             panel1.Controls.Add(label5);
             panel1.Controls.Add(TotalMember);
             panel1.Controls.Add(NewMemberBtn);
-            panel1.Location = new Point(27, 185);
+            panel1.Location = new Point(27, 124);
             panel1.Name = "panel1";
             panel1.Size = new Size(298, 93);
             panel1.TabIndex = 9;
@@ -239,7 +230,7 @@
             panel5.BackgroundImageLayout = ImageLayout.None;
             panel5.Controls.Add(label7);
             panel5.Controls.Add(StaffTotal);
-            panel5.Location = new Point(685, 187);
+            panel5.Location = new Point(685, 126);
             panel5.Name = "panel5";
             panel5.Size = new Size(194, 93);
             panel5.TabIndex = 10;
@@ -275,7 +266,7 @@
             panel6.BackgroundImageLayout = ImageLayout.None;
             panel6.Controls.Add(label9);
             panel6.Controls.Add(AttToday);
-            panel6.Location = new Point(346, 186);
+            panel6.Location = new Point(346, 125);
             panel6.Name = "panel6";
             panel6.Size = new Size(317, 93);
             panel6.TabIndex = 11;
@@ -312,20 +303,19 @@
             AutoScroll = true;
             BackColor = Color.FromArgb(245, 243, 244);
             ClientSize = new Size(1389, 994);
-            Controls.Add(label6);
-            Controls.Add(panel3);
+            Controls.Add(Panel3);
             Controls.Add(panel2);
             Controls.Add(panel6);
             Controls.Add(panel5);
             Controls.Add(panel1);
-            Controls.Add(label4);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(2);
             Name = "DashboardForm";
             Load += Dashboard_Load;
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
+            Panel3.ResumeLayout(false);
+            Panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)DshSchGrid).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)AttGridView).EndInit();
@@ -343,9 +333,7 @@
 
         #endregion
         public TextBox DshSearch_TxtBox;
-        public Label label4;
-        public Panel panel3;
-        public Label label6;
+        public Panel Panel3;
         public Label label3;
         public Panel panel2;
         public Label label2;
@@ -365,5 +353,6 @@
         public Label AttToday;
         public Label StaffTotal;
         public DataGridView AttGridView;
+        private DataGridView DshSchGrid;
     }
 }

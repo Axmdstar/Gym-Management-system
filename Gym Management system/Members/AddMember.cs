@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlTypes;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -30,7 +31,7 @@ namespace Gym_Management_system
         //Memberships member = new Memberships();
 
 
-        SqlClass sqlclass = new SqlClass();
+        SqlClass sqlClass = new SqlClass();
 
         public AddMember(Dictionary<string, List<object>>? PlanData)
         {
@@ -39,7 +40,6 @@ namespace Gym_Management_system
 
             foreach (List<object> value in PlanData.Values)
             {
-                //Console.WriteLine(value[9]);
                 PlansComboBox.Items.Add(value[0]);
             }
         }
@@ -109,14 +109,16 @@ namespace Gym_Management_system
         private void AddStaffBtn_Click(object sender, EventArgs e)
         {
 
-            string query = $@"INSERT into Customer_info(firstname, lastname, dob, Tell, email, sex, weight, city, village, emmergence_contact, emmergency_name, emergency_relation, planId)
+            string query = $@"INSERT into Customer_info(firstname, lastname, dob, Tell, email, sex, weight, city, village, emergency_contact, emergency_name, emergency_relation, planId)
               VALUES('{FirstName}','{LastName}',Date('{Dob}'),'{Tell}','{Email}','{Sex}',{Weight},'{City}','{Village}','{Em_Contact}','{Em_Tell}','{Em_Relation}',{PlanId});";
             
 
-            sqlclass.ExcuteQuery(query);
+            
+            MessageBox.Show(sqlClass.ExcuteQuery(query));
+
 
         }
 
-        
+
     }
 }

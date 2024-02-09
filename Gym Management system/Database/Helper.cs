@@ -50,7 +50,7 @@ namespace Gym_Management_system.Database
                     cmd.CommandText = query;
                     SQLiteDataReader reader = cmd.ExecuteReader();
 
-                    Result r = new (reader, "Succesfull");
+                    Result r = new (reader, "Saved");
                     processResults(r);
                 }
             }
@@ -78,7 +78,7 @@ namespace Gym_Management_system.Database
                     {
                         connection.Open();
                         cmd.ExecuteNonQuery();
-                        Result r = new Result(null, "Succesfull");
+                        Result r = new Result(null, "Saved");
                         processResults(r);
                     } ;
                     

@@ -14,8 +14,8 @@ namespace Gym_Management_system
     public partial class EditPlanForm : Form
     {
         string planName;
-        string ?planType;
-        string ?Trainer;
+        string? planType;
+        string? Trainer;
         string timeOut;
         string timeIn;
         float price;
@@ -43,8 +43,8 @@ namespace Gym_Management_system
 
 
         private void PlanNameTxtBox_TextChange(object sender, EventArgs e) => planName = PlanNameTxtBox.Text;
-        private void SignUPFeeTxtBox_TextChange(object sender, EventArgs e) => SignUpfee = Convert.ToSingle(SignUPFeeTxtBox.Text);
-        private void PriceTxtBox_TextChange(object sender, EventArgs e) => price = Convert.ToSingle(PriceTxtBox.Text);
+        private void SignUPFeeTxtBox_TextChange(object sender, EventArgs e) => float.TryParse(SignUPFeeTxtBox.Text, out SignUpfee);
+        private void PriceTxtBox_TextChange(object sender, EventArgs e) => float.TryParse(PriceTxtBox.Text, out price);
         private void TimeOut_ValueChanged(object sender, EventArgs e) => timeOut = TimeOut.Text;
         private void TimeIn_ValueChanged(object sender, EventArgs e) => timeIn = TimeIn.Text;
         private void TrainerList_SelectedIndexChanged(object sender, EventArgs e) => Trainer = TrainerList.SelectedItem.ToString();
@@ -70,13 +70,12 @@ namespace Gym_Management_system
                             SET time_in = time('{timeIn}'),
                                 time_out = time('{timeOut}')
                             where plan_id = {planid}";
-            sqlClass.ExcuteQuery(query);
+            MessageBox.Show(sqlClass.ExcuteQuery(query));
         }
 
 
         private void EditPlanForm_Load(object sender, EventArgs e)
         {
-
             PlanNameTxtBox.Text = PlanData[0].ToString();
             SignUPFeeTxtBox.Text = PlanData[1].ToString();
             PriceTxtBox.Text = PlanData[2].ToString();
@@ -96,5 +95,6 @@ namespace Gym_Management_system
             TrainerList.SelectedItem = PlanData[4].ToString();
         }
 
+        
     }
 }

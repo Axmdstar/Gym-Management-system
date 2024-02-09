@@ -35,6 +35,7 @@
             EditMemberBtn = new FontAwesome.Sharp.IconButton();
             DeleteMemberBtn = new FontAwesome.Sharp.IconButton();
             flowLayoutPanel1 = new FlowLayoutPanel();
+            ReportBtn = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             flowLayoutPanel1.SuspendLayout();
             SuspendLayout();
@@ -48,7 +49,7 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.RowTemplate.Height = 33;
-            dataGridView1.Size = new Size(1563, 676);
+            dataGridView1.Size = new Size(1563, 621);
             dataGridView1.TabIndex = 1;
             dataGridView1.CellContentClick += SelctedMemberRow;
             // 
@@ -170,12 +171,33 @@
             flowLayoutPanel1.Size = new Size(1563, 65);
             flowLayoutPanel1.TabIndex = 9;
             // 
+            // ReportBtn
+            // 
+            ReportBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            ReportBtn.AutoSize = true;
+            ReportBtn.BackColor = Color.FromArgb(255, 64, 129);
+            ReportBtn.FlatAppearance.BorderSize = 0;
+            ReportBtn.FlatStyle = FlatStyle.Flat;
+            ReportBtn.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            ReportBtn.ForeColor = Color.White;
+            ReportBtn.IconChar = FontAwesome.Sharp.IconChar.None;
+            ReportBtn.IconColor = Color.Black;
+            ReportBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            ReportBtn.Location = new Point(10, 708);
+            ReportBtn.Name = "ReportBtn";
+            ReportBtn.Size = new Size(112, 54);
+            ReportBtn.TabIndex = 10;
+            ReportBtn.Text = "Report";
+            ReportBtn.UseVisualStyleBackColor = false;
+            ReportBtn.Click += ReportBtn_Click;
+            // 
             // Memberships
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(245, 243, 244);
-            ClientSize = new Size(1583, 767);
+            ClientSize = new Size(1583, 785);
+            Controls.Add(ReportBtn);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(dataGridView1);
             FormBorderStyle = FormBorderStyle.None;
@@ -186,6 +208,7 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             flowLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -197,5 +220,6 @@
         public FontAwesome.Sharp.IconButton EditMemberBtn;
         public FontAwesome.Sharp.IconButton DeleteMemberBtn;
         private FlowLayoutPanel flowLayoutPanel1;
+        private FontAwesome.Sharp.IconButton ReportBtn;
     }
 }

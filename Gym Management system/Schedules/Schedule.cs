@@ -28,5 +28,11 @@ namespace Gym_Management_system.Schedules
         {
             ScheduleGrid.DataSource = sql.SchedulesList();
         }
+
+        private void ReportBtn_Click(object sender, EventArgs e)
+        {
+            ReportForm reportForm = new ReportForm(ScheduleGrid);
+            reportForm.ShowDialog();
+        }
     }
 }

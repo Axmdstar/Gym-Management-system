@@ -21,10 +21,7 @@ namespace Gym_Management_system
         public PlansDashboard(ref Dictionary<string, List<object>>? plansdata)
         {
             InitializeComponent();
-            PlansComboBox.SelectedIndexChanged += PlansComboBox_SelectedIndexChanged;
-            AddPlan.Click += AddPlan_Click;
-            EditPlan.Click += EditPlan_Click;
-            DeletePlan.Click += DeletePlan_Click;
+            this.plansdata = plansdata;
         }
 
         private void Plans_Load(object sender, EventArgs e)
@@ -44,6 +41,8 @@ namespace Gym_Management_system
             }
         }
 
+
+
         // Events
         public void PlansComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -62,6 +61,7 @@ namespace Gym_Management_system
 
         private void PlansClosedEvent(object sender, EventArgs e)
         {
+            Console.WriteLine("Closed Add event");
             PlansComboBox.Items.Clear();
             plansdata = sql.getPlansDshBdData() ?? null;
             Plans_Load(sender, e);
@@ -97,5 +97,20 @@ namespace Gym_Management_system
             }
         }
 
+        private void ReportBtn_Click(object sender, EventArgs e)
+        {
+            DataGridView PlanGrid = new DataGridView();
+            PlanGrid.DataSource = sql.PlansReportList();
+
+            if (PlanGrid.Columns.Count < 0)
+            {
+                Console.WriteLine("Failed");
+            }
+            else
+            {
+                ReportForm report = new ReportForm(PlanGrid);
+                report.ShowDialog();
+            }
+        }
     }
 }

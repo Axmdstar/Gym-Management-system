@@ -69,8 +69,14 @@ namespace Gym_Management_system
                 AttendanceGridView.DataSource = sql.ViewThisMonth(memberId);
             }
             else
-            { MessageBox.Show("error"); }
+            { MessageBox.Show("Select a member id to view this Month attendance", "Info"); }
         }
         private void ViewToDay_Click(object sender, EventArgs e) => attendance_Load(sender, e);
+
+        private void ReportBtn_Click(object sender, EventArgs e)
+        {
+            ReportForm reportform = new ReportForm(AttendanceGridView);
+            reportform.ShowDialog();
+        }
     }
 }

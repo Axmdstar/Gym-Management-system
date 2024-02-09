@@ -39,9 +39,9 @@ namespace Gym_Management_system.Salary
             ThisMonRev.Text = FinanceSummary["MonRev"].ToString() + "$";
             ThisYearRev.Text = FinanceSummary["YearRev"].ToString() + "$";
 
+
             PayedGrid.DataSource = sql.PayedMember();
             NonPayedGrid.DataSource = sql.NonPayedMember();
-
             Stafffinance.DataSource = sql.StaffSalaryGrid();
 
             FillComboIds();
@@ -102,6 +102,19 @@ namespace Gym_Management_system.Salary
         private void Stafffinance_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void ReportBtn_Click(object sender, EventArgs e)
+        {
+            ReportForm reportform = new ReportForm(Stafffinance);
+            reportform.ShowDialog();
+        }
+
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            List<DataGridView> gridList = new List<DataGridView> { PayedGrid, NonPayedGrid };
+            ReportForm reportform = new ReportForm(gridList);
+            reportform.ShowDialog();
         }
     }
 }

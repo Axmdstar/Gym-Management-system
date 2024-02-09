@@ -19,12 +19,14 @@ public class SqlClass
 
 
     //QueryExcuter Method
-    public void ExcuteQuery(string query)
+    public string ExcuteQuery(string query)
     {
+        string msg = "";
         helper.QueryWriter(query, r =>
         {
-            Console.WriteLine(r.msg);
+            msg = r.msg;
         });
+        return msg;
     }
 
 
@@ -41,7 +43,6 @@ public class SqlClass
         {
             if (r.ReaderData.HasRows)
             {
-
                 while (r.ReaderData.Read())
                 {
                     // Use the GetValue method and handle null values
@@ -319,7 +320,7 @@ public class SqlClass
 	                        att.AttDate,
 	                        att.attendanced  from attendance as att
                             inner join Customer_info as cus on cus.id = att.customer_id
-                            WHERE date(AttDate) >= date('now', 'start of month') and cus.id = {memberid}
+                            WHERE strftime('%m', date(att.AttDate)) = strftime('%m', date('now')) and cus.id = {memberid}
                             order by AttDate ASC";
 
         List<AttendanceModal> AttendanceList = new List<AttendanceModal>();
@@ -501,7 +502,7 @@ public class SqlClass
     
     public List<PayementStatus> PayedMember()
     {
-        string query = @"SELECT  p.price , cus.firstname||' '||cus.lastname, cus.id,
+        string query = @"SELECT  ifnull(p.price,0.0), cus.firstname||' '||cus.lastname, cus.id,
                             CASE when strftime('%m', date(r.date_created)) = strftime('%m', date('now')) 
 	                        THEN 'Payed' 
 	                        ELSE 'Not Payed' 
@@ -511,8 +512,8 @@ public class SqlClass
                             WHERE strftime('%m', date(r.date_created)) = strftime('%m', date('now')) OR r.date_created IS NULL;";
 
         List<PayementStatus> PayedList = new List<PayementStatus>();
+        Console.WriteLine(query);
         helper.QueryReader(query, r => {
-
             while (r.ReaderData.Read())
             {
                 float price = r.ReaderData.GetFloat(0);
@@ -532,7 +533,7 @@ public class SqlClass
 
     public List<PayementStatus> NonPayedMember()
     {
-        string query = @"SELECT p.price,cus.firstname||' '||cus.lastname,cus.id,
+        string query = @"SELECT ifnull(p.price,0.0),cus.firstname||' '||cus.lastname,cus.id,
                         CASE 
                             WHEN max(strftime('%m', date(r.date_created))) = strftime('%m', date('now')) THEN 'Payed'
                             ELSE 'Not Payed'
@@ -629,5 +630,48 @@ public class SqlClass
         });
         return ids;
     }
+
+    public struct PlansReport
+    {
+        public int id { get; set; }
+        public string plan_name { get; set; }
+        public float signUp_fee { get; set; }
+        public float price { get; set; }
+        public string plan_type { get; set; }
+
+        public PlansReport(int id, string plan_name, float signUp_fee, float price, string plan_type)
+        {
+            this.id = id;
+            this.plan_name = plan_name;
+            this.signUp_fee = signUp_fee;
+            this.price = price;
+            this.plan_type = plan_type;
+        }
+    }
+
+    public List<PlansReport> PlansReportList()
+    {
+        string query = @"SELECT id, plan_name, signup_fee, price, plan_type  from plans";
+
+        List<PlansReport> plansReports = new List<PlansReport>();
+
+        helper.QueryReader(query, r =>
+        {
+            while (r.ReaderData.Read())
+            {
+                int id = r.ReaderData.GetInt16(0);
+                string planame = r.ReaderData.GetString(1);
+                float signupfee = r.ReaderData.GetFloat(2);
+                float price = r.ReaderData.GetFloat(3);
+                string plantype = r.ReaderData.GetString(4);
+
+                PlansReport plansReport = new PlansReport(id, planame, signupfee, price, plantype);
+                plansReports.Add(plansReport);
+            }
+        });
+        return plansReports;
+
+    }
+
 }
 

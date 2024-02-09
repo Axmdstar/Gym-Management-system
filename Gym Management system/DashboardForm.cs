@@ -21,6 +21,7 @@ namespace Gym_Management_system
             InitializeComponent();
         }
 
+
         private void dshCheckedInBtn_Click(object sender, EventArgs e)
         {
             if (memberId != 0)
@@ -31,12 +32,15 @@ namespace Gym_Management_system
             DshSearch_TxtBox.Clear();
             Dashboard_Load(sender, e);
         }
+
+
         private void NewMemberBtn_Click(object sender, EventArgs e)
         {
             AddMember addmember = new AddMember(plansdata);
             //addmember.FormClosed += 
             addmember.ShowDialog();
         }
+
         private void dshSearch_TxtBox_TextChanged(object sender, EventArgs e)
         {
             if (DshSearch_TxtBox.Text != "")
@@ -57,7 +61,8 @@ namespace Gym_Management_system
                 memberId = 0;
             }
         }
-        //private void flowLayoutPanel2_Paint(object sender, PaintEventArgs e) { }
+
+        
         private void Dashboard_Load(object sender, EventArgs e)
         {
             Dictionary<string, int> counts = sql.dashboardSummary();
@@ -68,6 +73,8 @@ namespace Gym_Management_system
 
             //Attendance
             AttGridView.DataSource = sql.GetAttendLast5();
+            DshSchGrid.DataSource = sql.SchedulesList();
+             
         }
 
 

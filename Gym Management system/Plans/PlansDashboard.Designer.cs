@@ -53,6 +53,7 @@ namespace Gym_Management_system
             DeletePlan = new FontAwesome.Sharp.IconButton();
             panel1 = new Panel();
             PlansComboBox = new MaterialSkin2DotNet.Controls.MaterialComboBox();
+            ReportBtn = new FontAwesome.Sharp.IconButton();
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -332,6 +333,26 @@ namespace Gym_Management_system
             PlansComboBox.TabIndex = 9;
             PlansComboBox.SelectedIndexChanged += PlansComboBox_SelectedIndexChanged;
             // 
+            // ReportBtn
+            // 
+            ReportBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            ReportBtn.AutoSize = true;
+            ReportBtn.BackColor = Color.FromArgb(255, 64, 129);
+            ReportBtn.FlatAppearance.BorderSize = 0;
+            ReportBtn.FlatStyle = FlatStyle.Flat;
+            ReportBtn.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            ReportBtn.ForeColor = Color.White;
+            ReportBtn.IconChar = FontAwesome.Sharp.IconChar.None;
+            ReportBtn.IconColor = Color.Black;
+            ReportBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            ReportBtn.Location = new Point(23, 662);
+            ReportBtn.Name = "ReportBtn";
+            ReportBtn.Size = new Size(112, 54);
+            ReportBtn.TabIndex = 12;
+            ReportBtn.Text = "Report";
+            ReportBtn.UseVisualStyleBackColor = false;
+            ReportBtn.Click += ReportBtn_Click;
+            // 
             // PlansDashboard
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -339,6 +360,7 @@ namespace Gym_Management_system
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackColor = Color.FromArgb(245, 243, 244);
             ClientSize = new Size(1382, 728);
+            Controls.Add(ReportBtn);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "PlansDashboard";
@@ -349,6 +371,7 @@ namespace Gym_Management_system
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -373,5 +396,6 @@ namespace Gym_Management_system
         public Label TrainerResult;
         public Label TphoneResult;
         public Label S_EtimeResult;
+        private FontAwesome.Sharp.IconButton ReportBtn;
     }
 }

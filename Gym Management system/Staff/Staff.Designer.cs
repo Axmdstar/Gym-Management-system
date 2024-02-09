@@ -36,6 +36,7 @@
             DeleteStaffBtn = new FontAwesome.Sharp.IconButton();
             flowLayoutPanel1 = new FlowLayoutPanel();
             panel1 = new Panel();
+            ReportBtn = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             flowLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
@@ -182,12 +183,33 @@
             panel1.Size = new Size(1563, 656);
             panel1.TabIndex = 10;
             // 
+            // ReportBtn
+            // 
+            ReportBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            ReportBtn.AutoSize = true;
+            ReportBtn.BackColor = Color.FromArgb(255, 64, 129);
+            ReportBtn.FlatAppearance.BorderSize = 0;
+            ReportBtn.FlatStyle = FlatStyle.Flat;
+            ReportBtn.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            ReportBtn.ForeColor = Color.White;
+            ReportBtn.IconChar = FontAwesome.Sharp.IconChar.None;
+            ReportBtn.IconColor = Color.Black;
+            ReportBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            ReportBtn.Location = new Point(13, 760);
+            ReportBtn.Name = "ReportBtn";
+            ReportBtn.Size = new Size(112, 54);
+            ReportBtn.TabIndex = 12;
+            ReportBtn.Text = "Report";
+            ReportBtn.UseVisualStyleBackColor = false;
+            ReportBtn.Click += ReportBtn_Click;
+            // 
             // Staff
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(245, 243, 244);
             ClientSize = new Size(1583, 827);
+            Controls.Add(ReportBtn);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
@@ -199,6 +221,7 @@
             flowLayoutPanel1.ResumeLayout(false);
             panel1.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -211,5 +234,6 @@
         public FontAwesome.Sharp.IconButton DeleteStaffBtn;
         private FlowLayoutPanel flowLayoutPanel1;
         private Panel panel1;
+        private FontAwesome.Sharp.IconButton ReportBtn;
     }
 }

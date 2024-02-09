@@ -40,10 +40,10 @@
             ContactTextBox = new MaterialSkin2DotNet.Controls.MaterialMaskedTextBox();
             RelationComboBox = new MaterialSkin2DotNet.Controls.MaterialComboBox();
             groupBox1 = new GroupBox();
+            PlansComboBox = new MaterialSkin2DotNet.Controls.MaterialComboBox();
             WeightTextBox = new MaterialSkin2DotNet.Controls.MaterialMaskedTextBox();
             groupBox2 = new GroupBox();
             AddStaffBtn = new FontAwesome.Sharp.IconButton();
-            PlansComboBox = new MaterialSkin2DotNet.Controls.MaterialComboBox();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             SuspendLayout();
@@ -132,7 +132,6 @@
             LastNameTextBox.TrailingIcon = null;
             LastNameTextBox.UseSystemPasswordChar = false;
             LastNameTextBox.ValidatingType = null;
-            
             // 
             // TellTxtBox
             // 
@@ -175,7 +174,6 @@
             TellTxtBox.TrailingIcon = null;
             TellTxtBox.UseSystemPasswordChar = false;
             TellTxtBox.ValidatingType = null;
-            
             // 
             // EmailTextBox
             // 
@@ -218,7 +216,6 @@
             EmailTextBox.TrailingIcon = null;
             EmailTextBox.UseSystemPasswordChar = false;
             EmailTextBox.ValidatingType = null;
-            
             // 
             // CityTextBox
             // 
@@ -261,7 +258,6 @@
             CityTextBox.TrailingIcon = null;
             CityTextBox.UseSystemPasswordChar = false;
             CityTextBox.ValidatingType = null;
-            
             // 
             // ContactTellTextBox
             // 
@@ -304,7 +300,6 @@
             ContactTellTextBox.TrailingIcon = null;
             ContactTellTextBox.UseSystemPasswordChar = false;
             ContactTellTextBox.ValidatingType = null;
-            
             // 
             // dateTimePicker1
             // 
@@ -314,7 +309,6 @@
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(375, 31);
             dateTimePicker1.TabIndex = 7;
-            
             // 
             // SexComboBox
             // 
@@ -339,7 +333,6 @@
             SexComboBox.Size = new Size(375, 49);
             SexComboBox.StartIndex = 0;
             SexComboBox.TabIndex = 8;
-            
             // 
             // VillageTextBox
             // 
@@ -382,7 +375,6 @@
             VillageTextBox.TrailingIcon = null;
             VillageTextBox.UseSystemPasswordChar = false;
             VillageTextBox.ValidatingType = null;
-            
             // 
             // ContactTextBox
             // 
@@ -425,7 +417,6 @@
             ContactTextBox.TrailingIcon = null;
             ContactTextBox.UseSystemPasswordChar = false;
             ContactTextBox.ValidatingType = null;
-            
             // 
             // RelationComboBox
             // 
@@ -450,7 +441,6 @@
             RelationComboBox.Size = new Size(375, 49);
             RelationComboBox.StartIndex = 0;
             RelationComboBox.TabIndex = 11;
-            
             // 
             // groupBox1
             // 
@@ -470,6 +460,30 @@
             groupBox1.TabIndex = 14;
             groupBox1.TabStop = false;
             groupBox1.Text = "Member Info";
+            // 
+            // PlansComboBox
+            // 
+            PlansComboBox.AutoResize = false;
+            PlansComboBox.BackColor = Color.FromArgb(255, 255, 255);
+            PlansComboBox.Depth = 0;
+            PlansComboBox.DrawMode = DrawMode.OwnerDrawVariable;
+            PlansComboBox.DropDownHeight = 174;
+            PlansComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            PlansComboBox.DropDownWidth = 121;
+            PlansComboBox.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            PlansComboBox.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            PlansComboBox.FormattingEnabled = true;
+            PlansComboBox.Hint = "Choose A Plan";
+            PlansComboBox.IntegralHeight = false;
+            PlansComboBox.ItemHeight = 43;
+            PlansComboBox.Location = new Point(408, 343);
+            PlansComboBox.MaxDropDownItems = 4;
+            PlansComboBox.MouseState = MaterialSkin2DotNet.MouseState.OUT;
+            PlansComboBox.Name = "PlansComboBox";
+            PlansComboBox.Size = new Size(375, 49);
+            PlansComboBox.StartIndex = 0;
+            PlansComboBox.TabIndex = 19;
+            PlansComboBox.SelectedIndexChanged += PlansComboBox_SelectedIndexChanged;
             // 
             // WeightTextBox
             // 
@@ -512,7 +526,6 @@
             WeightTextBox.TrailingIcon = null;
             WeightTextBox.UseSystemPasswordChar = false;
             WeightTextBox.ValidatingType = null;
-            
             // 
             // groupBox2
             // 
@@ -537,29 +550,6 @@
             AddStaffBtn.TabIndex = 17;
             AddStaffBtn.UseVisualStyleBackColor = true;
             AddStaffBtn.Click += AddStaffBtn_Click;
-            // 
-            // PlansComboBox
-            // 
-            PlansComboBox.AutoResize = false;
-            PlansComboBox.BackColor = Color.FromArgb(255, 255, 255);
-            PlansComboBox.Depth = 0;
-            PlansComboBox.DrawMode = DrawMode.OwnerDrawVariable;
-            PlansComboBox.DropDownHeight = 174;
-            PlansComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            PlansComboBox.DropDownWidth = 121;
-            PlansComboBox.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
-            PlansComboBox.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            PlansComboBox.FormattingEnabled = true;
-            PlansComboBox.Hint = "Choose A Plan";
-            PlansComboBox.IntegralHeight = false;
-            PlansComboBox.ItemHeight = 43;
-            PlansComboBox.Location = new Point(408, 343);
-            PlansComboBox.MaxDropDownItems = 4;
-            PlansComboBox.MouseState = MaterialSkin2DotNet.MouseState.OUT;
-            PlansComboBox.Name = "PlansComboBox";
-            PlansComboBox.Size = new Size(375, 49);
-            PlansComboBox.StartIndex = 0;
-            PlansComboBox.TabIndex = 19;
             // 
             // EditMember
             // 

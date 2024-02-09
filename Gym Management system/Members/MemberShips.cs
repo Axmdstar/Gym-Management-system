@@ -61,12 +61,6 @@ namespace Gym_Management_system
             dataGridView1.DataSource = sql.GetMembersData(query);
         }
 
-
-
-        
-
-
-
         public void NewMemberBtn_Click(object sender, EventArgs e)
         {
             AddMember addmember = new AddMember(plansdata);
@@ -86,8 +80,11 @@ namespace Gym_Management_system
             sql.ExcuteQuery(query);
             memberships_Load(sender, e);
         }
-        
 
-
+        private void ReportBtn_Click(object sender, EventArgs e)
+        {
+            ReportForm reportform = new ReportForm(dataGridView1);
+            reportform.ShowDialog();
+        }
     }
 }

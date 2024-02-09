@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -26,21 +27,28 @@ namespace Gym_Management_system
         string Em_Tell;
         string Em_Relation;
         int PlanId;
+
+        SqlClass sqlClass = new SqlClass();
+        //memberid
+        int Memberid;
+
+
+        //plandata list of plans
         Dictionary<string, List<object>>? PlanData;
 
-        //Memberships member = new Memberships();
 
-
-        SqlClass sqlclass = new SqlClass();
 
         public EditMember(DataGridViewRow row, Dictionary<string, List<object>>? PlanData)
         {
             InitializeComponent();
+            Memberid = (int)row.Cells[0].Value;
 
             this.PlanData = PlanData;
+
             int rowid = (int)row.Cells[13].Value;
             string planName = "";
 
+            //Add plan name to comobox
             foreach (List<object> value in PlanData.Values)
             {
                 PlansComboBox.Items.Add(value[0]);
@@ -65,40 +73,23 @@ namespace Gym_Management_system
             RelationComboBox.SelectedItem = row.Cells[11].Value.ToString();
             WeightTextBox.Text = row.Cells[12].Value.ToString();
             PlansComboBox.SelectedItem = planName;
-
-
-
         }
 
 
 
 
-
+        //Events
         private void PlansComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             PlanId = (int)PlanData[PlansComboBox.SelectedItem.ToString()][9];
+            Console.WriteLine(PlanId);
+            Console.WriteLine(PlansComboBox.SelectedItem.ToString());
+            Console.WriteLine(PlanData[PlansComboBox.SelectedItem.ToString()][9]);
         }
+
 
         private void AddStaffBtn_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(FirstName);
-            Console.WriteLine(LastName);
-            Console.WriteLine(Dob);
-            Console.WriteLine(Tell);
-            Console.WriteLine(Email);
-            Console.WriteLine(Sex);
-            Console.WriteLine(Weight);
-            Console.WriteLine(City);
-            Console.WriteLine(Village);
-            Console.WriteLine(Em_Contact);
-            Console.WriteLine(Em_Tell);
-            // Console.WriteLine(Em_Relation);
-
-
-            //string query = $@"INSERT into Customer_info(firstname, lastname, dob, Tell, email, sex, weight, city, village,emmergence_contact, emmergency_name, planId)
-            //  VALUES('{FirstName}','{LastName}',Date('{Dob}'),'{Tell}','{Email}','{Sex}',{Weight},'{City}','{Village}','{Em_Contact}','{Em_Tell}',3);";
-            // emmergence_contact
-
             string query = $@"UPDATE Customer_info
                             SET firstname = '{FirstNameTextBox.Text}',
                                 lastname = '{LastNameTextBox.Text}',
@@ -108,16 +99,17 @@ namespace Gym_Management_system
                                 sex = '{SexComboBox.SelectedItem}',
                                 city = '{CityTextBox.Text}',
                                 village = '{VillageTextBox.Text}',
-                                emmergence_contact = '{ContactTellTextBox.Text}',
+                                emergency_contact = '{ContactTellTextBox.Text}',
                                 emergency_name = '{ContactTextBox.Text}',
                                 emergency_relation = '{RelationComboBox.SelectedItem}',
                                 weight = {Convert.ToSingle(WeightTextBox.Text)},
-                                planId = {PlanId}";
+                                planId = {PlanId}
+                                where id = {Memberid}";
 
-            sqlclass.ExcuteQuery(query);
-
+            Console.WriteLine(query);
+            MessageBox.Show(sqlClass.ExcuteQuery(query));
         }
 
-
+        
     }
 }
