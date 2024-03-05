@@ -18,10 +18,7 @@ namespace Gym_Management_system
         public Attendance()
         {
             InitializeComponent();
-            CheckedInBtn.Click += CheckedInBtn_Click;
-            AttSearch_TxtBox.TextChanged += AttSearch_TxtBox_TextChanged;
-            ViewThisMonth.Click += ViewThisMonth_Click;
-            ViewToDay.Click += ViewToDay_Click;
+            
         }
 
         private void attendance_Load(object sender, EventArgs e)
@@ -58,7 +55,7 @@ namespace Gym_Management_system
             {
                 sql.Attended(memberId);
             }
-            else { MessageBox.Show("error else"); }
+            else { MessageBox.Show("error "); }
             attendance_Load(sender, e);
         }
 

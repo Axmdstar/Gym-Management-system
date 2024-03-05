@@ -467,13 +467,15 @@ public class SqlClass
         {
             while (r.ReaderData.Read())
             {
-                FinanceSummary.Add("TotalExp", r.ReaderData.GetFloat(0));
-                FinanceSummary.Add("MonExp", r.ReaderData.GetFloat(1));
-                FinanceSummary.Add("YearExp", r.ReaderData.GetFloat(2));
+                
+                FinanceSummary.Add("TotalExp", r.ReaderData.IsDBNull(0) ? 0 : r.ReaderData.GetFloat(0));
+                FinanceSummary.Add( "MonExp", r.ReaderData.IsDBNull(1) ? 0 : r.ReaderData.GetFloat(1));
+                FinanceSummary.Add("YearExp", r.ReaderData.IsDBNull(2) ? 0 : r.ReaderData.GetFloat(2));
 
-                FinanceSummary.Add("TotalRev", r.ReaderData.GetFloat(3));
-                FinanceSummary.Add("MonRev", r.ReaderData.GetFloat(4));
-                FinanceSummary.Add("YearRev", r.ReaderData.GetFloat(5));
+
+                FinanceSummary.Add("TotalRev", r.ReaderData.IsDBNull(3) ? 0 : r.ReaderData.GetFloat(3));
+                FinanceSummary.Add("MonRev", r.ReaderData.IsDBNull(4) ? 0 : r.ReaderData.GetFloat(4));
+                FinanceSummary.Add("YearRev", r.ReaderData.IsDBNull(5) ? 0 : r.ReaderData.GetFloat(5));
             }
         });
 
@@ -502,14 +504,20 @@ public class SqlClass
     
     public List<PayementStatus> PayedMember()
     {
-        string query = @"SELECT  ifnull(p.price,0.0), cus.firstname||' '||cus.lastname, cus.id,
-                            CASE when strftime('%m', date(r.date_created)) = strftime('%m', date('now')) 
-	                        THEN 'Payed' 
-	                        ELSE 'Not Payed' 
-	                        END as Payed   from  Customer_info as cus
-                         LEFT  join revenue as r  on cus.id = r.customer_id
-                         LEFT  join plans as p on p.id = cus.planId
-                            WHERE strftime('%m', date(r.date_created)) = strftime('%m', date('now')) OR r.date_created IS NULL;";
+        string query = @"SELECT ifnull(p.price,0.0),cus.firstname||' '||cus.lastname,cus.id,
+                        CASE 
+                            WHEN max(strftime('%m', date(r.date_created))) = strftime('%m', date('now')) THEN 'Payed'
+                            ELSE 'Not Payed'
+                        END AS Payed
+                        FROM Customer_info AS cus
+                        LEFT JOIN 
+                            revenue AS r ON cus.id = r.customer_id
+                        LEFT JOIN 
+                            plans AS p ON p.id = cus.planId
+                        GROUP BY 
+                            cus.id
+                        HAVING 
+                            Payed = 'Payed';";
 
         List<PayementStatus> PayedList = new List<PayementStatus>();
         Console.WriteLine(query);
