@@ -331,7 +331,6 @@
             SexComboBox.Hint = "Sex";
             SexComboBox.IntegralHeight = false;
             SexComboBox.ItemHeight = 43;
-            SexComboBox.Items.AddRange(new object[] { "Female", "Male" });
             SexComboBox.Location = new Point(6, 195);
             SexComboBox.MaxDropDownItems = 4;
             SexComboBox.MouseState = MaterialSkin2DotNet.MouseState.OUT;

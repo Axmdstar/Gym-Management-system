@@ -35,7 +35,6 @@
             panel2 = new Panel();
             AttGridView = new DataGridView();
             panel4 = new Panel();
-            DshCheckedInBtn = new MaterialSkin2DotNet.Controls.MaterialFloatingActionButton();
             label2 = new Label();
             NewMemberBtn = new MaterialSkin2DotNet.Controls.MaterialFloatingActionButton();
             label1 = new Label();
@@ -64,7 +63,7 @@
             DshSearch_TxtBox.Location = new Point(13, 13);
             DshSearch_TxtBox.Margin = new Padding(2);
             DshSearch_TxtBox.Name = "DshSearch_TxtBox";
-            DshSearch_TxtBox.Size = new Size(486, 37);
+            DshSearch_TxtBox.Size = new Size(623, 37);
             DshSearch_TxtBox.TabIndex = 3;
             DshSearch_TxtBox.TextChanged += dshSearch_TxtBox_TextChanged;
             // 
@@ -132,26 +131,11 @@
             // panel4
             // 
             panel4.Controls.Add(DshSearch_TxtBox);
-            panel4.Controls.Add(DshCheckedInBtn);
             panel4.Dock = DockStyle.Bottom;
             panel4.Location = new Point(0, 332);
             panel4.Name = "panel4";
             panel4.Size = new Size(659, 65);
             panel4.TabIndex = 0;
-            // 
-            // DshCheckedInBtn
-            // 
-            DshCheckedInBtn.Depth = 0;
-            DshCheckedInBtn.Dock = DockStyle.Right;
-            DshCheckedInBtn.Icon = Properties.Resources.pngegg__2_;
-            DshCheckedInBtn.Location = new Point(600, 0);
-            DshCheckedInBtn.MouseState = MaterialSkin2DotNet.MouseState.HOVER;
-            DshCheckedInBtn.Name = "DshCheckedInBtn";
-            DshCheckedInBtn.Size = new Size(59, 65);
-            DshCheckedInBtn.TabIndex = 7;
-            DshCheckedInBtn.Text = "materialFloatingActionButton2";
-            DshCheckedInBtn.UseVisualStyleBackColor = true;
-            DshCheckedInBtn.Click += dshCheckedInBtn_Click;
             // 
             // label2
             // 
@@ -162,7 +146,8 @@
             label2.Name = "label2";
             label2.Size = new Size(140, 26);
             label2.TabIndex = 1;
-            label2.Text = "Attendance";
+            label2.Text = "Recent Attends";
+            
             // 
             // NewMemberBtn
             // 
@@ -340,7 +325,6 @@
         public Label label1;
         public FlowLayoutPanel flowLayoutPanel1;
         public MaterialSkin2DotNet.Controls.MaterialFloatingActionButton NewMemberBtn;
-        public MaterialSkin2DotNet.Controls.MaterialFloatingActionButton DshCheckedInBtn;
         public Panel panel4;
         public Label TotalMember;
         public Panel panel1;

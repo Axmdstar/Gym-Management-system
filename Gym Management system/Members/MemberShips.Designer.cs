@@ -51,7 +51,7 @@
             dataGridView1.RowTemplate.Height = 33;
             dataGridView1.Size = new Size(1563, 621);
             dataGridView1.TabIndex = 1;
-            dataGridView1.CellContentClick += SelctedMemberRow;
+            dataGridView1.CellClick += SelctedMemberRow;
             // 
             // NewMemberBtn
             // 

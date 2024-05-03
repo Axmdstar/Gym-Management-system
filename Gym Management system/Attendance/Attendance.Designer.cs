@@ -174,6 +174,7 @@
             AttendanceGridView.RowHeadersWidth = 80;
             AttendanceGridView.Size = new Size(1431, 587);
             AttendanceGridView.TabIndex = 1;
+            AttendanceGridView.CellClick += SelctedMemberRow;
             // 
             // Attendance
             // 

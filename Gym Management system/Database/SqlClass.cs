@@ -174,7 +174,7 @@ public class SqlClass
         return StaffList;
     }
 
-    public List<MemberShipModal> GetMembersData(string query)
+    public List<MemberShipModal>? GetMembersData(string query)
     {
         List<MemberShipModal> MemberList = new List<MemberShipModal>();
         Console.WriteLine(query);
@@ -182,43 +182,53 @@ public class SqlClass
         {
             query = @"select * from Customer_info";
         }
+
         helper.QueryReader(query, r =>
         {
-            while (r.ReaderData.Read())
+            try
             {
-                int id = r.ReaderData.GetInt32(0);
-                string FirstName = r.ReaderData.IsDBNull(1) ? "null" : r.ReaderData.GetString(1);
-                string LastName = r.ReaderData.IsDBNull(2) ? "null" : r.ReaderData.GetString(2);
-                string DoB = r.ReaderData.IsDBNull(3) ? "null" : r.ReaderData.GetString(3);
-                string Tell = r.ReaderData.IsDBNull(4) ? "null" : r.ReaderData.GetString(4);
-                string Email = r.ReaderData.IsDBNull(5) ? "null" : r.ReaderData.GetString(5);
-                string Sex = r.ReaderData.IsDBNull(6) ? "null" : r.ReaderData.GetString(6);
-                float Weight = r.ReaderData.IsDBNull(7) ? 0 : r.ReaderData.GetFloat(7);
-                string City = r.ReaderData.IsDBNull(8) ? "null" : r.ReaderData.GetString(8);
-                string Village = r.ReaderData.IsDBNull(9) ? "null" : r.ReaderData.GetString(9);
-                string Em_Contact = r.ReaderData.IsDBNull(10) ? "null" : r.ReaderData.GetString(10);
-                string Emm_Name = r.ReaderData.IsDBNull(11) ? "null" : r.ReaderData.GetString(11);
-                string Emm_R = r.ReaderData.IsDBNull(12) ? "null" : r.ReaderData.GetString(12);
-                int PlansId = r.ReaderData.IsDBNull(13) ? 0 : r.ReaderData.GetInt32(13);
+                while (r.ReaderData.Read())
+                {
+                    int id = r.ReaderData.GetInt32(0);
+                    string FirstName = r.ReaderData.IsDBNull(1) ? "null" : r.ReaderData.GetString(1);
+                    string LastName = r.ReaderData.IsDBNull(2) ? "null" : r.ReaderData.GetString(2);
+                    string DoB = r.ReaderData.IsDBNull(3) ? "null" : r.ReaderData.GetString(3);
+                    string Tell = r.ReaderData.IsDBNull(4) ? "null" : r.ReaderData.GetString(4);
+                    string Email = r.ReaderData.IsDBNull(5) ? "null" : r.ReaderData.GetString(5);
+                    string Sex = r.ReaderData.IsDBNull(6) ? "null" : r.ReaderData.GetString(6);
+                    float Weight = r.ReaderData.IsDBNull(7) ? 0 : r.ReaderData.GetFloat(7);
+                    string City = r.ReaderData.IsDBNull(8) ? "null" : r.ReaderData.GetString(8);
+                    string Village = r.ReaderData.IsDBNull(9) ? "null" : r.ReaderData.GetString(9);
+                    string Em_Contact = r.ReaderData.IsDBNull(10) ? "null" : r.ReaderData.GetString(10);
+                    string Emm_Name = r.ReaderData.IsDBNull(11) ? "null" : r.ReaderData.GetString(11);
+                    string Emm_R = r.ReaderData.IsDBNull(12) ? "null" : r.ReaderData.GetString(12);
+                    int PlansId = r.ReaderData.IsDBNull(13) ? 0 : r.ReaderData.GetInt32(13);
 
-                //MemberObject
-                MemberShipModal member = new MemberShipModal(
-                id,
-                FirstName,
-                LastName,
-                DoB,
-                Tell,
-                Email,
-                Sex,
-                City,
-                Village,
-                Em_Contact,
-                Emm_Name,
-                Emm_R,
-                Weight,
-                PlansId
-                );
-                MemberList.Add(member);
+                    //MemberObject
+                    MemberShipModal member = new MemberShipModal(
+                    id,
+                    FirstName,
+                    LastName,
+                    DoB,
+                    Tell,
+                    Email,
+                    Sex,
+                    City,
+                    Village,
+                    Em_Contact,
+                    Emm_Name,
+                    Emm_R,
+                    Weight,
+                    PlansId
+                    );
+                    MemberList.Add(member);
+                }
+
+            }
+            catch (NullReferenceException)
+            {
+
+                Console.WriteLine("Why");
             }
         });
 
@@ -389,7 +399,7 @@ public class SqlClass
     }
 
 
-    public List<AttendanceModal> GetAttendLast5()
+    public List<AttendanceModal> GetAttendLast10()
     {
         string query = @"select att.customer_id,
 	    cus.firstname || ' ' || cus.lastname AS full_name,
@@ -399,7 +409,7 @@ public class SqlClass
         INNER JOIN Customer_info as cus on att.customer_id = cus.id
         where date(att.AttDate) = date()
         order by att.AttDate DESC
-        LIMIT 5
+        LIMIT 10
 ";
 
         List<AttendanceModal> AttendanceList = new List<AttendanceModal>();

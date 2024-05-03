@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Media.Media3D;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace Gym_Management_system
@@ -59,7 +60,14 @@ namespace Gym_Management_system
         }
         private void SalaryTextBox_TextChanged(object sender, EventArgs args)
         {
-            Salary = Convert.ToSingle(SalaryTextBox.Text);
+            if (float.TryParse(SalaryTextBox.Text, out float parsed))
+            {
+                Salary = parsed;
+            }
+            else
+            {
+                SalaryTextBox.Text = string.Empty;
+            }
         }
         private void dateTimePicker1_TextChanged(object sender, EventArgs args)
         {

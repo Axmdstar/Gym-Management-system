@@ -62,7 +62,6 @@ namespace Gym_Management_system
                 ('{planName}', {SignUpfee}, {price}, {TrainerId}, '{planType}');
                 INSERT INTO Schedule ( plan_id, time_in, time_out) VALUES ((SELECT DISTINCT last_insert_rowid() as id from plans), time('{timeIn}'), time('{timeOut}'));";
                 sqlClass.ExcuteQuery(query);
-                Console.WriteLine(query);
                 MessageBox.Show(sqlClass.ExcuteQuery(query));
             }
             else

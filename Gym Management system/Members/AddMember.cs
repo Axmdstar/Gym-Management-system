@@ -28,7 +28,7 @@ namespace Gym_Management_system
         string? Em_Relation;
         int? PlanId;
         Dictionary<string, List<object>>? PlanData;
-        //Memberships member = new Memberships();
+        
 
 
         SqlClass sqlClass = new SqlClass();
@@ -42,6 +42,8 @@ namespace Gym_Management_system
             {
                 PlansComboBox.Items.Add(value[0]);
             }
+            SexComboBox.Items.Add("Female");
+            SexComboBox.Items.Add("Male");
         }
 
 
@@ -98,7 +100,13 @@ namespace Gym_Management_system
 
         private void WeightTextBox_TextChanged(object sender, EventArgs e)
         {
-            Weight = Convert.ToSingle(WeightTextBox.Text);
+            if(float.TryParse(WeightTextBox.Text, out float parsed))
+            {
+                Weight = parsed;
+            } else
+            {
+                WeightTextBox.Text = string.Empty;
+            }
         }
         private void PlansComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -108,6 +116,24 @@ namespace Gym_Management_system
 
         private void AddStaffBtn_Click(object sender, EventArgs e)
         {
+
+            if( string.IsNullOrEmpty(FirstName) ||
+                string.IsNullOrEmpty(LastName) ||
+                string.IsNullOrEmpty(Dob) ||
+                string.IsNullOrEmpty(Tell) ||
+                string.IsNullOrEmpty(Email) ||
+                string.IsNullOrEmpty(Sex) ||
+                string.IsNullOrEmpty(City) ||
+                string.IsNullOrEmpty(Village) ||
+                string.IsNullOrEmpty(Em_Contact) ||
+                string.IsNullOrEmpty(Em_Tell) ||
+                string.IsNullOrEmpty(Em_Relation) ||
+                PlanId == null ||
+                Weight == null )
+            {
+                MessageBox.Show("Fill All Fields");
+                return;
+            }
 
             string query = $@"INSERT into Customer_info(firstname, lastname, dob, Tell, email, sex, weight, city, village, emergency_contact, emergency_name, emergency_relation, planId)
               VALUES('{FirstName}','{LastName}',Date('{Dob}'),'{Tell}','{Email}','{Sex}',{Weight},'{City}','{Village}','{Em_Contact}','{Em_Tell}','{Em_Relation}',{PlanId});";
